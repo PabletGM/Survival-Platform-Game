@@ -1,5 +1,10 @@
 #include "game.h"
 
+
+Game::Game()
+{
+}
+
 void Game::update(float deltaMS, sf::RenderWindow& window)
 {
     
@@ -16,6 +21,9 @@ void Game::render(float deltaMS, sf::RenderWindow& window)
         /*m_map->render();
         m_mainCharacter->render();
         m_enemyManager->render();*/
+
+        //creo un circulo de tamaño 300
+       
 
         window.display();
     
