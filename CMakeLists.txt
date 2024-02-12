@@ -14,11 +14,19 @@ FetchContent_MakeAvailable(SFML)
 set(PROJECT_HEADERS 
 
     include/game.h
+    include/protagonista.h
+    include/enemy.h
+    include/enemyManager.h
+    include/plataforma.h
 )
 
 set(PROJECT_SOURCES 
     src/game.cpp
     src/main.cpp
+    src/protagonista.cpp
+    src/enemy.cpp
+    src/enemyManager.cpp
+    src/plataforma.cpp
 )
 
 set(PROJECT_FILES 

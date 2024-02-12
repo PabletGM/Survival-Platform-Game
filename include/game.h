@@ -1,7 +1,7 @@
 
 #include <SFML/Graphics.hpp>
 
-
+//para tema de enemigos clase villano y supervillano hacer stateMachine con IA, buscar tutorial para los diferentes estados, perseguir, idle, buscar, etc
 class Game
 {
     public:
