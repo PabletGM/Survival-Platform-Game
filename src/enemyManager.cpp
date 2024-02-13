@@ -5,12 +5,9 @@
 #include <random>
 
 //lista de inicializacion con valor de numEnemiesTotal
-enemyManager::enemyManager(sf::RenderWindow& window) : numEnemiesTotal{ 6 }
+enemyManager::enemyManager(sf::RenderWindow& window) : numEnemiesTotalVillain{ 3 }, numEnemiesTotalSuperVillain{ 3 }
 {
-	
-
-	CreateEnemies(window);
-	
+	CreateEnemies(window);	
 }
 
 void enemyManager::update()
@@ -19,9 +16,19 @@ void enemyManager::update()
 
 void enemyManager::render(sf::RenderWindow& window )
 {
-	for (int i = 0; i < numEnemiesTotal;i++)
+
+
+	//iterador que recorre toda la lista de enemigos in game
+	for (auto i = m_enemies.begin(); i < m_enemies.end(); i++) 
 	{
-		enemiesInGame[i]->render(window);
+		//accedemos al objeto apuntado por iterador i, accedemos al contenido que apunta i
+		enemy* currentEnemy = *i;
+		//si el objeto existe
+		if (currentEnemy)
+		{
+			// Llamar al método render del objeto actual
+			currentEnemy->render(window);
+		}
 	}
 }
 
@@ -31,15 +38,25 @@ void enemyManager::CreateEnemies(sf::RenderWindow& window)
 
 	//generamos posiciones iniciales aleatorias, entre 1 y 1000
 	std::srand(std::time(nullptr));
-	//inicializamos enemies y array enemiesInGame
-	for (int i = 0;i < numEnemiesTotal;i++)
+
+	//inicializamos enemySuperVillain
+	for (int i = 0;i < numEnemiesTotalSuperVillain;i++)
 	{
 		int posXInitRandomEnemy = 1 + std::rand() % 1000;
 		int posYInitRandomEnemy = 1 + std::rand() % 1000;
-		enemySuperVillain* e = new enemySuperVillain();
+		enemy* e = new enemySuperVillain(posXInitRandomEnemy, posYInitRandomEnemy);
 		m_enemies.push_back(e);
-		/*enemiesInGame[i] = new enemy(window, posXInitRandomEnemy, posYInitRandomEnemy);*/
+		
+	}
 
+	//inicializamos enemyVillain
+	for (int i = 0;i < numEnemiesTotalVillain;i++)
+	{
+		int posXInitRandomEnemy = 1 + std::rand() % 1000;
+		int posYInitRandomEnemy = 1 + std::rand() % 1000;
+		enemy* e = new enemyVillain(posXInitRandomEnemy, posYInitRandomEnemy);
+		m_enemies.push_back(e);
+		
 	}
 
 }

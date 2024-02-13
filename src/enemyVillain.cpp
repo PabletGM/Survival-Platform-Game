@@ -1,7 +1,12 @@
 #include "enemyVillain.h"
 
 
-enemyVillain::enemyVillain(int posX, int posY): maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }
+enemyVillain::enemyVillain()
+{
+
+}
+
+enemyVillain::enemyVillain(int posX, int posY): maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{0}
 {
     //cargas textura inicialmente
     LoadTextureInit();

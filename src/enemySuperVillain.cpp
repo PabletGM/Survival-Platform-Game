@@ -1,10 +1,15 @@
 #include "enemySuperVillain.h"
 
 
-enemySuperVillain::enemySuperVillain(sf::RenderWindow& window, int posX, int posY) : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }
+enemySuperVillain::enemySuperVillain()
+{
+
+}
+
+enemySuperVillain::enemySuperVillain( int posX, int posY) : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }
 {
     //cargas textura inicialmente
-    LoadTextureInit(window);
+    LoadTextureInit();
     ScaleSprite();
     //inicializamos variables de posicion
     posXInit = posX;
@@ -40,7 +45,7 @@ void enemySuperVillain::RotateSprite()
 void enemySuperVillain::ScaleSprite()
 {
     // scale
-    spriteEnemy.setScale(sf::Vector2f(0.1f, 0.1f)); // absolute scale factor
+    spriteEnemy.setScale(sf::Vector2f(0.3f, 0.3f)); // absolute scale factor
     //sprite.scale(sf::Vector2f(1.5f, 3.f)); // factor relative to the current scale
 }
 
@@ -75,11 +80,10 @@ void enemySuperVillain::LoadTextureInit()
 
 
     //carga de imagen del proyecto
-    textureEnemy.loadFromFile("../sprites/enemy/villano.png");
+    textureEnemy.loadFromFile("../sprites/enemy/supervillano.png");
     //le ponemos textura
     spriteEnemy.setTexture(textureEnemy);
 
-    window.draw(spriteEnemy);
 
 
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "enemy.h"
 class enemySuperVillain: public enemy
@@ -5,8 +6,9 @@ class enemySuperVillain: public enemy
     public:
 
         //constructor por defecto
+        enemySuperVillain();
         enemySuperVillain(int posXInit, int posYInit);
-
+        
 
         void update() override;
 

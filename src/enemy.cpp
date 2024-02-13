@@ -1,16 +1,13 @@
 #include "enemy.h"
 
 
-enemy::enemy(sf::RenderWindow& window, int posX, int posY): maxLife{3}, actualLife{4}, posXInit{0}, posYInit{0}
+enemy::enemy() : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }
 {
-    //cargas textura inicialmente
-    LoadTextureInit(window);
-    ScaleSprite();
-    //inicializamos variables de posicion
-    posXInit= posX;
-    posYInit = posY;
-    //se inicia posicion de enemy
-    SetInitialPosition(posX, posY);
+}
+
+enemy::enemy( int posX, int posY): maxLife{3}, actualLife{4}, posXInit{0}, posYInit{0}
+{
+
 }
 
 void enemy::update()
@@ -53,33 +50,18 @@ void enemy::ChangeOriginSprite()
 
 void enemy::UpdateSprite(sf::RenderWindow& window)
 {
-    window.draw(spriteEnemy);
+    
 }
 
 void enemy::SetInitialPosition(int posXInit, int posYInit)
 {
-    spriteEnemy.move(sf::Vector2f(posXInit, posYInit));
+    
 }
 
-void enemy::LoadTextureInit(sf::RenderWindow& window)
+void enemy::LoadTextureInit()
 {
 
 
-    ////dibujamos pelota
-    //sf::CircleShape shape(300.f);
-    ////le pones un color a la forma
-    //shape.setFillColor(sf::Color::Green);
-    ////haces metodo dibujar
-    //window.setFramerateLimit(144);
-    //window.draw(shape);
-
-
-    //carga de imagen del proyecto
-    textureEnemy.loadFromFile("../sprites/enemy/villano.png");
-    //le ponemos textura
-    spriteEnemy.setTexture(textureEnemy);
-
-    window.draw(spriteEnemy);
-
+    
 
 }

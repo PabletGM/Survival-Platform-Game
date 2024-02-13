@@ -20,9 +20,9 @@ class enemyManager
 
     private:
 
-        int numEnemiesTotal;
+        int numEnemiesTotalVillain;
+        int numEnemiesTotalSuperVillain;
         //array con enemigos
-        enemy* enemiesInGame[6];
         std::vector<enemy*> m_enemies{};
         
 

@@ -1,10 +1,12 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "enemy.h"
 class enemyVillain: public enemy
 {
     public:
         //constructor por defecto
-        enemyVillain(sf::RenderWindow& window, int posXInit, int posYInit);
+        enemyVillain();
+        enemyVillain( int posXInit, int posYInit);
 
 
         void update() override;

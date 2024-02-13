@@ -1,10 +1,12 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 
 class enemy
 {
     public:
         //constructor por defecto
-        enemy(sf::RenderWindow& window, int posXInit, int posYInit);
+        enemy();
+        enemy( int posXInit, int posYInit);
 
 
         virtual void update() = 0;
