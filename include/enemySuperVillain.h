@@ -1,31 +1,32 @@
 #include <SFML/Graphics.hpp>
-
-class enemySuperVillain
+#include "enemy.h"
+class enemySuperVillain: public enemy
 {
     public:
+
         //constructor por defecto
-        enemySuperVillain(sf::RenderWindow& window, int posXInit, int posYInit);
+        enemySuperVillain(int posXInit, int posYInit);
 
 
-        void update();
+        void update() override;
 
 
-        void render(sf::RenderWindow& window);
+        void render(sf::RenderWindow& window) override;
 
 
     private:
 
 
         //metodos privados
-        void MoveSprite();
-        void RotateSprite();
-        void ScaleSprite();
-        void ChangeOriginSprite();
-        void LoadTextureInit(sf::RenderWindow& window);
-        void UpdateSprite(sf::RenderWindow& window);
+        void MoveSprite() override;
+        void RotateSprite() override;
+        void ScaleSprite() override;
+        void ChangeOriginSprite() override;
+        void LoadTextureInit() override;
+        void UpdateSprite(sf::RenderWindow& window) override;
 
         //pones todo inicialmente
-        void SetInitialPosition(int posX, int posY);
+        void SetInitialPosition(int posX, int posY) override;
 
         //vida
         int maxLife;

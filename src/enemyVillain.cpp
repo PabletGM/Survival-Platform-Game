@@ -1,10 +1,10 @@
 #include "enemyVillain.h"
 
 
-enemyVillain::enemyVillain(sf::RenderWindow& window, int posX, int posY) : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }
+enemyVillain::enemyVillain(int posX, int posY): maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }
 {
     //cargas textura inicialmente
-    LoadTextureInit(window);
+    LoadTextureInit();
     ScaleSprite();
     //inicializamos variables de posicion
     posXInit = posX;
@@ -34,7 +34,7 @@ void enemyVillain::RotateSprite()
 {
     //// rotation
     //sprite.setRotation(90.f); // absolute angle
-    //sprite.rotate(15.f); // offset relative to the current angle
+    //sprite.rotate(15.f); // offset relative to the current angle;
 }
 
 void enemyVillain::ScaleSprite()
@@ -61,7 +61,7 @@ void enemyVillain::SetInitialPosition(int posXInit, int posYInit)
     spriteEnemy.move(sf::Vector2f(posXInit, posYInit));
 }
 
-void enemyVillain::LoadTextureInit(sf::RenderWindow& window)
+void enemyVillain::LoadTextureInit()
 {
 
 
@@ -79,7 +79,7 @@ void enemyVillain::LoadTextureInit(sf::RenderWindow& window)
     //le ponemos textura
     spriteEnemy.setTexture(textureEnemy);
 
-    window.draw(spriteEnemy);
+    
 
 
 }

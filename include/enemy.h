@@ -7,25 +7,27 @@ class enemy
         enemy(sf::RenderWindow& window, int posXInit, int posYInit);
 
 
-        void update();
+        virtual void update() = 0;
 
 
-        void render(sf::RenderWindow& window);
+        virtual void render(sf::RenderWindow& window) = 0;
 
+
+        //metodos privados
+        virtual void MoveSprite() = 0;
+        virtual void RotateSprite()= 0;
+        virtual void ScaleSprite() = 0;
+        virtual void ChangeOriginSprite() = 0;
+        virtual void LoadTextureInit() = 0;
+        virtual void UpdateSprite(sf::RenderWindow& window) = 0;
+
+        //pones todo inicialmente
+       virtual void SetInitialPosition(int posX, int posY) = 0;
 
     private:
 
 
-        //metodos privados
-        void MoveSprite();
-        void RotateSprite();
-        void ScaleSprite();
-        void ChangeOriginSprite();
-        void LoadTextureInit(sf::RenderWindow& window);
-        void UpdateSprite(sf::RenderWindow& window);
-
-        //pones todo inicialmente
-        void SetInitialPosition(int posX, int posY);
+        
 
         //vida
         int maxLife;

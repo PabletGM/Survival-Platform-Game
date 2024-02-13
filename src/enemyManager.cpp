@@ -1,5 +1,7 @@
 
 #include "enemyManager.h"
+#include "enemySuperVillain.h"
+#include "enemyVillain.h"
 #include <random>
 
 //lista de inicializacion con valor de numEnemiesTotal
@@ -34,7 +36,10 @@ void enemyManager::CreateEnemies(sf::RenderWindow& window)
 	{
 		int posXInitRandomEnemy = 1 + std::rand() % 1000;
 		int posYInitRandomEnemy = 1 + std::rand() % 1000;
-		enemiesInGame[i] = new enemy(window, posXInitRandomEnemy, posYInitRandomEnemy);
+		enemySuperVillain* e = new enemySuperVillain();
+		m_enemies.push_back(e);
+		/*enemiesInGame[i] = new enemy(window, posXInitRandomEnemy, posYInitRandomEnemy);*/
+
 	}
-	
+
 }

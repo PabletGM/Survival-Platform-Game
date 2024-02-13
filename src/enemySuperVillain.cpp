@@ -61,7 +61,7 @@ void enemySuperVillain::SetInitialPosition(int posXInit, int posYInit)
     spriteEnemy.move(sf::Vector2f(posXInit, posYInit));
 }
 
-void enemySuperVillain::LoadTextureInit(sf::RenderWindow& window)
+void enemySuperVillain::LoadTextureInit()
 {
 
 

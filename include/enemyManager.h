@@ -23,6 +23,7 @@ class enemyManager
         int numEnemiesTotal;
         //array con enemigos
         enemy* enemiesInGame[6];
+        std::vector<enemy*> m_enemies{};
         
 
 };
