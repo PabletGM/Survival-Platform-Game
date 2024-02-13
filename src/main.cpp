@@ -27,7 +27,7 @@ int main()
     sf::RenderWindow window = sf::RenderWindow{ { 1920u, 1080u }, "CMake SFML Project" };
     window.setFramerateLimit(144);
     //creamos instancia game
-    Game* game = new Game();
+    Game* game = new Game(window);
     ////para uso de time entre frames 
     sf::Clock clock;
 

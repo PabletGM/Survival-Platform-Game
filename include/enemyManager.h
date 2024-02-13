@@ -8,19 +8,21 @@ class enemyManager
 {
     public:
         //constructor por defecto
-        enemyManager();
+        enemyManager(sf::RenderWindow& window);
 
         void update();
 
 
         void render(sf::RenderWindow& window);
 
+        void CreateEnemies(sf::RenderWindow& window);
+
 
     private:
 
-        int numEnemiesTotal = 3;
+        int numEnemiesTotal;
         //array con enemigos
-        enemy* enemiesInGame[3];
+        enemy* enemiesInGame[6];
         
 
 };

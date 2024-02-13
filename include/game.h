@@ -9,7 +9,7 @@ class Game
 {
     public:
         //constructor por defecto
-        Game();
+        Game(sf::RenderWindow& window);
 
 
         void update(float deltaMS, sf::RenderWindow& window);

@@ -1,10 +1,10 @@
 #include "game.h"
 
 
-Game::Game()
+Game::Game(sf::RenderWindow& window)
 {
     //inicializar enemyManager
-    m_enemyManager = new enemyManager();
+    m_enemyManager = new enemyManager(window);
     m_plataforma = new plataforma();
     m_protagonista = new protagonista();
 }
