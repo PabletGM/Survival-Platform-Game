@@ -1,7 +1,7 @@
 #include "enemySuperVillain.h"
 
 
-enemySuperVillain::enemySuperVillain()
+enemySuperVillain::enemySuperVillain() : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }
 {
 
 }
