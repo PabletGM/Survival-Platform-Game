@@ -1,10 +1,10 @@
 #include <SFML/Graphics.hpp>
 
-class enemy
+class enemySuperVillain
 {
     public:
         //constructor por defecto
-        enemy(sf::RenderWindow& window, int posXInit, int posYInit);
+        enemySuperVillain(sf::RenderWindow& window, int posXInit, int posYInit);
 
 
         void update();

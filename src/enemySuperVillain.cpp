@@ -1,43 +1,85 @@
-#include <SFML/Graphics.hpp>
+#include "enemySuperVillain.h"
 
-class enemy
+
+enemySuperVillain::enemySuperVillain(sf::RenderWindow& window, int posX, int posY) : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }
 {
-    public:
-        //constructor por defecto
-        enemy(sf::RenderWindow& window, int posXInit, int posYInit);
+    //cargas textura inicialmente
+    LoadTextureInit(window);
+    ScaleSprite();
+    //inicializamos variables de posicion
+    posXInit = posX;
+    posYInit = posY;
+    //se inicia posicion de enemy
+    SetInitialPosition(posX, posY);
+}
+
+void enemySuperVillain::update()
+{
+}
+
+void enemySuperVillain::render(sf::RenderWindow& window)
+{
+    UpdateSprite(window);
+    MoveSprite();
+}
+
+void enemySuperVillain::MoveSprite()
+{
+    // position
+    //sprite.setPosition(sf::Vector2f(10.f, 50.f)); // absolute position
+    spriteEnemy.move(sf::Vector2f(1, 0)); // offset relative to the current position
+}
+
+void enemySuperVillain::RotateSprite()
+{
+    //// rotation
+    //sprite.setRotation(90.f); // absolute angle
+    //sprite.rotate(15.f); // offset relative to the current angle
+}
+
+void enemySuperVillain::ScaleSprite()
+{
+    // scale
+    spriteEnemy.setScale(sf::Vector2f(0.1f, 0.1f)); // absolute scale factor
+    //sprite.scale(sf::Vector2f(1.5f, 3.f)); // factor relative to the current scale
+}
+
+void enemySuperVillain::ChangeOriginSprite()
+{
+    //origen por defecto es el top-left esquina izquierda
+    /*sprite.setOrigin(sf::Vector2f(25.f, 25.f));*/
+}
 
 
-        void update();
+void enemySuperVillain::UpdateSprite(sf::RenderWindow& window)
+{
+    window.draw(spriteEnemy);
+}
+
+void enemySuperVillain::SetInitialPosition(int posXInit, int posYInit)
+{
+    spriteEnemy.move(sf::Vector2f(posXInit, posYInit));
+}
+
+void enemySuperVillain::LoadTextureInit(sf::RenderWindow& window)
+{
 
 
-        void render(sf::RenderWindow& window);
+    ////dibujamos pelota
+    //sf::CircleShape shape(300.f);
+    ////le pones un color a la forma
+    //shape.setFillColor(sf::Color::Green);
+    ////haces metodo dibujar
+    //window.setFramerateLimit(144);
+    //window.draw(shape);
 
 
-    private:
+    //carga de imagen del proyecto
+    textureEnemy.loadFromFile("../sprites/enemy/villano.png");
+    //le ponemos textura
+    spriteEnemy.setTexture(textureEnemy);
+
+    window.draw(spriteEnemy);
 
 
-        //metodos privados
-        void MoveSprite();
-        void RotateSprite();
-        void ScaleSprite();
-        void ChangeOriginSprite();
-        void LoadTextureInit(sf::RenderWindow& window);
-        void UpdateSprite(sf::RenderWindow& window);
-
-        //pones todo inicialmente
-        void SetInitialPosition(int posX, int posY);
-
-        //vida
-        int maxLife;
-        int actualLife;
-
-        //sprite enemigo
-        sf::Sprite spriteEnemy;
-        //texture enemigo
-        sf::Texture textureEnemy;
-
-        //posicionInicial
-        int posXInit;
-        int posYInit;
-
-};
+}
