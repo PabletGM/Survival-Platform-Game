@@ -16,6 +16,8 @@ set(PROJECT_HEADERS
     include/game.h
     include/protagonista.h
     include/enemy.h
+    include/enemyVillain.h
+    include/enemySuperVillain.h
     include/enemyManager.h
     include/plataforma.h
 )
@@ -25,6 +27,8 @@ set(PROJECT_SOURCES
     src/main.cpp
     src/protagonista.cpp
     src/enemy.cpp
+    src/enemyVillain.cpp
+    src/enemySuperVillain.cpp
     src/enemyManager.cpp
     src/plataforma.cpp
 )
