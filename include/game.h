@@ -1,4 +1,4 @@
-
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <enemyManager.h>
 #include <protagonista.h>
@@ -10,6 +10,7 @@ class Game
     public:
         //constructor por defecto
         Game();
+
 
         void update(float deltaMS, sf::RenderWindow& window);
     
@@ -30,4 +31,7 @@ class Game
         protagonista* m_protagonista;
         //plataformas del juego, TO DO--> cambiar por mapa y que este dentro tenga un array de plataformas que se rendericen
         plataforma* m_plataforma;
+
+
+
 };

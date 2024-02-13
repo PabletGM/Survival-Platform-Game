@@ -1,4 +1,4 @@
-
+#include <SFML/Graphics.hpp>
 
 class enemy
 {
@@ -9,9 +9,12 @@ class enemy
         void update();
 
 
-        void render();
+        void render(sf::RenderWindow& window);
 
 
     private:
+
+        int maxLife;
+        int actualLife;
 
 };

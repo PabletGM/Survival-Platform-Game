@@ -3,7 +3,12 @@
 
 Game::Game()
 {
+    //inicializar enemyManager
+    m_enemyManager = new enemyManager();
+    m_plataforma = new plataforma();
+    m_protagonista = new protagonista();
 }
+
 
 void Game::update(float deltaMS, sf::RenderWindow& window)
 {
@@ -19,8 +24,8 @@ void Game::render(float deltaMS, sf::RenderWindow& window)
         window.clear();
 
         /*m_map->render();
-        m_mainCharacter->render();
-        m_enemyManager->render();*/
+        m_mainCharacter->render();*/
+        m_enemyManager->render(window);
 
         //creo un circulo de tamaño 300
        
