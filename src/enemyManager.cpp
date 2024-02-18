@@ -12,6 +12,18 @@ enemyManager::enemyManager(sf::RenderWindow& window) : numEnemiesTotalVillain{ 3
 
 void enemyManager::update()
 {
+	//updating position of enemies
+	for (auto i = m_enemies.begin(); i < m_enemies.end(); i++)
+	{
+		//accedemos al objeto apuntado por iterador i, accedemos al contenido que apunta i
+		enemy* currentEnemy = *i;
+		//si el objeto existe
+		if (currentEnemy)
+		{
+			// Llamar al método render del objeto actual
+			currentEnemy->update();
+		}
+	}
 }
 
 void enemyManager::render(sf::RenderWindow& window )

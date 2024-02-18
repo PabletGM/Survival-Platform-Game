@@ -12,7 +12,8 @@ Game::Game(sf::RenderWindow& window)
 
 void Game::update(float deltaMS, sf::RenderWindow& window)
 {
-    
+    //updating positions of enemies
+    m_enemyManager->update();
         /* m_mainCharacter->update(deltaMS);
          m_enemyManager->update(deltaMS);*/
     

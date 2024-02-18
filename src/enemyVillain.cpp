@@ -1,12 +1,12 @@
 #include "enemyVillain.h"
 
 
-enemyVillain::enemyVillain() : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }
+enemyVillain::enemyVillain() : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }, dirXInit{ 1 }, dirYInit{ 0 }, limitOffsetX{ 30 }, limitOffsetY{ 30 }
 {
 
 }
 
-enemyVillain::enemyVillain(int posX, int posY): maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{0}
+enemyVillain::enemyVillain(int posX, int posY): maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{0}, dirXInit{ 1 }, dirYInit{ 0 }, limitOffsetX{ 30 }, limitOffsetY{ 30 }
 {
     //cargas textura inicialmente
     LoadTextureInit();
@@ -18,21 +18,31 @@ enemyVillain::enemyVillain(int posX, int posY): maxLife{ 3 }, actualLife{ 4 }, p
     SetInitialPosition(posX, posY);
 }
 
+//check if the enemy goes out of the limits to change the direction
 void enemyVillain::update()
 {
+    MoveSprite();
 }
 
 void enemyVillain::render(sf::RenderWindow& window)
 {
     UpdateSprite(window);
-    MoveSprite();
+    
 }
 
 void enemyVillain::MoveSprite()
 {
     // position
     //sprite.setPosition(sf::Vector2f(10.f, 50.f)); // absolute position
-    spriteEnemy.move(sf::Vector2f(1, 0)); // offset relative to the current position
+
+    //move position con dirInit
+    
+    posXInit+=dirXInit;
+    posYInit += dirYInit;
+    CheckLimits();
+    // offset relative to the current position
+    spriteEnemy.move(sf::Vector2f(dirXInit, dirYInit)); 
+    
 }
 
 void enemyVillain::RotateSprite()
@@ -64,6 +74,34 @@ void enemyVillain::UpdateSprite(sf::RenderWindow& window)
 void enemyVillain::SetInitialPosition(int posXInit, int posYInit)
 {
     spriteEnemy.move(sf::Vector2f(posXInit, posYInit));
+}
+
+void enemyVillain::ChangeXDirection()
+{
+    //change direction
+    dirXInit *= -1;
+    
+}
+
+void enemyVillain::ChangeYDirection()
+{
+    dirYInit *= -1;
+}
+
+void enemyVillain::CheckLimits()
+{
+    //CHECK LIMITS X size
+    if (posXInit > 1920 - limitOffsetX*2 || (posXInit < limitOffsetX))
+    {
+        //out of limits
+        ChangeXDirection();
+    }
+    //check limits YSize
+    if (posYInit > 1080 - limitOffsetY*2 || posYInit < 0)
+    {
+        //out of limits
+        ChangeYDirection();
+    }
 }
 
 void enemyVillain::LoadTextureInit()

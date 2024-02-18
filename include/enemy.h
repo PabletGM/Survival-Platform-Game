@@ -26,22 +26,16 @@ class enemy
         //pones todo inicialmente
        virtual void SetInitialPosition(int posX, int posY) = 0;
 
-    private:
+       //change X direction
+       virtual void ChangeXDirection() = 0;
+       //change Y direction
+       virtual void ChangeYDirection() = 0;
 
+       //check limits
+       virtual void CheckLimits() = 0;
+
+    protected: 
 
         
-
-        //vida
-        int maxLife;
-        int actualLife;
-
-        //sprite enemigo
-        sf::Sprite spriteEnemy;
-        //texture enemigo
-        sf::Texture textureEnemy;
-
-        //posicionInicial
-        int posXInit;
-        int posYInit;
 
 };

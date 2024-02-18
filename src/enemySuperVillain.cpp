@@ -1,12 +1,12 @@
 #include "enemySuperVillain.h"
 
 
-enemySuperVillain::enemySuperVillain() : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }
+enemySuperVillain::enemySuperVillain() : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }, dirXInit{ 0 }, dirYInit{ 1 }, limitOffsetX{ 30 }, limitOffsetY{ 30 }
 {
 
 }
 
-enemySuperVillain::enemySuperVillain( int posX, int posY) : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }
+enemySuperVillain::enemySuperVillain( int posX, int posY) : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }, dirXInit{ 0 }, dirYInit{ 1 }, limitOffsetX{ 30 }, limitOffsetY{ 30 }
 {
     //cargas textura inicialmente
     LoadTextureInit();
@@ -20,19 +20,27 @@ enemySuperVillain::enemySuperVillain( int posX, int posY) : maxLife{ 3 }, actual
 
 void enemySuperVillain::update()
 {
+    MoveSprite();
 }
 
 void enemySuperVillain::render(sf::RenderWindow& window)
 {
     UpdateSprite(window);
-    MoveSprite();
+    
 }
 
 void enemySuperVillain::MoveSprite()
 {
     // position
-    //sprite.setPosition(sf::Vector2f(10.f, 50.f)); // absolute position
-    spriteEnemy.move(sf::Vector2f(1, 0)); // offset relative to the current position
+     //sprite.setPosition(sf::Vector2f(10.f, 50.f)); // absolute position
+
+     //move position con dirInit
+
+    posXInit += dirXInit;
+    posYInit += dirYInit;
+    CheckLimits();
+    // offset relative to the current position
+    spriteEnemy.move(sf::Vector2f(dirXInit, dirYInit));
 }
 
 void enemySuperVillain::RotateSprite()
@@ -64,6 +72,34 @@ void enemySuperVillain::UpdateSprite(sf::RenderWindow& window)
 void enemySuperVillain::SetInitialPosition(int posXInit, int posYInit)
 {
     spriteEnemy.move(sf::Vector2f(posXInit, posYInit));
+}
+
+void enemySuperVillain::ChangeXDirection()
+{
+    //change direction
+    dirXInit *= -1;
+
+}
+
+void enemySuperVillain::ChangeYDirection()
+{
+    dirYInit *= -1;
+}
+
+void enemySuperVillain::CheckLimits()
+{
+    //CHECK LIMITS X size
+    if (posXInit > 1920 - limitOffsetX * 2 || (posXInit < limitOffsetX))
+    {
+        //out of limits
+        ChangeXDirection();
+    }
+    //check limits YSize
+    if (posYInit > 1080 - limitOffsetY*2 || posYInit < 0)
+    {
+        //out of limits
+        ChangeYDirection();
+    }
 }
 
 void enemySuperVillain::LoadTextureInit()

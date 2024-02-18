@@ -18,6 +18,13 @@ class enemySuperVillain: public enemy
 
     private:
 
+        //limitOffset
+        int limitOffsetX;
+        int limitOffsetY;
+
+        int dirXInit;
+        int dirYInit;
+
 
         //metodos privados
         void MoveSprite() override;
@@ -29,6 +36,14 @@ class enemySuperVillain: public enemy
 
         //pones todo inicialmente
         void SetInitialPosition(int posX, int posY) override;
+
+
+        //change X direction
+        void ChangeXDirection() override;
+        //change Y direction
+        void ChangeYDirection() override;
+
+        void CheckLimits() override;
 
         //vida
         int maxLife;

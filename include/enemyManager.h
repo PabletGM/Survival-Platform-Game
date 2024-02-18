@@ -12,7 +12,7 @@ class enemyManager
 
         void update();
 
-
+        //renderizar enemies
         void render(sf::RenderWindow& window);
 
         void CreateEnemies(sf::RenderWindow& window);
