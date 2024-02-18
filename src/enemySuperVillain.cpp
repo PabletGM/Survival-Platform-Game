@@ -64,7 +64,7 @@ void enemySuperVillain::ScaleSprite()
 void enemySuperVillain::ChangeOriginSprite()
 {
     //origen por defecto es el top-left esquina izquierda
-    spriteEnemy.setOrigin(sf::Vector2f(8.f, 8.f));
+    spriteEnemy.setOrigin(sf::Vector2f(100.f, 100.f));
 }
 
 
