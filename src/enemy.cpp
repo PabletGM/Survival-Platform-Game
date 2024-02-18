@@ -5,10 +5,7 @@ enemy::enemy()
 {
 }
 
-enemy::enemy( int posX, int posY)
-{
 
-}
 
 void enemy::update()
 {
@@ -45,7 +42,7 @@ void enemy::UpdateSprite(sf::RenderWindow& window)
     
 }
 
-void enemy::SetInitialPosition(int posXInit, int posYInit)
+void enemy::SetInitialPosition(Position p)
 {
     
 }

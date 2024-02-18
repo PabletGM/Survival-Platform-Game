@@ -1,21 +1,23 @@
 #include "enemyVillain.h"
 
 
-enemyVillain::enemyVillain() : maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{ 0 }, dirXInit{ 1 }, dirYInit{ 0 }, limitOffsetX{ 30 }, limitOffsetY{ 30 }
+enemyVillain::enemyVillain() : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }
 {
 
 }
 
-enemyVillain::enemyVillain(int posX, int posY): maxLife{ 3 }, actualLife{ 4 }, posXInit{ 0 }, posYInit{0}, dirXInit{ 1 }, dirYInit{ 0 }, limitOffsetX{ 30 }, limitOffsetY{ 30 }
+enemyVillain::enemyVillain(Position param, int spaceXPlayParam, int spaceYPlayParam): maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }
 {
+    spaceXPlay = spaceXPlayParam;
+    spaceYPlay = spaceYPlayParam;
     //cargas textura inicialmente
     LoadTextureInit();
     ScaleSprite();
     //inicializamos variables de posicion
-    posXInit = posX;
-    posYInit = posY;
+    p.posX= param.posX;
+    p.posY = param.posY;
     //se inicia posicion de enemy
-    SetInitialPosition(posX, posY);
+    SetInitialPosition(p);
 }
 
 //check if the enemy goes out of the limits to change the direction
@@ -37,8 +39,8 @@ void enemyVillain::MoveSprite()
 
     //move position con dirInit
     
-    posXInit+=dirXInit;
-    posYInit += dirYInit;
+    p.posX+=dirXInit;
+    p.posY += dirYInit;
     CheckLimits();
     // offset relative to the current position
     spriteEnemy.move(sf::Vector2f(dirXInit, dirYInit)); 
@@ -71,9 +73,9 @@ void enemyVillain::UpdateSprite(sf::RenderWindow& window)
     window.draw(spriteEnemy);
 }
 
-void enemyVillain::SetInitialPosition(int posXInit, int posYInit)
+void enemyVillain::SetInitialPosition(Position p)
 {
-    spriteEnemy.move(sf::Vector2f(posXInit, posYInit));
+    spriteEnemy.move(sf::Vector2f(p.posX,p.posY));
 }
 
 void enemyVillain::ChangeXDirection()
@@ -91,13 +93,13 @@ void enemyVillain::ChangeYDirection()
 void enemyVillain::CheckLimits()
 {
     //CHECK LIMITS X size
-    if (posXInit > 1920 - limitOffsetX*2 || (posXInit < limitOffsetX))
+    if (p.posX > spaceXPlay || (p.posX < 0))
     {
         //out of limits
         ChangeXDirection();
     }
     //check limits YSize
-    if (posYInit > 1080 - limitOffsetY*2 || posYInit < 0)
+    if (p.posY > spaceYPlay || p.posY < 0)
     {
         //out of limits
         ChangeYDirection();

@@ -1,13 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <position.h>
 
 class enemy
 {
     public:
         //constructor por defecto
         enemy();
-        enemy( int posXInit, int posYInit);
-
 
         virtual void update() = 0;
 
@@ -24,7 +23,7 @@ class enemy
         virtual void UpdateSprite(sf::RenderWindow& window) = 0;
 
         //pones todo inicialmente
-       virtual void SetInitialPosition(int posX, int posY) = 0;
+       virtual void SetInitialPosition(Position p) = 0;
 
        //change X direction
        virtual void ChangeXDirection() = 0;
@@ -36,6 +35,10 @@ class enemy
 
     protected: 
 
+        int spaceXPlay = 0;
+        int spaceYPlay = 0;
+        int limitOffsetX = 60;
+        int limitOffsetY = 60;
         
 
 };

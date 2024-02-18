@@ -20,6 +20,8 @@ set(PROJECT_HEADERS
     include/enemySuperVillain.h
     include/enemyManager.h
     include/plataforma.h
+    include/position.h
+    include/screenSize.h
 )
 
 set(PROJECT_SOURCES 

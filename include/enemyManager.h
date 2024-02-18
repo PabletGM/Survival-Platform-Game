@@ -8,14 +8,14 @@ class enemyManager
 {
     public:
         //constructor por defecto
-        enemyManager(sf::RenderWindow& window);
+        enemyManager(sf::RenderWindow& window, unsigned int spaceXPlayable, unsigned int spaceYPlayable, unsigned int limitOffsetX, unsigned int limitOffsetY);
 
         void update();
 
         //renderizar enemies
         void render(sf::RenderWindow& window);
 
-        void CreateEnemies(sf::RenderWindow& window);
+        void CreateEnemies(sf::RenderWindow& window, unsigned int spaceXPlayable, unsigned int spaceYPlayable, unsigned int limitOffsetX, unsigned int limitOffsetY);
 
 
     private:

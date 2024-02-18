@@ -1,13 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "enemy.h"
+#include <position.h>
 class enemySuperVillain: public enemy
 {
     public:
 
         //constructor por defecto
         enemySuperVillain();
-        enemySuperVillain(int posXInit, int posYInit);
+        enemySuperVillain(Position p, int spaceXPlay, int spaceYPlay);
         
 
         void update() override;
@@ -18,9 +19,6 @@ class enemySuperVillain: public enemy
 
     private:
 
-        //limitOffset
-        int limitOffsetX;
-        int limitOffsetY;
 
         int dirXInit;
         int dirYInit;
@@ -35,7 +33,7 @@ class enemySuperVillain: public enemy
         void UpdateSprite(sf::RenderWindow& window) override;
 
         //pones todo inicialmente
-        void SetInitialPosition(int posX, int posY) override;
+        void SetInitialPosition(Position p) override;
 
 
         //change X direction
@@ -55,7 +53,6 @@ class enemySuperVillain: public enemy
         sf::Texture textureEnemy;
 
         //posicionInicial
-        int posXInit;
-        int posYInit;
+        Position p;
 
 };

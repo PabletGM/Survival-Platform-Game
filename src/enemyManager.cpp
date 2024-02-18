@@ -3,11 +3,13 @@
 #include "enemySuperVillain.h"
 #include "enemyVillain.h"
 #include <random>
+#include <position.h>
+#include <game.h>
 
 //lista de inicializacion con valor de numEnemiesTotal
-enemyManager::enemyManager(sf::RenderWindow& window) : numEnemiesTotalVillain{ 3 }, numEnemiesTotalSuperVillain{ 3 }
+enemyManager::enemyManager(sf::RenderWindow& window, unsigned int spaceXPlayable, unsigned int spaceYPlayable, unsigned int limitOffsetX, unsigned int limitOffsetY) : numEnemiesTotalVillain{ 3 }, numEnemiesTotalSuperVillain{ 3 }
 {
-	CreateEnemies(window);	
+	CreateEnemies(window, spaceXPlayable, spaceYPlayable,limitOffsetX,limitOffsetY);	
 }
 
 void enemyManager::update()
@@ -45,18 +47,23 @@ void enemyManager::render(sf::RenderWindow& window )
 }
 
 
-void enemyManager::CreateEnemies(sf::RenderWindow& window)
+void enemyManager::CreateEnemies(sf::RenderWindow& window, unsigned int spaceXPlayable, unsigned int spaceYPlayable, unsigned int limitOffsetX, unsigned int limitOffsetY)
 {
 
 	//generamos posiciones iniciales aleatorias, entre 1 y 1000
 	std::srand(std::time(nullptr));
 
+	int spaceXPlay = static_cast<int>(spaceXPlayable);
+	int spaceYPlay = static_cast<int>(spaceYPlayable);
+
+
 	//inicializamos enemySuperVillain
 	for (int i = 0;i < numEnemiesTotalSuperVillain;i++)
 	{
-		int posXInitRandomEnemy = 1 + std::rand() % 1000;
-		int posYInitRandomEnemy = 1 + std::rand() % 1000;
-		enemy* e = new enemySuperVillain(posXInitRandomEnemy, posYInitRandomEnemy);
+		int posXInitRandomEnemy =  limitOffsetX+ std::rand() % spaceXPlay;
+		int posYInitRandomEnemy = limitOffsetX + std::rand() % spaceYPlay;
+		Position p{ posXInitRandomEnemy, posYInitRandomEnemy };
+		enemy* e = new enemySuperVillain(p, spaceXPlay, spaceYPlay);
 		m_enemies.push_back(e);
 		
 	}
@@ -64,11 +71,14 @@ void enemyManager::CreateEnemies(sf::RenderWindow& window)
 	//inicializamos enemyVillain
 	for (int i = 0;i < numEnemiesTotalVillain;i++)
 	{
-		int posXInitRandomEnemy = 1 + std::rand() % 1000;
-		int posYInitRandomEnemy = 1 + std::rand() % 1000;
-		enemy* e = new enemyVillain(posXInitRandomEnemy, posYInitRandomEnemy);
+		int posXInitRandomEnemy = limitOffsetY + std::rand() % spaceXPlay;
+		int posYInitRandomEnemy = limitOffsetY + std::rand() % spaceYPlay;
+		Position p{ posXInitRandomEnemy, posYInitRandomEnemy };
+		enemy* e = new enemyVillain(p, spaceXPlay, spaceYPlay);
 		m_enemies.push_back(e);
 		
 	}
+
+
 
 }

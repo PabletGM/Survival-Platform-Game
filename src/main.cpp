@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <game.h>
+#include <screenSize.h>
 
 //int main()
 //{
@@ -24,10 +25,11 @@
 int main()
 {
     //creamos ventana con tamaño
-    sf::RenderWindow window = sf::RenderWindow{ { 1920u, 1080u }, "CMake SFML Project" };
+    screenSize screen{ 1920,1080 };
+    sf::RenderWindow window = sf::RenderWindow{ { screen.screenSizeX, screen.screenSizeY }, "CMake SFML Project" };
     window.setFramerateLimit(144);
     //creamos instancia game
-    Game* game = new Game(window);
+    Game* game = new Game(window, screen);
     ////para uso de time entre frames 
     sf::Clock clock;
 
