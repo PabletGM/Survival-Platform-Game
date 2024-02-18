@@ -42,6 +42,10 @@ class enemyVillain: public enemy
 
         void CheckLimits() override;
 
+        void FlipSpriteX() override;
+
+
+
         //vida
         int maxLife;
         int actualLife;

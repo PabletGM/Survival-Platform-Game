@@ -33,6 +33,10 @@ class enemy
        //check limits
        virtual void CheckLimits() = 0;
 
+       //flip sprite in limit
+       virtual void FlipSpriteX() = 0;
+
+
     protected: 
 
         int spaceXPlay = 0;

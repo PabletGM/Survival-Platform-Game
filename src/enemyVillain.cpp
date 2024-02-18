@@ -13,6 +13,7 @@ enemyVillain::enemyVillain(Position param, int spaceXPlayParam, int spaceYPlayPa
     //cargas textura inicialmente
     LoadTextureInit();
     ScaleSprite();
+    ChangeOriginSprite();
     //inicializamos variables de posicion
     p.posX= param.posX;
     p.posY = param.posY;
@@ -64,7 +65,7 @@ void enemyVillain::ScaleSprite()
 void enemyVillain::ChangeOriginSprite()
 {
     //origen por defecto es el top-left esquina izquierda
-    /*sprite.setOrigin(sf::Vector2f(25.f, 25.f));*/
+    spriteEnemy.setOrigin(sf::Vector2f(25.f, 25.f));
 }
 
 
@@ -82,41 +83,41 @@ void enemyVillain::ChangeXDirection()
 {
     //change direction
     dirXInit *= -1;
+    FlipSpriteX();
     
 }
 
 void enemyVillain::ChangeYDirection()
 {
     dirYInit *= -1;
+    FlipSpriteX();
 }
 
 void enemyVillain::CheckLimits()
 {
     //CHECK LIMITS X size
-    if (p.posX > spaceXPlay || (p.posX < 0))
+    if (p.posX > spaceXPlay || (p.posX < limitOffsetX))
     {
         //out of limits
         ChangeXDirection();
     }
     //check limits YSize
-    if (p.posY > spaceYPlay || p.posY < 0)
+    if (p.posY > spaceYPlay || p.posY < limitOffsetY)
     {
         //out of limits
         ChangeYDirection();
     }
 }
 
+void enemyVillain::FlipSpriteX()
+{
+    spriteEnemy.scale(-1, 1);
+}
+
+
 void enemyVillain::LoadTextureInit()
 {
 
-
-    ////dibujamos pelota
-    //sf::CircleShape shape(300.f);
-    ////le pones un color a la forma
-    //shape.setFillColor(sf::Color::Green);
-    ////haces metodo dibujar
-    //window.setFramerateLimit(144);
-    //window.draw(shape);
 
 
     //carga de imagen del proyecto
