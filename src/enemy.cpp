@@ -3,6 +3,7 @@
 
 enemy::enemy()
 {
+    
 }
 
 

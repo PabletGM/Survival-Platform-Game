@@ -6,10 +6,9 @@ enemyVillain::enemyVillain() : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dir
 
 }
 
-enemyVillain::enemyVillain(Position param, int spaceXPlayParam, int spaceYPlayParam): maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }
+enemyVillain::enemyVillain(Position param, limits limits): maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }
 {
-    spaceXPlay = spaceXPlayParam;
-    spaceYPlay = spaceYPlayParam;
+    limitsEnemy = limits;
     //cargas textura inicialmente
     LoadTextureInit();
     ScaleSprite();
@@ -96,13 +95,13 @@ void enemyVillain::ChangeYDirection()
 void enemyVillain::CheckLimits()
 {
     //CHECK LIMITS X size
-    if (p.posX > spaceXPlay || (p.posX < limitOffsetX))
+    if (p.posX > limitsEnemy.limitDerecho || (p.posX < limitsEnemy.limitIzquierdo))
     {
         //out of limits
         ChangeXDirection();
     }
     //check limits YSize
-    if (p.posY > spaceYPlay || p.posY < limitOffsetY)
+    if (p.posY > limitsEnemy.limitAbajo || p.posY < limitsEnemy.limitArriba)
     {
         //out of limits
         ChangeYDirection();

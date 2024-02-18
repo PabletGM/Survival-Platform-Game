@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <position.h>
+#include <screenSize.h>
 
 class enemy
 {
@@ -39,10 +40,7 @@ class enemy
 
     protected: 
 
-        int spaceXPlay = 0;
-        int spaceYPlay = 0;
-        int limitOffsetX = 60;
-        int limitOffsetY = 60;
+        limits limitsEnemy;
         
 
 };

@@ -2,13 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include "enemy.h"
 #include <position.h>
+#include <screenSize.h>
 class enemySuperVillain: public enemy
 {
     public:
 
         //constructor por defecto
         enemySuperVillain();
-        enemySuperVillain(Position p, int spaceXPlay, int spaceYPlay);
+        enemySuperVillain(Position p, limits limits);
         
 
         void update() override;
