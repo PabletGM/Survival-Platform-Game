@@ -3,6 +3,10 @@
 #include "enemy.h"
 #include <position.h>
 #include <screenSize.h>
+
+
+
+
 class enemySuperVillain: public enemy
 {
     public:
@@ -17,12 +21,26 @@ class enemySuperVillain: public enemy
 
         void render(sf::RenderWindow& window) override;
 
-
     private:
 
+        //animation Vector parametro, en constructor
+        sf::Vector2f animacionVector;
+
+        //cronometro cambio animacion enemigos
+        sf::Clock cronometro;
+        sf::Time tiempoDeseado = sf::seconds(0.2f);
+
+        //cronometro cambio de animacion
+        void ChangeAnimationTime();
+        void UpdateAnimation();
+        //dimensiones de cada cuadro de animacion
+        int frameWidth;
+        int frameHeight;
 
         int dirXInit;
         int dirYInit;
+
+        
 
 
         //metodos privados
