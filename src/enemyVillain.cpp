@@ -145,16 +145,9 @@ void enemyVillain::FlipSpriteX()
 
 void enemyVillain::LoadTextureInit()
 {
-
-
-
     //carga de imagen del proyecto
     textureEnemy.loadFromFile("../sprites/enemy/andandoVillano.png");
     //le ponemos textura
     spriteEnemy.setTexture(textureEnemy);
     spriteEnemy.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
-
-    
-
-
 }

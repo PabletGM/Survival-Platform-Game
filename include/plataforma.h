@@ -1,18 +1,29 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+#include <position.h>
 
 
 class plataforma
 {
     public:
         //constructor por defecto
-        plataforma();
+        plataforma(Position p);
 
         void update();
 
 
-        void render();
+        void render(sf::RenderWindow& window);
 
 
     private:
+
+        //sprite enemigo
+        sf::Sprite spritePlatform;
+        //texture enemigo
+        sf::Texture texturePlatform;
+        void MoveSpriteInit();
+        void LoadTextureInit();
+
+        Position position;
 
 };

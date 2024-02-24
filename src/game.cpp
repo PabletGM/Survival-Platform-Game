@@ -13,7 +13,7 @@ Game::Game(sf::RenderWindow& window, screenSize screenParam)
     limits limits{(spaceXPlayable),(limitOffsetX),(limitOffsetY),(spaceYPlayable) };
     //inicializar enemyManager
     m_enemyManager = new enemyManager(window, limits);
-    m_plataforma = new plataforma();
+    m_map = new map();
     m_protagonista = new protagonista();
 }
 
@@ -32,9 +32,10 @@ void Game::render(float deltaMS, sf::RenderWindow& window)
     
         window.clear();
 
-        /*m_map->render();
-        m_mainCharacter->render();*/
+        m_map->render(window);
+        /*m_mainCharacter->render();*/
         m_enemyManager->render(window);
+        
 
         //creo un circulo de tamaño 300
        

@@ -22,6 +22,7 @@ set(PROJECT_HEADERS
     include/plataforma.h
     include/position.h
     include/screenSize.h
+    include/map.h
 )
 
 set(PROJECT_SOURCES 
@@ -33,6 +34,7 @@ set(PROJECT_SOURCES
     src/enemySuperVillain.cpp
     src/enemyManager.cpp
     src/plataforma.cpp
+    src/map.cpp
 )
 
 set(PROJECT_FILES 
