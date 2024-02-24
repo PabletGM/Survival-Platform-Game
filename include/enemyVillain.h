@@ -19,7 +19,19 @@ class enemyVillain: public enemy
 
     private:
 
+        //animation Vector parametro, en constructor
+        sf::Vector2f animacionVector;
 
+        //cronometro cambio animacion enemigos
+        sf::Clock cronometro;
+        sf::Time tiempoDeseado = sf::seconds(0.1f);
+
+        //cronometro cambio de animacion
+        void ChangeAnimationTime();
+        void UpdateAnimation();
+        //dimensiones de cada cuadro de animacion
+        int frameWidth;
+        int frameHeight;
 
 
         int dirXInit;

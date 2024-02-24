@@ -100,7 +100,7 @@ void enemySuperVillain::ScaleSprite()
 void enemySuperVillain::ChangeOriginSprite()
 {
     //origen por defecto es el top-left esquina izquierda
-    /*spriteEnemy.setOrigin(sf::Vector2f(0,0));*/
+    spriteEnemy.setOrigin(sf::Vector2f(65,65));
 }
 
 
@@ -134,13 +134,13 @@ void enemySuperVillain::ChangeYDirection()
 void enemySuperVillain::CheckLimits()
 {
     //CHECK LIMITS X size
-    if (p.posX > limitsEnemy.limitDerecho || (p.posX < limitsEnemy.limitIzquierdo))
+    if (p.posX >= limitsEnemy.limitDerecho || (p.posX <= limitsEnemy.limitIzquierdo))
     {
         //out of limits
         ChangeXDirection();
     }
     //check limits YSize
-    if (p.posY > limitsEnemy.limitAbajo || p.posY < limitsEnemy.limitArriba)
+    if (p.posY >= limitsEnemy.limitAbajo || p.posY <= limitsEnemy.limitArriba)
     {
         //out of limits
         ChangeYDirection();

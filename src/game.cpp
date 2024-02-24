@@ -5,12 +5,12 @@ Game::Game(sf::RenderWindow& window, screenSize screenParam)
 {
    
     //inicializamos pantalla con tamaño jugable
-    limitOffsetX = 60;
-    limitOffsetY = 60;
+    limitOffsetX = 80;
+    limitOffsetY = 80;
     spaceXPlayable = screenParam.screenSizeX - limitOffsetX;
     spaceYPlayable = screenParam.screenSizeY - limitOffsetY;
     //definimos espacio jugable
-    limits limits{(1920 - limitOffsetX),(0 + limitOffsetX),(0 + limitOffsetY),(1080 - limitOffsetY) };
+    limits limits{(spaceXPlayable),(limitOffsetX),(limitOffsetY),(spaceYPlayable) };
     //inicializar enemyManager
     m_enemyManager = new enemyManager(window, limits);
     m_plataforma = new plataforma();

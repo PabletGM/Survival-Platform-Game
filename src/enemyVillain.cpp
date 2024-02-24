@@ -1,12 +1,14 @@
 #include "enemyVillain.h"
 
 
-enemyVillain::enemyVillain() : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }
+enemyVillain::enemyVillain() : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 },animacionVector(0.0f, 0.0f),
+frameWidth{ 157 }, frameHeight{ 192 }
 {
 
 }
 
-enemyVillain::enemyVillain(Position param, limits limits): maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }
+enemyVillain::enemyVillain(Position param, limits limits): maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
+frameWidth{157}, frameHeight{192}
 {
     limitsEnemy = limits;
     //cargas textura inicialmente
@@ -30,6 +32,32 @@ void enemyVillain::render(sf::RenderWindow& window)
 {
     UpdateSprite(window);
     
+}
+
+void enemyVillain::ChangeAnimationTime()
+{
+    sf::Time tiempoTranscurrido = cronometro.getElapsedTime();
+
+    if (tiempoTranscurrido >= tiempoDeseado) {
+        // Se ha alcanzado el tiempo deseado, ejecuta la función y reinicia el cronómetro
+        UpdateAnimation();
+        cronometro.restart();
+    }
+}
+
+void enemyVillain::UpdateAnimation()
+{
+    //hacemos comprobacion de si ha llegado al ultimo sprite de animacion, o si se ha pasado del tamaño de la textura
+    if (animacionVector.x * frameWidth >= textureEnemy.getSize().x)
+    {
+        //reiniciamos animacion
+        animacionVector.x = 0;
+    }
+    // Define el rectángulo de la animación actual usando animacionVector.x * frameWidth para elegir cuadro animacion
+    //en horizontal, en vertical no hay por eso es 0, y tamaño de un sprite en vertical y horizontal
+    spriteEnemy.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
+    //sumamos 1 sprite
+    animacionVector.x++;
 }
 
 void enemyVillain::MoveSprite()
@@ -57,19 +85,20 @@ void enemyVillain::RotateSprite()
 void enemyVillain::ScaleSprite()
 {
     // scale
-    spriteEnemy.setScale(sf::Vector2f(0.1f, 0.1f)); // absolute scale factor
+    spriteEnemy.setScale(sf::Vector2f(0.5f, 0.5f)); // absolute scale factor
     //sprite.scale(sf::Vector2f(1.5f, 3.f)); // factor relative to the current scale
 }
 
 void enemyVillain::ChangeOriginSprite()
 {
     //origen por defecto es el top-left esquina izquierda
-    spriteEnemy.setOrigin(sf::Vector2f(250.f, 250.f));
+    spriteEnemy.setOrigin(sf::Vector2f(75.f, 90.f));
 }
 
 
 void enemyVillain::UpdateSprite(sf::RenderWindow& window)
 {
+    ChangeAnimationTime();
     window.draw(spriteEnemy);
 }
 
@@ -120,9 +149,10 @@ void enemyVillain::LoadTextureInit()
 
 
     //carga de imagen del proyecto
-    textureEnemy.loadFromFile("../sprites/enemy/villano.png");
+    textureEnemy.loadFromFile("../sprites/enemy/andandoVillano.png");
     //le ponemos textura
     spriteEnemy.setTexture(textureEnemy);
+    spriteEnemy.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
 
     
 
