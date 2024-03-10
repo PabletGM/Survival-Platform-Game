@@ -6,7 +6,7 @@ frameWidth{ 100 }, frameHeight{ 80 }, speed {2}
 }
 
 protagonista::protagonista(Position param, limits limits) : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
-frameWidth{ 100 }, frameHeight{80 }, speed{2}
+frameWidth{ 100 }, frameHeight{80 }, speed {2}
 {
     limitsPlayer = limits;
     //cargas textura inicialmente
