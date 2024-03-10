@@ -58,16 +58,10 @@ void protagonista::UpdateAnimation()
 
 void protagonista::MoveSprite()
 {
-    p.posX += dirXInit;
-    p.posY += dirYInit;
-    CheckLimits();
-    // offset relative to the current position
-    spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
+    //to move 
+    InputPlayer();  
 }
 
-void protagonista::RotateSprite()
-{
-}
 
 void protagonista::ScaleSprite()
 {
@@ -107,29 +101,61 @@ void protagonista::ChangeXDirection()
     FlipSpriteX();
 }
 
-void protagonista::ChangeYDirection()
-{
-    dirYInit *= -1;
-    FlipSpriteX();
-}
-
-void protagonista::CheckLimits()
+bool protagonista::CheckLimits()
 {
     //CHECK LIMITS X size
     if (p.posX > limitsPlayer.limitDerecho || (p.posX < limitsPlayer.limitIzquierdo))
     {
         //out of limits
-        ChangeXDirection();
+        return false;
+       
     }
-    //check limits YSize
-    if (p.posY > limitsPlayer.limitAbajo || p.posY < limitsPlayer.limitArriba)
+    //if its in the limits
+    else
     {
-        //out of limits
-        ChangeYDirection();
+        
+        return true;
     }
+
 }
 
 void protagonista::FlipSpriteX()
 {
     spritePlayer.scale(-1, 1);
+}
+
+void protagonista::InputPlayer()
+{
+    //if left pressed
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        // left key is pressed: move our character
+        dirXInit = -1;
+        bool isInLimits = CheckLimits();
+
+        if (isInLimits)
+        {
+            // offset relative to the current position
+            p.posX += dirXInit;
+            spritePlayer.move(sf::Vector2f(p.posX, p.posY));
+        }
+        
+
+    }
+    //if right pressed
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        // left key is pressed: move our character
+        dirXInit = 1; 
+        bool isInLimits = CheckLimits();
+
+        if (isInLimits)
+        {
+            // offset relative to the current position
+            p.posX += dirXInit;
+            spritePlayer.move(sf::Vector2f(p.posX, p.posY));
+        }
+    }
+
+    
 }

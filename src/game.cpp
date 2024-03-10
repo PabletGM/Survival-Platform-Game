@@ -22,6 +22,7 @@ void Game::update(float deltaMS, sf::RenderWindow& window)
 {
     //updating positions of enemies
     m_enemyManager->update();
+    //input of player and position
     m_protagonista->update();
      
     

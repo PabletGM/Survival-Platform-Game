@@ -52,12 +52,12 @@ private:
 
     //change X direction
     void ChangeXDirection();
-    //change Y direction
-    void ChangeYDirection();
 
-    void CheckLimits();
+    bool CheckLimits();
 
     void FlipSpriteX();
+
+    void InputPlayer();
 
 
 
