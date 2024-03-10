@@ -10,6 +10,7 @@ frameWidth{ 100 }, frameHeight{80 }
 {
     limitsPlayer = limits;
     //cargas textura inicialmente
+    InitTextures();
     LoadTextureInit();
     ScaleSprite();
     ChangeOriginSprite();
@@ -18,6 +19,7 @@ frameWidth{ 100 }, frameHeight{80 }
     p.posY = param.posY;
     //se inicia posicion de enemy
     SetInitialPosition(p);
+
 }
 
 void protagonista::update()
@@ -59,7 +61,7 @@ bool protagonista::MovementTime()
 void protagonista::UpdateAnimation()
 {
     //hacemos comprobacion de si ha llegado al ultimo sprite de animacion, o si se ha pasado del tamaño de la textura
-    if (animacionVector.x * frameWidth >= texturePlayer.getSize().x)
+    if (animacionVector.x * frameWidth >= texturePlayerIdle.getSize().x && animacionVector.x * frameWidth >= texturePlayerMoveRight.getSize().x && animacionVector.x * frameWidth >= texturePlayerMoveLeft.getSize().x)
     {
         //reiniciamos animacion
         animacionVector.x = 0;
@@ -85,15 +87,13 @@ void protagonista::ScaleSprite()
 
 void protagonista::ChangeOriginSprite()
 {
-    spritePlayer.setOrigin(sf::Vector2f(75.f, 90.f));
+    spritePlayer.setOrigin(spritePlayer.getLocalBounds().width / 2, spritePlayer.getLocalBounds().height / 2);
 }
 
 void protagonista::LoadTextureInit()
 {
-    //carga de imagen del proyecto
-    texturePlayer.loadFromFile("../sprites/player/MovingPlayer.png");
     //le ponemos textura
-    spritePlayer.setTexture(texturePlayer);
+    spritePlayer.setTexture(texturePlayerIdle);
     spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
 }
 
@@ -106,73 +106,92 @@ void protagonista::UpdateSprite(sf::RenderWindow& window)
 void protagonista::SetInitialPosition(Position p)
 {
     spritePlayer.move(sf::Vector2f(p.posX, p.posY));
-    FlipSpriteX();
+    FlipSpriteLeft();
 }
 
-void protagonista::ChangeXDirection()
+
+
+
+
+
+void protagonista::FlipSpriteLeft()
 {
-    //change direction
-    dirXInit *= -1;
-    FlipSpriteX();
+
+    spritePlayer.setTexture(texturePlayerMoveLeft);
 }
 
-bool protagonista::CheckLimits()
+void protagonista::FlipSpriteRight()
 {
-    //CHECK LIMITS X size
-    if (p.posX > limitsPlayer.limitDerecho || (p.posX < limitsPlayer.limitIzquierdo))
-    {
-        //out of limits
-        return false;
-       
-    }
-    //if its in the limits
-    else
-    {
-        
-        return true;
-    }
-
+    spritePlayer.setTexture(texturePlayerMoveRight);
+   
 }
 
-void protagonista::FlipSpriteX()
+void protagonista::IdleSprite()
 {
-    spritePlayer.scale(-1, 1);
+    spritePlayer.setTexture(texturePlayerIdle);
 }
+
 
 void protagonista::InputPlayer()
 {
-    //if left pressed
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    bool readyToMove = MovementTime();
+    if (readyToMove)
     {
-        // left key is pressed: move our character
-        dirXInit = -1;
-
-        bool readyToMove = MovementTime();
-        //canMove y onLimits
-        if ( readyToMove && p.posX  >= limitsPlayer.limitIzquierdo)
+        //if left pressed
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            // offset relative to the current position
-            p.posX += dirXInit;
-            spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
+            // left key is pressed: move our character
+            dirXInit = -1;
+            //canMove y onLimits
+            if (p.posX >= limitsPlayer.limitIzquierdo)
+            {
+                // offset relative to the current position
+                p.posX += dirXInit;
+                FlipSpriteLeft();
+                spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
+            }
         }
-       
-    }
-    //if right pressed
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        // left key is pressed: move our character
-        dirXInit = 1; 
-
-        bool readyToMove = MovementTime();
-        //canMove y onLimits
-        if ( readyToMove && p.posX <= limitsPlayer.limitDerecho)
+        //if right pressed
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-            // offset relative to the current position
-            p.posX += dirXInit;
-            spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
-        }
-        
-    }
+            // left key is pressed: move our character
+            dirXInit = 1;
 
+            //canMove y onLimits
+            if ( p.posX <= limitsPlayer.limitDerecho)
+            {
+                // offset relative to the current position
+                p.posX += dirXInit;
+                FlipSpriteRight();
+                spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
+            }
+        }
+        //sino se pulsa nada posicion idle
+        else
+        {
+            IdleSprite();
+        }
+    }
     
+}
+
+void protagonista::InitTextures()
+{
+    //init texture idle
+    texturePlayerIdle.loadFromFile("../sprites/player/playerIdle.png");
+    //le ponemos textura
+    spritePlayer.setTexture(texturePlayerIdle);
+    spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
+
+    ////init texture right move
+    texturePlayerMoveRight.loadFromFile("../sprites/player/MovingPlayerRight.png");
+    //le ponemos textura
+    spritePlayer.setTexture(texturePlayerMoveRight);
+    spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
+
+    ////init texture left move
+    texturePlayerMoveLeft.loadFromFile("../sprites/player/MovingPlayerLeft.png");
+    //le ponemos textura
+    spritePlayer.setTexture(texturePlayerMoveLeft);
+    spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
 }

@@ -55,14 +55,15 @@ private:
     //pones todo inicialmente
     void SetInitialPosition(Position p);
 
-    //change X direction
-    void ChangeXDirection();
 
-    bool CheckLimits();
 
-    void FlipSpriteX();
+    void FlipSpriteLeft();
+    void FlipSpriteRight();
+    void IdleSprite();
 
     void InputPlayer();
+
+    void InitTextures();
 
 
 
@@ -70,10 +71,14 @@ private:
     int maxLife;
     int actualLife;
 
+
+
     //sprite enemigo
     sf::Sprite spritePlayer;
     //texture enemigo
-    sf::Texture texturePlayer;
+    sf::Texture texturePlayerIdle;
+    sf::Texture texturePlayerMoveRight;
+    sf::Texture texturePlayerMoveLeft;
 
     //posicionInicial
     Position p;
