@@ -75,6 +75,7 @@ private:
 
     //sprite enemigo
     sf::Sprite spritePlayer;
+    sf::Texture texturePlayer;
     //texture enemigo
     sf::Texture texturePlayerIdle;
     sf::Texture texturePlayerMoveRight;

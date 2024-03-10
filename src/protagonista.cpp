@@ -60,8 +60,9 @@ bool protagonista::MovementTime()
 
 void protagonista::UpdateAnimation()
 {
+
     //hacemos comprobacion de si ha llegado al ultimo sprite de animacion, o si se ha pasado del tamaño de la textura
-    if (animacionVector.x * frameWidth >= texturePlayerIdle.getSize().x && animacionVector.x * frameWidth >= texturePlayerMoveRight.getSize().x && animacionVector.x * frameWidth >= texturePlayerMoveLeft.getSize().x)
+    if(animacionVector.x * frameWidth >= texturePlayer.getSize().x)
     {
         //reiniciamos animacion
         animacionVector.x = 0;
@@ -93,7 +94,7 @@ void protagonista::ChangeOriginSprite()
 void protagonista::LoadTextureInit()
 {
     //le ponemos textura
-    spritePlayer.setTexture(texturePlayerIdle);
+    spritePlayer.setTexture(texturePlayer);
     spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
 }
 
@@ -106,7 +107,7 @@ void protagonista::UpdateSprite(sf::RenderWindow& window)
 void protagonista::SetInitialPosition(Position p)
 {
     spritePlayer.move(sf::Vector2f(p.posX, p.posY));
-    FlipSpriteLeft();
+    IdleSprite();
 }
 
 
@@ -116,19 +117,21 @@ void protagonista::SetInitialPosition(Position p)
 
 void protagonista::FlipSpriteLeft()
 {
-
-    spritePlayer.setTexture(texturePlayerMoveLeft);
+    texturePlayer = texturePlayerMoveLeft;
+    spritePlayer.setTexture(texturePlayer);
 }
 
 void protagonista::FlipSpriteRight()
 {
-    spritePlayer.setTexture(texturePlayerMoveRight);
+    texturePlayer = texturePlayerMoveRight;
+    spritePlayer.setTexture(texturePlayer);
    
 }
 
 void protagonista::IdleSprite()
 {
-    spritePlayer.setTexture(texturePlayerIdle);
+    texturePlayer = texturePlayerIdle;
+    spritePlayer.setTexture(texturePlayer);
 }
 
 
