@@ -1,7 +1,7 @@
 #include "enemyVillain.h"
 
 
-enemyVillain::enemyVillain() : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 },animacionVector(0.0f, 0.0f),
+enemyVillain::enemyVillain() : maxLife{ 3 }, actualLife{ 3 }, dirXInit{ 1 }, dirYInit{ 0 },animacionVector(0.0f, 0.0f),
 frameWidth{ 157 }, frameHeight{ 192 }
 {
 

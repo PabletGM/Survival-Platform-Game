@@ -14,7 +14,7 @@ Game::Game(sf::RenderWindow& window, screenSize screenParam)
     //inicializar enemyManager
     m_enemyManager = new enemyManager(window, limits);
     m_map = new map();
-    m_protagonista = new protagonista();
+    m_protagonista = new protagonista(Position{800,1000}, limits);
 }
 
 
@@ -22,8 +22,8 @@ void Game::update(float deltaMS, sf::RenderWindow& window)
 {
     //updating positions of enemies
     m_enemyManager->update();
-        /* m_mainCharacter->update(deltaMS);
-         m_enemyManager->update(deltaMS);*/
+    m_protagonista->update();
+     
     
 }
 
@@ -33,11 +33,11 @@ void Game::render(float deltaMS, sf::RenderWindow& window)
         window.clear();
 
         m_map->render(window);
-        /*m_mainCharacter->render();*/
+        m_protagonista->render(window);
         m_enemyManager->render(window);
         
 
-        //creo un circulo de tamaño 300
+        
        
 
         window.display();

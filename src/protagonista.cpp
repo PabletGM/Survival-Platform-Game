@@ -1,13 +1,135 @@
 #include "protagonista.h"
 
-protagonista::protagonista()
+protagonista::protagonista() : maxLife { 3 }, actualLife{ 3 }, dirXInit{ -1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
+frameWidth{ 100 }, frameHeight{ 80 }
 {
+}
+
+protagonista::protagonista(Position param, limits limits) : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
+frameWidth{ 100 }, frameHeight{80 }
+{
+    limitsPlayer = limits;
+    //cargas textura inicialmente
+    LoadTextureInit();
+    ScaleSprite();
+    ChangeOriginSprite();
+    //inicializamos variables de posicion
+    p.posX = param.posX;
+    p.posY = param.posY;
+    //se inicia posicion de enemy
+    SetInitialPosition(p);
 }
 
 void protagonista::update()
 {
+    MoveSprite();
 }
 
-void protagonista::render()
+void protagonista::render(sf::RenderWindow& window)
 {
+    UpdateSprite(window);
+}
+
+void protagonista::ChangeAnimationTime()
+{
+    sf::Time tiempoTranscurrido = cronometro.getElapsedTime();
+
+    if (tiempoTranscurrido >= tiempoDeseado) {
+        // Se ha alcanzado el tiempo deseado, ejecuta la función y reinicia el cronómetro
+        UpdateAnimation();
+        cronometro.restart();
+    }
+}
+
+void protagonista::UpdateAnimation()
+{
+    //hacemos comprobacion de si ha llegado al ultimo sprite de animacion, o si se ha pasado del tamaño de la textura
+    if (animacionVector.x * frameWidth >= texturePlayer.getSize().x)
+    {
+        //reiniciamos animacion
+        animacionVector.x = 0;
+    }
+    // Define el rectángulo de la animación actual usando animacionVector.x * frameWidth para elegir cuadro animacion
+    //en horizontal, en vertical no hay por eso es 0, y tamaño de un sprite en vertical y horizontal
+    spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
+    //sumamos 1 sprite
+    animacionVector.x++;
+}
+
+void protagonista::MoveSprite()
+{
+    p.posX += dirXInit;
+    p.posY += dirYInit;
+    CheckLimits();
+    // offset relative to the current position
+    spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
+}
+
+void protagonista::RotateSprite()
+{
+}
+
+void protagonista::ScaleSprite()
+{
+    spritePlayer.setScale(sf::Vector2f(1, 1));
+}
+
+void protagonista::ChangeOriginSprite()
+{
+    spritePlayer.setOrigin(sf::Vector2f(75.f, 90.f));
+}
+
+void protagonista::LoadTextureInit()
+{
+    //carga de imagen del proyecto
+    texturePlayer.loadFromFile("../sprites/player/MovingPlayer.png");
+    //le ponemos textura
+    spritePlayer.setTexture(texturePlayer);
+    spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
+}
+
+void protagonista::UpdateSprite(sf::RenderWindow& window)
+{
+    ChangeAnimationTime();
+    window.draw(spritePlayer);
+}
+
+void protagonista::SetInitialPosition(Position p)
+{
+    spritePlayer.move(sf::Vector2f(p.posX, p.posY));
+    FlipSpriteX();
+}
+
+void protagonista::ChangeXDirection()
+{
+    //change direction
+    dirXInit *= -1;
+    FlipSpriteX();
+}
+
+void protagonista::ChangeYDirection()
+{
+    dirYInit *= -1;
+    FlipSpriteX();
+}
+
+void protagonista::CheckLimits()
+{
+    //CHECK LIMITS X size
+    if (p.posX > limitsPlayer.limitDerecho || (p.posX < limitsPlayer.limitIzquierdo))
+    {
+        //out of limits
+        ChangeXDirection();
+    }
+    //check limits YSize
+    if (p.posY > limitsPlayer.limitAbajo || p.posY < limitsPlayer.limitArriba)
+    {
+        //out of limits
+        ChangeYDirection();
+    }
+}
+
+void protagonista::FlipSpriteX()
+{
+    spritePlayer.scale(-1, 1);
 }
