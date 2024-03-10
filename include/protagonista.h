@@ -40,6 +40,8 @@ private:
     int frameWidth;
     int frameHeight;
 
+    float speed;
+
     //direction
     int dirXInit;
     int dirYInit;

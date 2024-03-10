@@ -1,12 +1,12 @@
 #include "protagonista.h"
 
 protagonista::protagonista() : maxLife { 3 }, actualLife{ 3 }, dirXInit{ -1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
-frameWidth{ 100 }, frameHeight{ 80 }
+frameWidth{ 100 }, frameHeight{ 80 }, speed {2}
 {
 }
 
 protagonista::protagonista(Position param, limits limits) : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
-frameWidth{ 100 }, frameHeight{80 }
+frameWidth{ 100 }, frameHeight{80 }, speed{2}
 {
     limitsPlayer = limits;
     //cargas textura inicialmente
@@ -144,7 +144,7 @@ void protagonista::InputPlayer()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
             // left key is pressed: move our character
-            dirXInit = -1;
+            dirXInit = -speed;
             //canMove y onLimits
             if (p.posX >= limitsPlayer.limitIzquierdo)
             {
@@ -158,7 +158,7 @@ void protagonista::InputPlayer()
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
             // left key is pressed: move our character
-            dirXInit = 1;
+            dirXInit = speed;
 
             //canMove y onLimits
             if ( p.posX <= limitsPlayer.limitDerecho)
