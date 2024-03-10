@@ -27,8 +27,13 @@ private:
     sf::Clock cronometro;
     sf::Time tiempoDeseado = sf::seconds(0.1f);
 
+    //cronometro cambio animacion enemigos
+    sf::Clock cronometroMovement;
+    sf::Time movementSpeed = sf::seconds(0.001);
+
     //cronometro cambio de animacion
     void ChangeAnimationTime();
+    bool MovementTime();
     void UpdateAnimation();
 
     //dimensiones de cada cuadro de animacion
@@ -41,7 +46,7 @@ private:
 
     //metodos privados
     void MoveSprite();
-    void RotateSprite();
+
     void ScaleSprite();
     void ChangeOriginSprite();
     void LoadTextureInit();

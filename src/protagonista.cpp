@@ -41,6 +41,21 @@ void protagonista::ChangeAnimationTime()
     }
 }
 
+bool protagonista::MovementTime()
+{
+    sf::Time tiempo = cronometroMovement.getElapsedTime();
+
+    if (tiempo >= movementSpeed)
+    {
+        cronometroMovement.restart();
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void protagonista::UpdateAnimation()
 {
     //hacemos comprobacion de si ha llegado al ultimo sprite de animacion, o si se ha pasado del tamaño de la textura
@@ -131,30 +146,32 @@ void protagonista::InputPlayer()
     {
         // left key is pressed: move our character
         dirXInit = -1;
-        bool isInLimits = CheckLimits();
 
-        if (isInLimits)
+        bool readyToMove = MovementTime();
+        //canMove y onLimits
+        if ( readyToMove && p.posX  >= limitsPlayer.limitIzquierdo)
         {
             // offset relative to the current position
             p.posX += dirXInit;
-            spritePlayer.move(sf::Vector2f(p.posX, p.posY));
+            spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
         }
-        
-
+       
     }
     //if right pressed
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
         // left key is pressed: move our character
         dirXInit = 1; 
-        bool isInLimits = CheckLimits();
 
-        if (isInLimits)
+        bool readyToMove = MovementTime();
+        //canMove y onLimits
+        if ( readyToMove && p.posX <= limitsPlayer.limitDerecho)
         {
             // offset relative to the current position
             p.posX += dirXInit;
-            spritePlayer.move(sf::Vector2f(p.posX, p.posY));
+            spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
         }
+        
     }
 
     
