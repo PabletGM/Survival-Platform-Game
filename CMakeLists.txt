@@ -23,6 +23,7 @@ set(PROJECT_HEADERS
     include/position.h
     include/screenSize.h
     include/map.h
+    include/gameManager.h
 )
 
 set(PROJECT_SOURCES 
@@ -35,6 +36,7 @@ set(PROJECT_SOURCES
     src/enemyManager.cpp
     src/plataforma.cpp
     src/map.cpp
+    src/gameManager.cpp
 )
 
 set(PROJECT_FILES 
