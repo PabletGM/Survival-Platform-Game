@@ -30,18 +30,18 @@ void map::LoadTextureInit()
 
 void map::LoadBoxCollidersArrayInit()
 {
-	for (int i = 0; i < numPlatforms; ++i)
-	{
-		// Asegúrate de que platformArray contiene punteros a plataforma
-		plataforma* currentPlatform = &platformArray[i];
+	//for (int i = 0; i < numPlatforms; ++i)
+	//{
+	//	// Asegúrate de que platformArray contiene punteros a plataforma
+	//	plataforma* currentPlatform = &platformArray[i];
 
-		// Llama al método global bound y saca el boxcollider de cada plataforma
-		sf::FloatRect boxCollider = currentPlatform->getGlobalBounds();
+	//	// Llama al método global bound y saca el boxcollider de cada plataforma
+	//	sf::FloatRect boxCollider = currentPlatform->getGlobalBounds();
 
-		//lo guardas en el vector
-		boxCollidersPlatformArray.push_back(boxCollider);
+	//	//lo guardas en el vector
+	//	boxCollidersPlatformArray.push_back(boxCollider);
 
-	}
+	//}
 }
 
 std::vector<sf::FloatRect> map::getBoxCollidersPlatform() const

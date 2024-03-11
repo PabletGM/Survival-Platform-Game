@@ -30,10 +30,10 @@ void gameManager::update(float deltaMS, sf::RenderWindow& window)
 
 void gameManager::render(float deltaMS, sf::RenderWindow& window)
 {
-    window.clear();
+
 
     m_map->render(window);
     m_protagonista->render(window);
 
-    window.display();
+
 }
