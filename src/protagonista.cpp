@@ -1,4 +1,5 @@
 #include "protagonista.h"
+#include <iostream>
 
 
 protagonista::protagonista() : maxLife { 3 }, actualLife{ 3 }, dirXInit{ -1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
@@ -6,9 +7,11 @@ frameWidth{ 100 }, frameHeight{ 80 }, speed {2}, canJump{ true }
 {
 }
 
-protagonista::protagonista(Position param, limits limits) : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 0 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
+protagonista::protagonista(Position param, limits limits, std::vector<sf::FloatRect> boxColliders) : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 0 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}
 {
+    //sabemos las plataformas y su box collider
+    boxCollidersPlatformArray = boxColliders;
     limitsPlayer = limits;
     //cargas textura inicialmente
     InitTextures();
@@ -26,6 +29,8 @@ frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}
 void protagonista::update()
 {
     MoveSprite();
+    //collisions with platforms
+    TakeFromMapArrayBoxColliders();
 }
 
 void protagonista::render(sf::RenderWindow& window)
@@ -33,7 +38,7 @@ void protagonista::render(sf::RenderWindow& window)
     UpdateSprite(window);
 }
 
-sf::FloatRect protagonista::getGlobalBounds() const
+sf::FloatRect protagonista::getBoxColliderPlayer() const
 {
     return spritePlayer.getGlobalBounds();
 }
@@ -281,5 +286,13 @@ void protagonista::InitTextures()
 
 void protagonista::TakeFromMapArrayBoxColliders()
 {
-   
+   //compare if the position of the player intersects one of the platforms
+    for (int i = 0; i < 6;i++)
+    {
+        if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]))
+        {
+            std::cout << "Intersect" << std::endl;
+            
+        }
+    }
 }

@@ -21,7 +21,7 @@ gameManager::gameManager(sf::RenderWindow& window, screenSize screenParam, unsig
     LoadBoxCollidersArrayInit();
 
     m_map = new map();
-    m_protagonista = new protagonista(Position{ 800,1000 }, limits);
+    m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray);
 }
 
 void gameManager::LoadBoxCollidersArrayInit()
@@ -50,7 +50,7 @@ void gameManager::PlatformSpawn()
         {500, 700},
         {100, 700},
         {1100, 300},
-        {1500, 700}
+        {1500, 900}
     };
 
     //create platforms

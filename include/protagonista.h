@@ -9,7 +9,7 @@ class protagonista
 public:
     //constructor por defecto
     protagonista();
-    protagonista(Position p, limits limits);
+    protagonista(Position p, limits limits, std::vector<sf::FloatRect> boxColliders);
 
 
     void update();
@@ -18,7 +18,7 @@ public:
     void render(sf::RenderWindow& window);
 
     //box collider de player
-    sf::FloatRect getGlobalBounds() const;
+    sf::FloatRect getBoxColliderPlayer() const;
 
 
 private:
