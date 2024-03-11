@@ -15,10 +15,9 @@ class map
         void render(sf::RenderWindow& window);
 
         void LoadTextureInit();
-        void LoadBoxCollidersArrayInit();
+        
 
-        //devuelve el vector de boxColliders del platform
-        std::vector<sf::FloatRect> getBoxCollidersPlatform() const;
+       
         
 
 
@@ -30,13 +29,8 @@ class map
         sf::Texture textureMap;
 
         void UpdateSprite(sf::RenderWindow& window);
-        void PlatformSpawn();
+        
 
 
-        //array de plataformas
-        static const int numPlatforms = 6;
-        std::vector<plataforma> platformArray;
-        //array de box colliders de plataformas
-        std::vector<sf::FloatRect> boxCollidersPlatformArray;
-
+      
 };

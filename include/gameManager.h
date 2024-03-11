@@ -22,11 +22,23 @@ class gameManager
     
 
 private:
+
+    void LoadBoxCollidersArrayInit();
+    void PlatformSpawn();
    
     //player del juego
     protagonista* m_protagonista;
     //plataformas del juego, TO DO--> cambiar por mapa y que este dentro tenga un array de plataformas que se rendericen
     map* m_map;
+
+    //array de plataformas
+    static const int numPlatforms = 6;
+
+
+    std::vector<plataforma> platformArray;
+    //array de box colliders de plataformas
+    std::vector<sf::FloatRect> boxCollidersPlatformArray;
+
 
     unsigned int spaceXPlayable;
     unsigned int spaceYPlayable;
