@@ -32,6 +32,11 @@ void protagonista::render(sf::RenderWindow& window)
     UpdateSprite(window);
 }
 
+sf::FloatRect protagonista::getGlobalBounds() const
+{
+    return spritePlayer.getGlobalBounds();
+}
+
 void protagonista::ChangeAnimationTime()
 {
     sf::Time tiempoTranscurrido = cronometro.getElapsedTime();

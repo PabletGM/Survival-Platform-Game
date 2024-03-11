@@ -14,6 +14,8 @@ class plataforma
 
         void render(sf::RenderWindow& window);
 
+        //box collider de plataformas
+        sf::FloatRect getGlobalBounds() const;
 
     private:
 

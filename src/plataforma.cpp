@@ -18,6 +18,11 @@ void plataforma::render(sf::RenderWindow& window)
     window.draw(spritePlatform);
 }
 
+sf::FloatRect plataforma::getGlobalBounds() const
+{
+    return spritePlatform.getGlobalBounds();
+}
+
 void plataforma::MoveSpriteInit()
 {
 

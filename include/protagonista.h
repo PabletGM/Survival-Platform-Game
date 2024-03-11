@@ -17,6 +17,9 @@ public:
 
     void render(sf::RenderWindow& window);
 
+    //box collider de player
+    sf::FloatRect getGlobalBounds() const;
+
 
 private:
 
