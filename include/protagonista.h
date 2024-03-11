@@ -20,6 +20,10 @@ public:
 
 private:
 
+    const float gravity = 1;
+    const float groundHeight = 1000;
+
+
     //animation Vector parametro, en constructor
     sf::Vector2f animacionVector;
 
@@ -35,6 +39,9 @@ private:
     void ChangeAnimationTime();
     bool MovementTime();
     void UpdateAnimation();
+    void InputMovePlayer();
+    void InputJumpPlayer();
+    void Gravity();
 
     //dimensiones de cada cuadro de animacion
     int frameWidth;
@@ -61,6 +68,7 @@ private:
 
     void FlipSpriteLeft();
     void FlipSpriteRight();
+
     void IdleSprite();
 
     void InputPlayer();

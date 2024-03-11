@@ -5,7 +5,7 @@ frameWidth{ 100 }, frameHeight{ 80 }, speed {2}
 {
 }
 
-protagonista::protagonista(Position param, limits limits) : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
+protagonista::protagonista(Position param, limits limits) : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 0 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{80 }, speed {2}
 {
     limitsPlayer = limits;
@@ -74,6 +74,71 @@ void protagonista::UpdateAnimation()
     animacionVector.x++;
 }
 
+void protagonista::InputMovePlayer()
+{
+    //if left pressed
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        // left key is pressed: move our character
+        dirXInit = -speed;
+        //canMove y onLimits
+        if (p.posX >= limitsPlayer.limitIzquierdo)
+        {
+            // offset relative to the current position
+            p.posX += dirXInit;
+            FlipSpriteLeft();
+            spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
+        }
+    }
+    //if right pressed
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        // left key is pressed: move our character
+        dirXInit = speed;
+
+        //canMove y onLimits
+        if (p.posX <= limitsPlayer.limitDerecho)
+        {
+            // offset relative to the current position
+            p.posX += dirXInit;
+            FlipSpriteRight();
+            spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
+        }
+    }
+
+    //sino se pulsa nada posicion idle
+    else
+    {
+        IdleSprite();
+        spritePlayer.move(sf::Vector2f(0,0));
+    }
+}
+
+void protagonista::InputJumpPlayer()
+{
+    //si se pulsa space
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        
+    }
+}
+
+void protagonista::Gravity()
+{
+    
+    //check if surpass ground height
+    if (spritePlayer.getPosition().y > groundHeight)
+    {
+
+    }
+    else
+    {
+        //gravity
+        //on each cicle a force push you down
+        spritePlayer.move(sf::Vector2f(0, 1));
+    }
+}
+
 void protagonista::MoveSprite()
 {
     //to move 
@@ -128,6 +193,8 @@ void protagonista::FlipSpriteRight()
    
 }
 
+
+
 void protagonista::IdleSprite()
 {
     texturePlayer = texturePlayerIdle;
@@ -137,43 +204,14 @@ void protagonista::IdleSprite()
 
 void protagonista::InputPlayer()
 {
+    //apply gravity
+    Gravity();
+
     bool readyToMove = MovementTime();
     if (readyToMove)
     {
-        //if left pressed
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        {
-            // left key is pressed: move our character
-            dirXInit = -speed;
-            //canMove y onLimits
-            if (p.posX >= limitsPlayer.limitIzquierdo)
-            {
-                // offset relative to the current position
-                p.posX += dirXInit;
-                FlipSpriteLeft();
-                spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
-            }
-        }
-        //if right pressed
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        {
-            // left key is pressed: move our character
-            dirXInit = speed;
-
-            //canMove y onLimits
-            if ( p.posX <= limitsPlayer.limitDerecho)
-            {
-                // offset relative to the current position
-                p.posX += dirXInit;
-                FlipSpriteRight();
-                spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
-            }
-        }
-        //sino se pulsa nada posicion idle
-        else
-        {
-            IdleSprite();
-        }
+        InputMovePlayer();
+        InputJumpPlayer();
     }
     
 }
