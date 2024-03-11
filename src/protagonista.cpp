@@ -1,12 +1,12 @@
 #include "protagonista.h"
 
 protagonista::protagonista() : maxLife { 3 }, actualLife{ 3 }, dirXInit{ -1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
-frameWidth{ 100 }, frameHeight{ 80 }, speed {2}
+frameWidth{ 100 }, frameHeight{ 80 }, speed {2}, canJump{ true }
 {
 }
 
 protagonista::protagonista(Position param, limits limits) : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 0 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
-frameWidth{ 100 }, frameHeight{80 }, speed {2}
+frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}
 {
     limitsPlayer = limits;
     //cargas textura inicialmente
@@ -54,6 +54,26 @@ bool protagonista::MovementTime()
     }
     else
     {
+        return false;
+    }
+}
+
+bool protagonista::JumpTime()
+{
+    sf::Time tiempo = cronometroJump.getElapsedTime();
+
+    //ha pasado el segundo de salto
+    if (tiempo >= timeJump)
+    {
+        canJump = false;
+        cronometroJump.restart();
+        return true;
+    }
+    //seguimos en el aire
+    else
+    {
+        //se mueve hacia arriba
+        spritePlayer.move(sf::Vector2f(0, -jumpForce));
         return false;
     }
 }
@@ -116,10 +136,22 @@ void protagonista::InputMovePlayer()
 
 void protagonista::InputJumpPlayer()
 {
+    
     //si se pulsa space
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-        
+        //permiso para saltar
+        if (canJump )
+        {
+
+            //si salto no ha acabado
+            if (JumpTime())
+            {
+                
+               
+            }
+           
+        }
     }
 }
 
@@ -129,10 +161,15 @@ void protagonista::Gravity()
     //check if surpass ground height
     if (spritePlayer.getPosition().y > groundHeight)
     {
-
+        //damos permiso de salto
+        canJump = true;
+        InputJumpPlayer();
     }
+    //si esta por encima del suelo gravedad
     else
     {
+        //quitamos permiso de salto
+        canJump = false;
         //gravity
         //on each cicle a force push you down
         spritePlayer.move(sf::Vector2f(0, 1));
@@ -204,14 +241,13 @@ void protagonista::IdleSprite()
 
 void protagonista::InputPlayer()
 {
-    //apply gravity
+    //apply gravity and Jump
     Gravity();
 
     bool readyToMove = MovementTime();
     if (readyToMove)
     {
         InputMovePlayer();
-        InputJumpPlayer();
     }
     
 }

@@ -15,29 +15,35 @@ public:
     void update();
 
 
-    void render(sf::RenderWindow& window) ;
+    void render(sf::RenderWindow& window);
 
 
 private:
 
     const float gravity = 1;
     const float groundHeight = 1000;
+    const float jumpForce = 100;
 
 
     //animation Vector parametro, en constructor
     sf::Vector2f animacionVector;
 
-    //cronometro cambio animacion enemigos
+    //cronometro cambio animacion player
     sf::Clock cronometro;
     sf::Time tiempoDeseado = sf::seconds(0.1f);
 
-    //cronometro cambio animacion enemigos
+    //cronometro speed
     sf::Clock cronometroMovement;
     sf::Time movementSpeed = sf::seconds(0.001);
+
+    //cronometro duracion salto
+    sf::Clock cronometroJump;
+    sf::Time timeJump = sf::seconds(1);
 
     //cronometro cambio de animacion
     void ChangeAnimationTime();
     bool MovementTime();
+    bool JumpTime();
     void UpdateAnimation();
     void InputMovePlayer();
     void InputJumpPlayer();
@@ -52,6 +58,8 @@ private:
     //direction
     int dirXInit;
     int dirYInit;
+
+    bool canJump;
 
     //metodos privados
     void MoveSprite();
