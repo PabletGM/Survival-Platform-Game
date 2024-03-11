@@ -11,7 +11,7 @@ gameManager::gameManager(sf::RenderWindow& window, screenSize screenParam, unsig
     //inicializamos pantalla con tamaño jugable
     limitOffsetX = limittOffsetX;
     limitOffsetY = limittOffsetY;
-    spaceXPlayable = spaceeYPlayable;
+    spaceXPlayable = spaceeXPlayable;
     spaceYPlayable = spaceeYPlayable;
     //definimos espacio jugable
     limits limits{ (spaceXPlayable),(limitOffsetX),(limitOffsetY),(spaceYPlayable) };
