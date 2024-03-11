@@ -13,17 +13,13 @@ Game::Game(sf::RenderWindow& window, screenSize screenParam)
     limits limits{(spaceXPlayable),(limitOffsetX),(limitOffsetY),(spaceYPlayable) };
     //inicializar enemyManager
     m_enemyManager = new enemyManager(window, limits);
-    m_map = new map();
-    m_protagonista = new protagonista(Position{800,1000}, limits);
+    m_gameManager = new gameManager(window, screenParam, limitOffsetX, limitOffsetY, spaceXPlayable, spaceYPlayable);
 }
 
 
 void Game::update(float deltaMS, sf::RenderWindow& window)
 {
-    //updating positions of enemies
-    m_enemyManager->update();
-    //input of player and position
-    m_protagonista->update();
+    m_gameManager->update(deltaMS, window);
      
     
 }
@@ -33,13 +29,9 @@ void Game::render(float deltaMS, sf::RenderWindow& window)
     
         window.clear();
 
-        m_map->render(window);
-        m_protagonista->render(window);
+        m_gameManager->render(deltaMS,window);
         m_enemyManager->render(window);
         
-
-        
-       
 
         window.display();
     

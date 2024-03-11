@@ -4,6 +4,7 @@
 #include <protagonista.h>
 #include <map.h>
 #include <screenSize.h>
+#include <gameManager.h>
 
 //para tema de enemigos clase villano y supervillano hacer stateMachine con IA, buscar tutorial para los diferentes estados, perseguir, idle, buscar, etc
 class Game
@@ -29,10 +30,7 @@ class Game
         //enemyManager con todos los enemigos del juego
         enemyManager* m_enemyManager;
         //player del juego
-        protagonista* m_protagonista;
-        //plataformas del juego, TO DO--> cambiar por mapa y que este dentro tenga un array de plataformas que se rendericen
-        map* m_map;
-
+        gameManager* m_gameManager;
         unsigned int spaceXPlayable;
         unsigned int spaceYPlayable;
         //limitOffset
