@@ -86,6 +86,8 @@ private:
 
     void InitTextures();
 
+    void TakeFromMapArrayBoxColliders();
+
 
 
     //vida
@@ -106,5 +108,8 @@ private:
     Position p;
 
     limits limitsPlayer;
+
+    //array de box colliders de plataformas
+    std::vector<sf::FloatRect> boxCollidersPlatformArray;
 
 };

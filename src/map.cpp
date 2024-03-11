@@ -5,6 +5,8 @@ map::map()
 {
 	PlatformSpawn();
     LoadTextureInit();
+	//load the box colliders array
+	LoadBoxCollidersArrayInit();
 }
 
 
@@ -24,6 +26,27 @@ void map::LoadTextureInit()
     textureMap.loadFromFile("../sprites/map/mapa.png");
     //le ponemos textura
     spriteMap.setTexture(textureMap);
+}
+
+void map::LoadBoxCollidersArrayInit()
+{
+	for (int i = 0; i < numPlatforms; ++i)
+	{
+		// Asegúrate de que platformArray contiene punteros a plataforma
+		plataforma* currentPlatform = &platformArray[i];
+
+		// Llama al método global bound y saca el boxcollider de cada plataforma
+		sf::FloatRect boxCollider = currentPlatform->getGlobalBounds();
+
+		//lo guardas en el vector
+		boxCollidersPlatformArray.push_back(boxCollider);
+
+	}
+}
+
+std::vector<sf::FloatRect> map::getBoxCollidersPlatform() const
+{
+	return boxCollidersPlatformArray;
 }
 
 void map::UpdateSprite(sf::RenderWindow& window)

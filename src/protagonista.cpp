@@ -1,4 +1,5 @@
 #include "protagonista.h"
+#include <map.h>
 
 protagonista::protagonista() : maxLife { 3 }, actualLife{ 3 }, dirXInit{ -1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{ 80 }, speed {2}, canJump{ true }
@@ -276,4 +277,9 @@ void protagonista::InitTextures()
     //le ponemos textura
     spritePlayer.setTexture(texturePlayerMoveLeft);
     spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
+}
+
+void protagonista::TakeFromMapArrayBoxColliders()
+{
+    map* map = new map();
 }
