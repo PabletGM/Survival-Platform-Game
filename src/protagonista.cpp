@@ -99,6 +99,8 @@ void protagonista::UpdateAnimation()
 
 void protagonista::InputMovePlayer()
 {
+    sf::Event event;
+
     //if left pressed
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
@@ -128,6 +130,12 @@ void protagonista::InputMovePlayer()
                 FlipSpriteRight();
 
         }
+    }
+    //click derecho
+    else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        // Acciones que deseas realizar al hacer clic derecho
+        ShootSprite();
     }
 
     //sino se pulsa nada posicion idle
@@ -257,6 +265,12 @@ void protagonista::FallSprite()
     spritePlayer.setTexture(texturePlayer);
 }
 
+void protagonista::ShootSprite()
+{
+    texturePlayer = texturePlayerShoot;
+    spritePlayer.setTexture(texturePlayer);
+}
+
 
 void protagonista::InputPlayer()
 {
@@ -295,6 +309,12 @@ void protagonista::InitTextures()
     texturePlayerFall.loadFromFile("../sprites/player/playerCaer.png");
     //le ponemos textura
     spritePlayer.setTexture(texturePlayerFall);
+    spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
+
+    ////init texture left move
+    texturePlayerShoot.loadFromFile("../sprites/player/PlayerShoot.png");
+    //le ponemos textura
+    spritePlayer.setTexture(texturePlayerShoot);
     spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
 }
 
