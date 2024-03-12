@@ -52,8 +52,8 @@ void plataforma::SetOrigin()
 
 void plataforma::SetScale()
 {
-    float size = rand() % 1 + 0.5f;
+    float size = rand() % 100 + 70;
 
-    spritePlatform.setScale(size,size);
+    spritePlatform.setScale(size/150 ,size/150);
     
 }
