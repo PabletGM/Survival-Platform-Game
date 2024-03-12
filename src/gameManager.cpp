@@ -31,6 +31,7 @@ void gameManager::LoadBoxCollidersArrayInit()
     	// Asegúrate de que platformArray contiene punteros a plataforma
     	plataforma* currentPlatform = &platformArray[i];
 
+        //modificamos width un poco
     	// Llama al método global bound y saca el boxcollider de cada plataforma
     	sf::FloatRect boxCollider = currentPlatform->getGlobalBounds();
 
@@ -48,8 +49,8 @@ void gameManager::PlatformSpawn()
         {100, 100},
         {150, 100},
         {500, 700},
-        {100, 700},
-        {1100, 300},
+        {1000, 700},
+        {1200, 800},
         {1500, 900}
     };
 

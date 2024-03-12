@@ -6,6 +6,8 @@ plataforma::plataforma(Position p)
     position.posY = p.posY;
     LoadTextureInit();
     MoveSpriteInit();
+
+
     
 }
 

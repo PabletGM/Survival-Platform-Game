@@ -284,11 +284,13 @@ void protagonista::TakeFromMapArrayBoxColliders()
         {
             std::cout << "Intersect" << std::endl;
             //posicion o altura de la plataforma
-            p.posY = boxCollidersPlatformArray[i].getPosition().y ;
+             p.posY = boxCollidersPlatformArray[i].getPosition().y - getBoxColliderPlayer().height/2;
             //subido a plataforma
             platformRider = true;
             //puede saltar
             canJump = true;
+
+            return;
            
             
         }
