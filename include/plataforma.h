@@ -26,6 +26,7 @@ class plataforma
         void MoveSpriteInit();
         void LoadTextureInit();
         void SetOrigin();
+        void SetScale();
 
         Position position;
 

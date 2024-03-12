@@ -7,6 +7,7 @@ plataforma::plataforma(Position p)
     LoadTextureInit();
     MoveSpriteInit();
     SetOrigin();
+    SetScale();
 
     
 }
@@ -47,4 +48,12 @@ void plataforma::LoadTextureInit()
 void plataforma::SetOrigin()
 {
     spritePlatform.setOrigin(spritePlatform.getLocalBounds().width / 2, spritePlatform.getLocalBounds().height / 2);
+}
+
+void plataforma::SetScale()
+{
+    float size = rand() % 1 + 0.5f;
+
+    spritePlatform.setScale(size,size);
+    
 }
