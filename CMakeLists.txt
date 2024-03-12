@@ -25,6 +25,7 @@ set(PROJECT_HEADERS
     include/map.h
     include/gameManager.h
     include/shoot.h
+    include/ObjectPooler.h
 
 )
 
@@ -40,6 +41,7 @@ set(PROJECT_SOURCES
     src/map.cpp
     src/gameManager.cpp
     src/shoot.cpp
+    src/ObjectPooler.cpp
 )
 
 set(PROJECT_FILES 

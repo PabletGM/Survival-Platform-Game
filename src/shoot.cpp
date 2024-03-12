@@ -7,7 +7,7 @@ frameWidth{ 100 }, frameHeight{ 80 }
 
 }
 
-shoot::shoot(limits limits) :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
+shoot::shoot(limits limits, Position p) :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{ 80 }
 {
     
@@ -90,7 +90,7 @@ void shoot::ScaleSprite()
 void shoot::ChangeOriginSprite()
 {
     //origen por defecto es el top-left esquina izquierda
-    spriteBala.setOrigin(sf::Vector2f(75.f, 90.f));
+    spriteBala.setOrigin(spriteBala.getLocalBounds().width / 2, spriteBala.getLocalBounds().height / 2);
 }
 
 

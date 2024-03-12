@@ -7,7 +7,7 @@ class shoot
 public:
     //constructor por defecto
     shoot();
-    shoot(limits limits);
+    shoot(limits limits, Position p);
 
 
     void update();
