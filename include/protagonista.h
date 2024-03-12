@@ -3,13 +3,14 @@
 #include "enemy.h"
 #include <position.h>
 #include <screenSize.h>
+#include <ObjectPooler.h>
 
 class protagonista
 {
 public:
     //constructor por defecto
     protagonista();
-    protagonista(Position p, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms);
+    protagonista(Position p, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms, ObjectPooler *pool);
 
 
     void update();
@@ -88,6 +89,9 @@ private:
     void SetInitialPosition(Position p);
 
 
+    //instanciar bala
+    void InstantiateBala();
+
 
     void FlipSpriteLeft();
     void FlipSpriteRight();
@@ -131,5 +135,7 @@ private:
 
     //array de box colliders de plataformas
     std::vector<sf::FloatRect> boxCollidersPlatformArray;
+
+    ObjectPooler* objectPooler;
 
 };

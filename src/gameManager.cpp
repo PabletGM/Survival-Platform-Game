@@ -22,7 +22,7 @@ gameManager::gameManager(sf::RenderWindow& window, screenSize screenParam, unsig
     //crea un pool de 10 balas
     objectPooler = new ObjectPooler(10);
     m_map = new map();
-    m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray, numPlatforms);
+    m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray, numPlatforms, objectPooler);
 }
 
 void gameManager::LoadBoxCollidersArrayInit()

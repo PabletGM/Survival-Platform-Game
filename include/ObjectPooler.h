@@ -1,7 +1,8 @@
 #include <vector>
 #include <shoot.h>
 
-class ObjectPooler {
+class ObjectPooler 
+{
 public:
     // Constructor
     ObjectPooler(int poolSize);

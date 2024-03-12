@@ -7,7 +7,7 @@ frameWidth{ 100 }, frameHeight{ 80 }, speed{ 2 }, canJump{ true }, platformRider
 {
 }
 
-protagonista::protagonista(Position param, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms) : maxLife{ 3 }, actualLife{ 4 },  animacionVector(0.0f, 0.0f),
+protagonista::protagonista(Position param, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms, ObjectPooler* pooler) : maxLife{ 3 }, actualLife{ 4 },  animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}, platformRider{ false }
 {
     //sabemos las plataformas y su box collider
@@ -25,6 +25,9 @@ frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}, platformRider{ fa
     SetInitialPosition(p);
     //num platforms
     numPlatform = numPlatforms;
+
+    //copiamos objectpooler
+    objectPooler = pooler;
 
 }
 
@@ -162,6 +165,9 @@ void protagonista::InputMovePlayer()
             // Acciones que deseas realizar al hacer clic derecho
             ShootSpriteIzq();
         }
+
+        //bala
+        InstantiateBala();
     }
 
     //sino se pulsa nada posicion idle
@@ -273,6 +279,12 @@ void protagonista::SetInitialPosition(Position p)
 
 
 
+
+void protagonista::InstantiateBala()
+{
+    // Obtener una bala
+    shoot* bala1 = objectPooler->ObtenerBala();
+}
 
 void protagonista::FlipSpriteLeft()
 {
