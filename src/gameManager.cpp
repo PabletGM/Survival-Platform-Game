@@ -66,8 +66,8 @@ void gameManager::PlatformSpawn()
             // Genera valores aleatorios entre 100 y 1800 en X
             positions[i].posX = rand() % 1701 + 100;
 
-            // Genera valores aleatorios entre 100 y 900 en Y
-            positions[i].posY = rand() % 801 + 100;
+            // Genera valores aleatorios entre 100 y 1000 en Y
+            positions[i].posY = rand() % 900 + 100;
 
             // Comprueba si la nueva plataforma choca con alguna plataforma existente
             collision = false;

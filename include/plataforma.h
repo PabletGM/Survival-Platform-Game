@@ -25,6 +25,7 @@ class plataforma
         sf::Texture texturePlatform;
         void MoveSpriteInit();
         void LoadTextureInit();
+        void SetOrigin();
 
         Position position;
 

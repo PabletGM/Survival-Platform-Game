@@ -6,7 +6,7 @@ plataforma::plataforma(Position p)
     position.posY = p.posY;
     LoadTextureInit();
     MoveSpriteInit();
-
+    SetOrigin();
 
     
 }
@@ -42,4 +42,9 @@ void plataforma::LoadTextureInit()
         spritePlatform.setTexture(texturePlatform);
        
     
+}
+
+void plataforma::SetOrigin()
+{
+    spritePlatform.setOrigin(spritePlatform.getLocalBounds().width / 2, spritePlatform.getLocalBounds().height / 2);
 }

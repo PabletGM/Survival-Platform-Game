@@ -25,7 +25,7 @@ private:
 
     const float gravity = 1;
     const float groundHeight = 1000;
-    const float jumpForce = 100;
+    const float jumpForce = 150;
 
     int numPlatform;
 

@@ -279,12 +279,16 @@ void protagonista::InitTextures()
 
 void protagonista::TakeFromMapArrayBoxColliders()
 {
+
    //compare if the position of the player intersects one of the platforms
     for (int i = 0; i < numPlatform;i++)
     {
-        if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]))
+        float alturaPlataforma = boxCollidersPlatformArray[i].getPosition().y +5;
+        //si colisionan y altura player > altura platform
+        if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]) && p.posY < alturaPlataforma)
         {
             std::cout << "Intersect" << std::endl;
+
             //posicion o altura de la plataforma
              p.posY = boxCollidersPlatformArray[i].getPosition().y - getBoxColliderPlayer().height/2;
             //subido a plataforma
