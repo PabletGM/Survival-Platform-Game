@@ -60,11 +60,9 @@ private:
 
     float speed;
 
-    //direction
-    int dirXInit;
-    int dirYInit;
-
     bool canJump;
+    //si esta subido en una plataforma
+    bool platformRider;
 
     //metodos privados
     void MoveSprite();

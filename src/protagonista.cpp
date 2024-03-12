@@ -2,13 +2,13 @@
 #include <iostream>
 
 
-protagonista::protagonista() : maxLife { 3 }, actualLife{ 3 }, dirXInit{ -1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
-frameWidth{ 100 }, frameHeight{ 80 }, speed {2}, canJump{ true }
+protagonista::protagonista() : maxLife{ 3 }, actualLife{ 3 }, animacionVector(0.0f, 0.0f),
+frameWidth{ 100 }, frameHeight{ 80 }, speed{ 2 }, canJump{ true }, platformRider{ false }
 {
 }
 
-protagonista::protagonista(Position param, limits limits, std::vector<sf::FloatRect> boxColliders) : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 0 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
-frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}
+protagonista::protagonista(Position param, limits limits, std::vector<sf::FloatRect> boxColliders) : maxLife{ 3 }, actualLife{ 4 },  animacionVector(0.0f, 0.0f),
+frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}, platformRider{ false }
 {
     //sabemos las plataformas y su box collider
     boxCollidersPlatformArray = boxColliders;
@@ -28,9 +28,11 @@ frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}
 
 void protagonista::update()
 {
-    MoveSprite();
     //collisions with platforms
     TakeFromMapArrayBoxColliders();
+    //move sprite
+    MoveSprite();
+    spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
 }
 
 void protagonista::render(sf::RenderWindow& window)
@@ -71,23 +73,10 @@ bool protagonista::MovementTime()
 
 bool protagonista::JumpTime()
 {
-    sf::Time tiempo = cronometroJump.getElapsedTime();
-
-    //ha pasado el segundo de salto
-    if (tiempo >= timeJump)
-    {
-        canJump = false;
-        cronometroJump.restart();
-        return true;
-    }
-    //seguimos en el aire
-    else
-    { 
+        //salta
         p.posY -= jumpForce;
-        //se mueve hacia arriba
-        spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
-        return false;
-    }
+        return true;
+    
 }
 
 void protagonista::UpdateAnimation()
@@ -119,7 +108,7 @@ void protagonista::InputMovePlayer()
             // offset relative to the current position
 
             FlipSpriteLeft();
-            spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
+            /*spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));*/
         }
     }
     //if right pressed
@@ -134,7 +123,7 @@ void protagonista::InputMovePlayer()
             // offset relative to the current position
 
             FlipSpriteRight();
-            spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
+           /* spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));*/
         }
     }
 
@@ -170,22 +159,22 @@ void protagonista::InputJumpPlayer()
 void protagonista::Gravity()
 {
     
-    //check if surpass ground height o subido a plataforma
-    if (spritePlayer.getPosition().y > groundHeight)
+    //si esta en el suelo o plataforma puede saltar
+    if (spritePlayer.getPosition().y >= groundHeight || platformRider)
     {
         //damos permiso de salto
         canJump = true;
         InputJumpPlayer();
     }
-    //si esta por encima del suelo gravedad
-    else
+    //si esta por encima del suelo y no esta en plataforma no puede saltar
+    else if (spritePlayer.getPosition().y < groundHeight && !platformRider)
     {
         //quitamos permiso de salto
         canJump = false;
-        //gravity
+        //gravity APPLIED
         //on each cicle a force push you down
         p.posY += 1;
-        spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
+        /*spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));*/
     }
 }
 
@@ -294,9 +283,18 @@ void protagonista::TakeFromMapArrayBoxColliders()
         if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]))
         {
             std::cout << "Intersect" << std::endl;
-            p.posY += -boxCollidersPlatformArray[i].height;
-            spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
+            //posicion o altura de la plataforma
+            p.posY = boxCollidersPlatformArray[i].getPosition().y ;
+            //subido a plataforma
+            platformRider = true;
+            //puede saltar
+            canJump = true;
+           
             
+        }
+        else
+        {
+            platformRider = false;
         }
     }
 }
