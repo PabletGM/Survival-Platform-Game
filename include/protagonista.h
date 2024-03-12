@@ -28,6 +28,8 @@ private:
     const float jumpForce = 100;
 
 
+
+
     //animation Vector parametro, en constructor
     sf::Vector2f animacionVector;
 

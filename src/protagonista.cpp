@@ -169,7 +169,7 @@ void protagonista::InputJumpPlayer()
 void protagonista::Gravity()
 {
     
-    //check if surpass ground height
+    //check if surpass ground height o subido a plataforma
     if (spritePlayer.getPosition().y > groundHeight)
     {
         //damos permiso de salto
@@ -292,6 +292,7 @@ void protagonista::TakeFromMapArrayBoxColliders()
         if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]))
         {
             std::cout << "Intersect" << std::endl;
+            spritePlayer.move(sf::Vector2f(0, -boxCollidersPlatformArray[i].height));
             
         }
     }
