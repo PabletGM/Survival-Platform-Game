@@ -30,6 +30,13 @@ private:
     int numPlatform;
 
 
+    //direccion a la que mira
+    bool directionRight;
+    //por defecto
+    bool directionLeft;
+
+    void LookToRight();
+    void LookToLeft();
 
 
     //animation Vector parametro, en constructor
@@ -85,7 +92,8 @@ private:
     void FlipSpriteLeft();
     void FlipSpriteRight();
 
-    void IdleSprite();
+    void IdleSpriteIzq();
+    void IdleSpriteDer();
     void FallSprite();
     void ShootSpriteIzq();
     void ShootSpriteDer();
@@ -108,7 +116,8 @@ private:
     sf::Sprite spritePlayer;
     sf::Texture texturePlayer;
     //texture enemigo
-    sf::Texture texturePlayerIdle;
+    sf::Texture texturePlayerIdleIzq;
+    sf::Texture texturePlayerIdleDer;
     sf::Texture texturePlayerMoveRight;
     sf::Texture texturePlayerMoveLeft;
     sf::Texture texturePlayerFall;

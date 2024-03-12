@@ -47,6 +47,18 @@ sf::FloatRect protagonista::getBoxColliderPlayer() const
     return spritePlayer.getGlobalBounds();
 }
 
+void protagonista::LookToRight()
+{
+    directionRight = true;
+    directionLeft = false;
+}
+
+void protagonista::LookToLeft()
+{
+    directionLeft = true;
+    directionRight = false;
+}
+
 void protagonista::ChangeAnimationTime()
 {
     sf::Time tiempoTranscurrido = cronometro.getElapsedTime();
@@ -101,6 +113,8 @@ void protagonista::InputMovePlayer()
 {
     sf::Event event;
 
+
+
     //if left pressed
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
@@ -112,6 +126,8 @@ void protagonista::InputMovePlayer()
             // offset relative to the current position
             
                FlipSpriteLeft();
+               //miramos izquierda
+               LookToLeft();
         }
     }
     //if right pressed
@@ -128,14 +144,24 @@ void protagonista::InputMovePlayer()
             //sino esta en el aire, sino puede saltar
            
                 FlipSpriteRight();
+                //miramos izquierda
+                LookToRight();
 
         }
     }
     //click derecho
     else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        // Acciones que deseas realizar al hacer clic derecho
-        ShootSpriteIzq();
+        //si mira a la derecha
+        if (directionRight)
+        {
+            ShootSpriteDer();
+        }
+        else if (directionLeft)
+        {
+            // Acciones que deseas realizar al hacer clic derecho
+            ShootSpriteIzq();
+        }
     }
 
     //sino se pulsa nada posicion idle
@@ -144,7 +170,17 @@ void protagonista::InputMovePlayer()
         //si esta en el suelo o plataforma
         if (canJump || platformRider)
         {
-            IdleSprite();
+            //si mira a la derecha
+            if (directionRight)
+            {
+                IdleSpriteDer();
+            }
+            else if (directionLeft)
+            {
+                IdleSpriteIzq();
+            }
+
+           
         }
         spritePlayer.move(sf::Vector2f(0,0));
     }
@@ -230,7 +266,7 @@ void protagonista::UpdateSprite(sf::RenderWindow& window)
 void protagonista::SetInitialPosition(Position p)
 {
     spritePlayer.move(sf::Vector2f(p.posX, p.posY));
-    IdleSprite();
+    IdleSpriteIzq();
 }
 
 
@@ -253,9 +289,17 @@ void protagonista::FlipSpriteRight()
 
 
 
-void protagonista::IdleSprite()
+
+
+void protagonista::IdleSpriteIzq()
 {
-    texturePlayer = texturePlayerIdle;
+    texturePlayer = texturePlayerIdleIzq;
+    spritePlayer.setTexture(texturePlayer);
+}
+
+void protagonista::IdleSpriteDer()
+{
+    texturePlayer = texturePlayerIdleDer;
     spritePlayer.setTexture(texturePlayer);
 }
 
@@ -294,9 +338,16 @@ void protagonista::InputPlayer()
 void protagonista::InitTextures()
 {
     //init texture idle
-    texturePlayerIdle.loadFromFile("../sprites/player/playerIdle.png");
+    texturePlayerIdleIzq.loadFromFile("../sprites/player/playerIdleIzq.png");
     //le ponemos textura
-    spritePlayer.setTexture(texturePlayerIdle);
+    spritePlayer.setTexture(texturePlayerIdleIzq);
+    spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
+
+
+    //init texture idle
+    texturePlayerIdleDer.loadFromFile("../sprites/player/playerIdleDer.png");
+    //le ponemos textura
+    spritePlayer.setTexture(texturePlayerIdleDer);
     spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
 
     ////init texture right move
