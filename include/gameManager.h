@@ -32,7 +32,7 @@ private:
     map* m_map;
 
     //array de plataformas
-    static const int numPlatforms = 6;
+    static const int numPlatforms = 10;
 
 
     std::vector<plataforma> platformArray;

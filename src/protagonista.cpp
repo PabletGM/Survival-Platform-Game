@@ -7,7 +7,7 @@ frameWidth{ 100 }, frameHeight{ 80 }, speed{ 2 }, canJump{ true }, platformRider
 {
 }
 
-protagonista::protagonista(Position param, limits limits, std::vector<sf::FloatRect> boxColliders) : maxLife{ 3 }, actualLife{ 4 },  animacionVector(0.0f, 0.0f),
+protagonista::protagonista(Position param, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms) : maxLife{ 3 }, actualLife{ 4 },  animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}, platformRider{ false }
 {
     //sabemos las plataformas y su box collider
@@ -23,6 +23,8 @@ frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}, platformRider{ fa
     p.posY = param.posY;
     //se inicia posicion de enemy
     SetInitialPosition(p);
+    //num platforms
+    numPlatform = numPlatforms;
 
 }
 
@@ -278,7 +280,7 @@ void protagonista::InitTextures()
 void protagonista::TakeFromMapArrayBoxColliders()
 {
    //compare if the position of the player intersects one of the platforms
-    for (int i = 0; i < 6;i++)
+    for (int i = 0; i < numPlatform;i++)
     {
         if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]))
         {

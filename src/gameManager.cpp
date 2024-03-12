@@ -21,7 +21,7 @@ gameManager::gameManager(sf::RenderWindow& window, screenSize screenParam, unsig
     LoadBoxCollidersArrayInit();
 
     m_map = new map();
-    m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray);
+    m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray, numPlatforms);
 }
 
 void gameManager::LoadBoxCollidersArrayInit()
@@ -46,13 +46,44 @@ void gameManager::PlatformSpawn()
     //create array platforms
     Position positions[] =
     {
-        {100, 100},
-        {150, 100},
-        {500, 700},
-        {1000, 700},
-        {1200, 800},
-        {1500, 900}
+        {0,0},
+        {0,0},
+        {0,0},
+        {0,0},
+        {0,0},
+        {0,0},
+        {0,0},
+        {0,0},
+        {0,0},
+        {0,0},
+       
     };
+    bool collision = false;
+    for (int i = 0; i < numPlatforms; ++i)
+    {
+        do
+        {
+            // Genera valores aleatorios entre 100 y 1800 en X
+            positions[i].posX = rand() % 1701 + 100;
+
+            // Genera valores aleatorios entre 100 y 900 en Y
+            positions[i].posY = rand() % 801 + 100;
+
+            // Comprueba si la nueva plataforma choca con alguna plataforma existente
+            collision = false;
+            //recorre plataformas generadas
+            for (int j = 0; j < i; ++j)
+            {
+                //mira distancia entre plataformas de 300
+                if (std::abs(positions[i].posX - positions[j].posX) < 300 &&
+                    std::abs(positions[i].posY - positions[j].posY) < 200)
+                {
+                    collision = true;
+                    break;
+                }
+            }
+        } while (collision);
+    }
 
     //create platforms
     for (int i = 0; i < numPlatforms; ++i)

@@ -9,7 +9,7 @@ class protagonista
 public:
     //constructor por defecto
     protagonista();
-    protagonista(Position p, limits limits, std::vector<sf::FloatRect> boxColliders);
+    protagonista(Position p, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms);
 
 
     void update();
@@ -26,6 +26,8 @@ private:
     const float gravity = 1;
     const float groundHeight = 1000;
     const float jumpForce = 100;
+
+    int numPlatform;
 
 
 
