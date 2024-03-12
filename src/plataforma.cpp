@@ -9,6 +9,8 @@ plataforma::plataforma(Position p)
     SetOrigin();
     SetScale();
 
+
+
     
 }
 
@@ -57,3 +59,5 @@ void plataforma::SetScale()
     spritePlatform.setScale(size/150 ,size/150);
     
 }
+
+

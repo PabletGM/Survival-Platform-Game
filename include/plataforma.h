@@ -29,5 +29,6 @@ class plataforma
         void SetScale();
 
         Position position;
+      
 
 };

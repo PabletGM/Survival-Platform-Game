@@ -108,9 +108,8 @@ void protagonista::InputMovePlayer()
         if (p.posX >= limitsPlayer.limitIzquierdo)
         {
             // offset relative to the current position
-
-            FlipSpriteLeft();
-            /*spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));*/
+            
+               FlipSpriteLeft();
         }
     }
     //if right pressed
@@ -124,15 +123,21 @@ void protagonista::InputMovePlayer()
         {
             // offset relative to the current position
 
-            FlipSpriteRight();
-           /* spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));*/
+            //sino esta en el aire, sino puede saltar
+           
+                FlipSpriteRight();
+
         }
     }
 
     //sino se pulsa nada posicion idle
     else
     {
-        IdleSprite();
+        //si esta en el suelo o plataforma
+        if (canJump || platformRider)
+        {
+            IdleSprite();
+        }
         spritePlayer.move(sf::Vector2f(0,0));
     }
 }
@@ -166,6 +171,7 @@ void protagonista::Gravity()
     {
         //damos permiso de salto
         canJump = true;
+
         InputJumpPlayer();
     }
     //si esta por encima del suelo y no esta en plataforma no puede saltar
@@ -174,10 +180,13 @@ void protagonista::Gravity()
         //quitamos permiso de salto
         canJump = false;
         //gravity APPLIED
+        FallSprite();
         //on each cicle a force push you down
         p.posY += 1;
         /*spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));*/
     }
+
+    
 }
 
 void protagonista::MoveSprite()
@@ -242,6 +251,12 @@ void protagonista::IdleSprite()
     spritePlayer.setTexture(texturePlayer);
 }
 
+void protagonista::FallSprite()
+{
+    texturePlayer = texturePlayerFall;
+    spritePlayer.setTexture(texturePlayer);
+}
+
 
 void protagonista::InputPlayer()
 {
@@ -275,6 +290,12 @@ void protagonista::InitTextures()
     //le ponemos textura
     spritePlayer.setTexture(texturePlayerMoveLeft);
     spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
+
+    ////init texture left move
+    texturePlayerFall.loadFromFile("../sprites/player/playerCaer.png");
+    //le ponemos textura
+    spritePlayer.setTexture(texturePlayerFall);
+    spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
 }
 
 void protagonista::TakeFromMapArrayBoxColliders()
@@ -284,13 +305,13 @@ void protagonista::TakeFromMapArrayBoxColliders()
     for (int i = 0; i < numPlatform;i++)
     {
         float alturaPlataforma = boxCollidersPlatformArray[i].getPosition().y +5;
-        //si colisionan y altura player > altura platform
-        if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]) && p.posY < alturaPlataforma)
+        //si colisionan y altura player < altura platform(ya que el eje dereferencia es al reves en consola
+        if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]) && p.posY <= alturaPlataforma)
         {
             std::cout << "Intersect" << std::endl;
 
             //posicion o altura de la plataforma
-             p.posY = boxCollidersPlatformArray[i].getPosition().y - getBoxColliderPlayer().height/2;
+             p.posY = boxCollidersPlatformArray[i].getPosition().y - getBoxColliderPlayer().height/2.1;
             //subido a plataforma
             platformRider = true;
             //puede saltar

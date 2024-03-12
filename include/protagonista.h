@@ -62,9 +62,12 @@ private:
 
     float speed;
 
+    //si esta en sueo o plataforma y puede saltar
     bool canJump;
     //si esta subido en una plataforma
     bool platformRider;
+
+
 
     //metodos privados
     void MoveSprite();
@@ -83,6 +86,7 @@ private:
     void FlipSpriteRight();
 
     void IdleSprite();
+    void FallSprite();
 
     void InputPlayer();
 
@@ -105,6 +109,7 @@ private:
     sf::Texture texturePlayerIdle;
     sf::Texture texturePlayerMoveRight;
     sf::Texture texturePlayerMoveLeft;
+    sf::Texture texturePlayerFall;
 
     //posicionInicial
     Position p;
