@@ -4,6 +4,7 @@
 #include <map.h>
 #include <protagonista.h>
 #include <screenSize.h>
+#include <ObjectPooler.h>
 
 //para tema de enemigos clase villano y supervillano hacer stateMachine con IA, buscar tutorial para los diferentes estados, perseguir, idle, buscar, etc
 class gameManager
@@ -46,6 +47,8 @@ private:
     unsigned  int limitOffsetX;
     unsigned  int limitOffsetY;
 
+
+    ObjectPooler * objectPooler; 
 
 
 
