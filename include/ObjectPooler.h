@@ -13,6 +13,13 @@ public:
     // Devolver una bala al pool
     void DevolverBala(shoot* bala);
 
+
+    //renderizas balas en uso
+    void RenderBulletUsed(sf::RenderWindow& window);
+
+    //renderizas balas en uso
+    void UpdateBulletUsed();
+
 private:
     // Lista de balas disponibles
     std::vector<shoot*> balasDisponibles;

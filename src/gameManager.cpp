@@ -100,6 +100,7 @@ void gameManager::update(float deltaMS, sf::RenderWindow& window)
 {
     //input of player and position
     m_protagonista->update();
+    objectPooler->UpdateBulletUsed();
 
    
 }
@@ -119,6 +120,7 @@ void gameManager::render(float deltaMS, sf::RenderWindow& window)
         currentPlatform->render(window);
     }
     m_protagonista->render(window);
+    objectPooler->RenderBulletUsed(window);
 
 
 }

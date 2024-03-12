@@ -284,6 +284,7 @@ void protagonista::InstantiateBala()
 {
     // Obtener una bala
     shoot* bala1 = objectPooler->ObtenerBala();
+
 }
 
 void protagonista::FlipSpriteLeft()

@@ -28,3 +28,19 @@ void ObjectPooler::DevolverBala(shoot* bala)
     balasDisponibles.push_back(bala);
 }
 
+void ObjectPooler::RenderBulletUsed(sf::RenderWindow& window)
+{
+    for (auto* bala : balasEnUso) 
+    {
+        bala->render(window);
+    }
+}
+
+void ObjectPooler::UpdateBulletUsed()
+{
+    for (auto* bala : balasEnUso)
+    {
+        bala->update();
+    }
+}
+
