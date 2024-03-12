@@ -87,7 +87,8 @@ private:
 
     void IdleSprite();
     void FallSprite();
-    void ShootSprite();
+    void ShootSpriteIzq();
+    void ShootSpriteDer();
 
     void InputPlayer();
 
@@ -111,7 +112,8 @@ private:
     sf::Texture texturePlayerMoveRight;
     sf::Texture texturePlayerMoveLeft;
     sf::Texture texturePlayerFall;
-    sf::Texture texturePlayerShoot;
+    sf::Texture texturePlayerShootIzq;
+    sf::Texture texturePlayerShootDer;
 
     //posicionInicial
     Position p;

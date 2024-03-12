@@ -135,7 +135,7 @@ void protagonista::InputMovePlayer()
     else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         // Acciones que deseas realizar al hacer clic derecho
-        ShootSprite();
+        ShootSpriteIzq();
     }
 
     //sino se pulsa nada posicion idle
@@ -265,9 +265,15 @@ void protagonista::FallSprite()
     spritePlayer.setTexture(texturePlayer);
 }
 
-void protagonista::ShootSprite()
+void protagonista::ShootSpriteIzq()
 {
-    texturePlayer = texturePlayerShoot;
+    texturePlayer = texturePlayerShootIzq;
+    spritePlayer.setTexture(texturePlayer);
+}
+
+void protagonista::ShootSpriteDer()
+{
+    texturePlayer = texturePlayerShootDer;
     spritePlayer.setTexture(texturePlayer);
 }
 
@@ -305,16 +311,22 @@ void protagonista::InitTextures()
     spritePlayer.setTexture(texturePlayerMoveLeft);
     spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
 
-    ////init texture left move
+    ////caer
     texturePlayerFall.loadFromFile("../sprites/player/playerCaer.png");
     //le ponemos textura
     spritePlayer.setTexture(texturePlayerFall);
     spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
 
-    ////init texture left move
-    texturePlayerShoot.loadFromFile("../sprites/player/PlayerShoot.png");
+    ////shootIzq
+    texturePlayerShootIzq.loadFromFile("../sprites/player/PlayerShootIzq.png");
     //le ponemos textura
-    spritePlayer.setTexture(texturePlayerShoot);
+    spritePlayer.setTexture(texturePlayerShootIzq);
+    spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
+
+    ////shootDer
+    texturePlayerShootDer.loadFromFile("../sprites/player/PlayerShootDer.png");
+    //le ponemos textura
+    spritePlayer.setTexture(texturePlayerShootDer);
     spritePlayer.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
 }
 
