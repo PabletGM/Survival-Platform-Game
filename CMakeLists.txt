@@ -24,6 +24,8 @@ set(PROJECT_HEADERS
     include/screenSize.h
     include/map.h
     include/gameManager.h
+    include/shoot.h
+
 )
 
 set(PROJECT_SOURCES 
@@ -37,6 +39,7 @@ set(PROJECT_SOURCES
     src/plataforma.cpp
     src/map.cpp
     src/gameManager.cpp
+    src/shoot.cpp
 )
 
 set(PROJECT_FILES 
