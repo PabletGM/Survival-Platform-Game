@@ -82,9 +82,10 @@ bool protagonista::JumpTime()
     }
     //seguimos en el aire
     else
-    {
+    { 
+        p.posY -= jumpForce;
         //se mueve hacia arriba
-        spritePlayer.move(sf::Vector2f(0, -jumpForce));
+        spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
         return false;
     }
 }
@@ -111,29 +112,29 @@ void protagonista::InputMovePlayer()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         // left key is pressed: move our character
-        dirXInit = -speed;
+        p.posX -= speed;
         //canMove y onLimits
         if (p.posX >= limitsPlayer.limitIzquierdo)
         {
             // offset relative to the current position
-            p.posX += dirXInit;
+
             FlipSpriteLeft();
-            spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
+            spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
         }
     }
     //if right pressed
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
         // left key is pressed: move our character
-        dirXInit = speed;
+        p.posX += speed;
 
         //canMove y onLimits
         if (p.posX <= limitsPlayer.limitDerecho)
         {
             // offset relative to the current position
-            p.posX += dirXInit;
+
             FlipSpriteRight();
-            spritePlayer.move(sf::Vector2f(dirXInit, dirYInit));
+            spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
         }
     }
 
@@ -183,7 +184,8 @@ void protagonista::Gravity()
         canJump = false;
         //gravity
         //on each cicle a force push you down
-        spritePlayer.move(sf::Vector2f(0, 1));
+        p.posY += 1;
+        spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
     }
 }
 
@@ -292,7 +294,8 @@ void protagonista::TakeFromMapArrayBoxColliders()
         if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]))
         {
             std::cout << "Intersect" << std::endl;
-            spritePlayer.move(sf::Vector2f(0, -boxCollidersPlatformArray[i].height));
+            p.posY += -boxCollidersPlatformArray[i].height;
+            spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
             
         }
     }
