@@ -20,7 +20,10 @@ gameManager::gameManager(sf::RenderWindow& window, screenSize screenParam, unsig
     PlatformSpawn();
     LoadBoxCollidersArrayInit();
     //crea un pool de 10 balas
-    objectPooler = new ObjectPooler(10);
+    Position p;
+    p.posX = 1000;
+    p.posY = 1000;
+    objectPooler = new ObjectPooler(10, limits,p );
     m_map = new map();
     m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray, numPlatforms, objectPooler);
 }

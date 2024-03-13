@@ -5,7 +5,7 @@ class ObjectPooler
 {
 public:
     // Constructor
-    ObjectPooler(int poolSize);
+    ObjectPooler(int poolSize,limits limits, Position p);
 
     // Obtener una bala disponible
     shoot* ObtenerBala();
@@ -26,4 +26,9 @@ private:
 
     // Lista de balas en uso
     std::vector<shoot*> balasEnUso;
+
+
+    //player info
+    limits limitsP;
+    Position p;
 };

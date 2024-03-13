@@ -1,16 +1,19 @@
 #include "ObjectPooler.h"
 
-ObjectPooler::ObjectPooler(int poolSize)
+ObjectPooler::ObjectPooler(int poolSize, limits limitsPlayer, Position pos)
 {
+    limitsP = limitsPlayer;
+    p = pos;
 }
 
 shoot* ObjectPooler::ObtenerBala()
 {
     if (balasDisponibles.empty()) {
         // Si no hay balas disponibles, crea una nueva
-        shoot* nuevaBala = new shoot();
-        balasEnUso.push_back(nuevaBala);
-        return nuevaBala;
+        // Obtener una bala, crear instancia
+        shoot* bala1 = new shoot(limitsP, p);
+        balasEnUso.push_back(bala1);
+        return bala1;
     }
     else {
         // Si hay balas disponibles, toma una del pool

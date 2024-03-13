@@ -29,7 +29,6 @@ void shoot::update()
 void shoot::render(sf::RenderWindow& window)
 {
     UpdateSprite(window);
-
 }
 
 void shoot::ChangeAnimationTime()
@@ -104,7 +103,7 @@ void shoot::SetInitialPosition(Position position)
 {
     p.posX = position.posX;
     p.posY = position.posY;
-    spriteBala.move(sf::Vector2f(p.posX, p.posY));
+    spriteBala.setPosition(sf::Vector2f(p.posX, p.posY));
 }
 
 void shoot::ChangeXDirection()
