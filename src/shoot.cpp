@@ -100,8 +100,10 @@ void shoot::UpdateSprite(sf::RenderWindow& window)
     window.draw(spriteBala);
 }
 
-void shoot::SetInitialPosition(Position p)
+void shoot::SetInitialPosition(Position position)
 {
+    p.posX = position.posX;
+    p.posY = position.posY;
     spriteBala.move(sf::Vector2f(p.posX, p.posY));
 }
 

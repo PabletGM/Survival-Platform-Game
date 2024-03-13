@@ -282,8 +282,9 @@ void protagonista::SetInitialPosition(Position p)
 
 void protagonista::InstantiateBala()
 {
-    // Obtener una bala
-    shoot* bala1 = objectPooler->ObtenerBala();
+    // Obtener una bala, crear instancia
+    shoot* bala1 = new shoot(limitsPlayer, p);
+     bala1 = objectPooler->ObtenerBala();
 
 }
 
