@@ -93,6 +93,22 @@ bool protagonista::MovementTime()
     }
 }
 
+bool protagonista::CanShoot()
+{
+    sf::Time tiempo = recargaDisparo.getElapsedTime();
+
+    if (tiempo >= timeJump)
+    {
+        recargaDisparo.restart();
+        canShoot = true; 
+    }
+    else
+    {
+        canShoot = false;
+    }
+    return canShoot;
+}
+
 bool protagonista::JumpTime()
 {
         //salta
@@ -171,8 +187,12 @@ void protagonista::InputMovePlayer()
             ShootSpriteIzq();
         }
 
-        //bala
-        InstantiateBala();
+        //bala, si puede disparar por tiempo de espera
+        if (CanShoot())
+        {
+            InstantiateBala();
+        }
+        
     }
 
     //sino se pulsa nada posicion idle

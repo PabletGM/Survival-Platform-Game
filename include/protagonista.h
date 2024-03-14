@@ -53,6 +53,10 @@ private:
     sf::Clock cronometroMovement;
     sf::Time movementSpeed = sf::seconds(0.001);
 
+    //recarga Disparo
+    sf::Clock recargaDisparo;
+    sf::Time timeCharge = sf::seconds(1);
+
     //cronometro duracion salto
     sf::Clock cronometroJump;
     sf::Time timeJump = sf::seconds(1);
@@ -60,6 +64,11 @@ private:
     //cronometro cambio de animacion
     void ChangeAnimationTime();
     bool MovementTime();
+
+    //puede disparar o no
+    bool CanShoot();
+
+
     bool JumpTime();
     void UpdateAnimation();
     void InputMovePlayer();
@@ -76,6 +85,8 @@ private:
     bool canJump;
     //si esta subido en una plataforma
     bool platformRider;
+
+    bool canShoot = true;
 
 
 
