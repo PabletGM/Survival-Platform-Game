@@ -58,10 +58,9 @@ private:
     
 
  public:
-     Position playerPos;
-     Position& GetPosPlayer();
     static gameManager instance;
     static gameManager& getInstance();
 
+     Position posPlayer;
 
 };

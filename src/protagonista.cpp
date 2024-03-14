@@ -1,5 +1,6 @@
 #include "protagonista.h"
 #include <iostream>
+#include <gameManager.h>
 
 
 
@@ -20,10 +21,10 @@ frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}, platformRider{ fa
     ScaleSprite();
     ChangeOriginSprite();
     //inicializamos variables de posicion
-    p.posX = param.posX;
-    p.posY = param.posY;
+    gameManager::getInstance().posPlayer.posX = param.posX;
+    gameManager::getInstance().posPlayer.posY = param.posY;
     //se inicia posicion de enemy
-    SetInitialPosition(p);
+    SetInitialPosition(gameManager::getInstance().posPlayer);
     //num platforms
     numPlatform = numPlatforms;
 
@@ -37,12 +38,12 @@ void protagonista::update()
     TakeFromMapArrayBoxColliders();
     //move sprite
     MoveSprite();
-    spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
+    spritePlayer.setPosition(sf::Vector2f(gameManager::getInstance().posPlayer.posX, gameManager::getInstance().posPlayer.posY));
 }
 
 Position protagonista::getPosition()
 {
-    return p;
+    return  gameManager::getInstance().posPlayer;
 }
 
 void protagonista::render(sf::RenderWindow& window)
@@ -114,7 +115,7 @@ bool protagonista::CanShoot()
 bool protagonista::JumpTime()
 {
         //salta
-        p.posY -= jumpForce;
+    gameManager::getInstance().posPlayer.posY -= jumpForce;
         return true;
     
 }
@@ -145,9 +146,9 @@ void protagonista::InputMovePlayer()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         // left key is pressed: move our character
-        p.posX -= speed;
+        gameManager::getInstance().posPlayer.posX -= speed;
         //canMove y onLimits
-        if (p.posX >= limitsPlayer.limitIzquierdo)
+        if (gameManager::getInstance().posPlayer.posX >= limitsPlayer.limitIzquierdo)
         {
             // offset relative to the current position
             
@@ -160,10 +161,10 @@ void protagonista::InputMovePlayer()
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
         // left key is pressed: move our character
-        p.posX += speed;
+        gameManager::getInstance().posPlayer.posX += speed;
 
         //canMove y onLimits
-        if (p.posX <= limitsPlayer.limitDerecho)
+        if (gameManager::getInstance().posPlayer.posX <= limitsPlayer.limitDerecho)
         {
             // offset relative to the current position
 
@@ -259,7 +260,7 @@ void protagonista::Gravity()
         //gravity APPLIED
         FallSprite();
         //on each cicle a force push you down
-        p.posY += 1;
+        gameManager::getInstance().posPlayer.posY += 1;
         /*spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));*/
     }
 
@@ -313,7 +314,7 @@ void protagonista::SetInitialPosition(Position p)
 void protagonista::InstantiateBala()
 {
     //y le pasamos la posicion del player
-    ObjectPooler::getInstance().Disparar(p);
+    ObjectPooler::getInstance().Disparar(gameManager::getInstance().posPlayer);
 
 }
 
@@ -432,12 +433,12 @@ void protagonista::TakeFromMapArrayBoxColliders()
     {
         float alturaPlataforma = boxCollidersPlatformArray[i].getPosition().y +5;
         //si colisionan y altura player < altura platform(ya que el eje dereferencia es al reves en consola
-        if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]) && p.posY <= alturaPlataforma)
+        if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]) && gameManager::getInstance().posPlayer.posY <= alturaPlataforma)
         {
             std::cout << "Intersect" << std::endl;
 
             //posicion o altura de la plataforma
-             p.posY = boxCollidersPlatformArray[i].getPosition().y - getBoxColliderPlayer().height/2.1;
+            gameManager::getInstance().posPlayer.posY = boxCollidersPlatformArray[i].getPosition().y - getBoxColliderPlayer().height/2.1;
             //subido a plataforma
             platformRider = true;
             //puede saltar

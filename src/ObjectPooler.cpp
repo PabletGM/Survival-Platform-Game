@@ -19,10 +19,11 @@ shoot* ObjectPooler::ObtenerBala(Position p)
     }
     else {
         // Si hay balas disponibles, toma una del pool
-        shoot* bala = balasDisponibles.back();
+        shoot* bala1 = new shoot(limitsP, p);
+        bala1 = balasDisponibles.back();
         balasDisponibles.pop_back();
-        balasEnUso.push_back(bala);
-        return bala;
+        balasEnUso.push_back(bala1);
+        return bala1;
     }
 }
 
@@ -48,6 +49,7 @@ ObjectPooler& ObjectPooler::getInstance()
 
 void ObjectPooler::DevolverBala(shoot* bala)
 {
+
     // Devuelve la bala al pool de disponibles
     balasEnUso.erase(std::remove(balasEnUso.begin(), balasEnUso.end(), bala), balasEnUso.end());
     balasDisponibles.push_back(bala);

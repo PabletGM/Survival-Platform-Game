@@ -66,9 +66,10 @@ private:
 
     void FlipSpriteX();
 
+public:
+    void RestartPosShootEnPlayer();
 
-
-
+private:
 
     //sprite enemigo
     sf::Sprite spriteBala;

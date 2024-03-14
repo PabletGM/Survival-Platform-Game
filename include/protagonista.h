@@ -145,7 +145,7 @@ private:
 
 public:
     //posicionInicial
-    Position p;
+
 
 private:
     limits limitsPlayer;

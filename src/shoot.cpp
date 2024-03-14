@@ -8,7 +8,7 @@ frameWidth{ 100 }, frameHeight{ 80 }
 
 }
 
-shoot::shoot(limits limits, Position p) :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
+shoot::shoot(limits limits, Position position) :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{ 80 }
 {
     
@@ -17,8 +17,9 @@ frameWidth{ 100 }, frameHeight{ 80 }
     ScaleSprite();
     ChangeOriginSprite();
     
+    
     //se inicia posicion de bala en player
-    SetInitialPosition(p);
+    SetInitialPosition(position);
    
 }
 
@@ -105,8 +106,9 @@ void shoot::UpdateSprite(sf::RenderWindow& window)
     window.draw(spriteBala);
 }
 
-void shoot::SetInitialPosition(Position p)
+void shoot::SetInitialPosition(Position position)
 {
+    p = position;
     spriteBala.setPosition(sf::Vector2f(p.posX, p.posY));
 }
 
@@ -145,6 +147,11 @@ void shoot::FlipSpriteX()
     spriteBala.scale(-1, 1);
 }
 
+void shoot::RestartPosShootEnPlayer()
+{
+    p= gameManager::getInstance().getPlayerPosition();
+}
+
 
 void shoot::LoadTextureInit()
 {
@@ -164,7 +171,7 @@ void shoot::Death()
         cronometroDeath.restart();
 
         //ponemos pos bala en player pos
-        p= gameManager::getInstance().GetPosPlayer();
+        RestartPosShootEnPlayer();
         //destruir bala
         ObjectPooler::getInstance().DevolverBala(this);
     }

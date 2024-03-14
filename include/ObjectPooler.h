@@ -40,5 +40,7 @@ private:
     //player info
     limits limitsP;
 
+    Position playerPos;
+
 
 };
