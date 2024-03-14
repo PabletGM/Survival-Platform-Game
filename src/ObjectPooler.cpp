@@ -80,3 +80,8 @@ void ObjectPooler::UpdateBulletUsed()
     }
 }
 
+std::vector<shoot*>& ObjectPooler::getBalasEnUso()
+{
+    return balasEnUso;
+}
+

@@ -29,6 +29,10 @@ public:
     //renderizas balas en uso
     void UpdateBulletUsed();
 
+    std::vector<shoot*>& getBalasEnUso();
+
+
+
 private:
     // Lista de balas disponibles
     std::vector<shoot*> balasDisponibles;
