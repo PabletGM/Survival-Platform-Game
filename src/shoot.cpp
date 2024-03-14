@@ -3,13 +3,13 @@
 
 
 shoot::shoot() :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
-frameWidth{ 100 }, frameHeight{ 80 }
+frameWidth{ 100 }, frameHeight{ 80 }, speed{5}
 {
 
 }
 
 shoot::shoot(limits limits, Position position, bool directionRight) :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
-frameWidth{ 100 }, frameHeight{ 80 }
+frameWidth{ 100 }, frameHeight{ 80 }, speed{5}
 {
     //eliges direccion
     if (directionRight)
@@ -79,8 +79,18 @@ void shoot::MoveSprite()
     //sprite.setPosition(sf::Vector2f(10.f, 50.f)); // absolute position
 
     //move position con dirInit
-
-    p.posX += dirXInit;
+    int movementX = 0;
+    if (dirXInit > 0)
+    {
+        movementX = dirXInit + speed;
+    }
+    else
+    {
+        movementX = dirXInit - speed;
+    }
+    
+    
+    p.posX += movementX;
     p.posY += dirYInit;
     CheckLimits();
     // offset relative to the current position

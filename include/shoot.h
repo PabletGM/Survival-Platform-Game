@@ -77,6 +77,9 @@ private:
     sf::Texture textureBala;
     sf::Texture textureNone;
 
+    //por defecto inicializado a valor 5
+    int speed;
+
     //posicionInicial
     Position p;
 
