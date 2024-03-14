@@ -14,6 +14,7 @@ shoot* ObjectPooler::ObtenerBala(Position p)
         // Si no hay balas disponibles, crea una nueva
         // Obtener una bala, crear instancia
         shoot* bala1 = new shoot(limitsP,p);
+        bala1->RestartPosShootEnPlayer();
         balasEnUso.push_back(bala1);
         return bala1;
     }
@@ -49,7 +50,7 @@ ObjectPooler& ObjectPooler::getInstance()
 
 void ObjectPooler::DevolverBala(shoot* bala)
 {
-
+    bala->RestartPosShootEnPlayer();
     // Devuelve la bala al pool de disponibles
     balasEnUso.erase(std::remove(balasEnUso.begin(), balasEnUso.end(), bala), balasEnUso.end());
     balasDisponibles.push_back(bala);
