@@ -112,13 +112,21 @@ gameManager& gameManager::getInstance()
     return instance;
 }
 
+Position& gameManager::GetPosPlayer()
+{
+
+    //actualizamos pos player
+    return playerPos;
+}
+
 
 void gameManager::update(float deltaMS, sf::RenderWindow& window)
 {
     //input of player and position
     m_protagonista->update();
     ObjectPooler::getInstance().UpdateBulletUsed();
-
+    //actualizamos playerPos
+    playerPos = getPlayerPosition();
    
 }
 
@@ -142,7 +150,8 @@ void gameManager::render(float deltaMS, sf::RenderWindow& window)
 
 }
 
-Position gameManager::getPlayerPosition() const
+Position gameManager::getPlayerPosition()
 {
     return m_protagonista->getPosition();
 }
+

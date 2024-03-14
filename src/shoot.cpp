@@ -28,6 +28,8 @@ void shoot::update()
     MoveSprite();
     //iniciar contador destruir bala
     Death();
+
+
 }
 
 void shoot::render(sf::RenderWindow& window)

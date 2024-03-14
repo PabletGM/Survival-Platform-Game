@@ -21,7 +21,8 @@ class gameManager
 
 
     // Método para obtener la posición del jugador
-    Position getPlayerPosition() const;
+    Position getPlayerPosition();
+
 
 private:
 
@@ -58,8 +59,8 @@ private:
     static gameManager& getInstance();
 
 
-     
-
+    static Position playerPos;
+    static Position& GetPosPlayer();
 
 
 };
