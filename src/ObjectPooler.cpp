@@ -66,6 +66,13 @@ void ObjectPooler::RenderBulletUsed(sf::RenderWindow& window)
 
 void ObjectPooler::UpdateBulletUsed()
 {
+    //actualizamos balas disponibles
+    for (auto* balaD : balasDisponibles)
+    {
+        balaD->RestartPosShootEnPlayer();
+    }
+
+
     for (auto* bala : balasEnUso)
     {
         bala->update();
