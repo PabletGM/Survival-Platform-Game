@@ -13,6 +13,12 @@ public:
 
     void Disparar(Position p);
 
+    // Constructor privado para evitar la creación de instancias
+    ObjectPooler();
+    // Variable estática que almacena la única instancia de ObjectPooler
+    static ObjectPooler instance;
+    static ObjectPooler& getInstance(); // Método para obtener la instancia singleton
+
     // Devolver una bala al pool
     void DevolverBala(shoot* bala);
 

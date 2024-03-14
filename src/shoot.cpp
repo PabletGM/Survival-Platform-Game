@@ -19,14 +19,15 @@ frameWidth{ 100 }, frameHeight{ 80 }
     
     //se inicia posicion de bala en player
     SetInitialPosition(p);
-    //iniciar contador destruir bala
-    Death();
+   
 }
 
 //check if the enemy goes out of the limits to change the direction
 void shoot::update()
 {
     MoveSprite();
+    //iniciar contador destruir bala
+    Death();
 }
 
 void shoot::render(sf::RenderWindow& window)
@@ -158,8 +159,9 @@ void shoot::Death()
 
     if (tiempo >= timeDeath)
     {
+        cronometroDeath.restart();
         //destruir bala
-        spriteBala.setTexture(textureNone);
+        ObjectPooler::getInstance().DevolverBala(this);
     }
    
 }

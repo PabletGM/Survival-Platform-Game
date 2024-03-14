@@ -31,6 +31,21 @@ void ObjectPooler::Disparar(Position p)
     ObtenerBala(p);
 }
 
+// Inicialización de la variable estática instance
+ObjectPooler ObjectPooler::instance;
+
+// Implementación del constructor por defecto
+ObjectPooler::ObjectPooler() 
+{
+    // Aquí puedes realizar cualquier inicialización necesaria para tu ObjectPooler
+}
+
+// Implementación del método getInstance para devolver la instancia singleton
+ObjectPooler& ObjectPooler::getInstance() 
+{
+    return instance;
+}
+
 void ObjectPooler::DevolverBala(shoot* bala)
 {
     // Devuelve la bala al pool de disponibles
