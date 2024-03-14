@@ -63,4 +63,9 @@ private:
 
      Position posPlayer;
 
+     //direccion a la que mira el player
+     bool directionRight;
+     //por defecto
+     bool directionLeft;
+
 };

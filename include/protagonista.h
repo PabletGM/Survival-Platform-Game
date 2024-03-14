@@ -35,10 +35,7 @@ private:
     int numPlatform;
 
 
-    //direccion a la que mira
-    bool directionRight;
-    //por defecto
-    bool directionLeft;
+    
 
     void LookToRight();
     void LookToLeft();

@@ -1,4 +1,5 @@
 #include "ObjectPooler.h"
+#include <iostream>
 
 
 
@@ -52,6 +53,7 @@ ObjectPooler& ObjectPooler::getInstance()
 void ObjectPooler::DevolverBala(shoot* bala)
 {
     bala->RestartPosShootEnPlayer();
+    bala->RestartDirShootEnPlayer();
     // Devuelve la bala al pool de disponibles
     balasEnUso.erase(std::remove(balasEnUso.begin(), balasEnUso.end(), bala), balasEnUso.end());
     balasDisponibles.push_back(bala);
@@ -71,6 +73,7 @@ void ObjectPooler::UpdateBulletUsed()
     for (auto* balaD : balasDisponibles)
     {
         balaD->RestartPosShootEnPlayer();
+        //balaD->RestartDirShootEnPlayer();
     }
 
 
@@ -84,4 +87,21 @@ std::vector<shoot*>& ObjectPooler::getBalasEnUso()
 {
     return balasEnUso;
 }
+
+bool ObjectPooler::checkPositionCollisionEnemyVillain(Position posEnemy)
+{
+    for (auto* bala : balasEnUso)
+    {
+        //por cada bala en uso comprobamos si coincide con posEnemy
+        if (bala->p.posX == posEnemy.posX && bala->p.posY == posEnemy.posY)
+        {
+            //si coincide es que ha chocado una bala con enemy
+            std::cout << "bala choca con enemy";
+            return true;
+        }
+    }
+    return false;
+}
+
+
 

@@ -68,6 +68,7 @@ private:
 
 public:
     void RestartPosShootEnPlayer();
+    void RestartDirShootEnPlayer();
 
 private:
 
@@ -79,7 +80,7 @@ private:
 
     //por defecto inicializado a valor 5
     int speed;
-
+public:
     //posicionInicial
     Position p;
 

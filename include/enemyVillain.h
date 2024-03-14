@@ -16,6 +16,8 @@ class enemyVillain: public enemy
 
         void render(sf::RenderWindow& window) override;
 
+        void DeathEnemy();
+
 
     private:
 

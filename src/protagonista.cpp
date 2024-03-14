@@ -60,14 +60,14 @@ sf::FloatRect protagonista::getBoxColliderPlayer() const
 
 void protagonista::LookToRight()
 {
-    directionRight = true;
-    directionLeft = false;
+    gameManager::getInstance().directionRight = true;
+    gameManager::getInstance().directionLeft = false;
 }
 
 void protagonista::LookToLeft()
 {
-    directionLeft = true;
-    directionRight = false;
+    gameManager::getInstance().directionLeft = true;
+    gameManager::getInstance().directionRight = false;
 }
 
 void protagonista::ChangeAnimationTime()
@@ -180,11 +180,11 @@ void protagonista::InputMovePlayer()
     else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         //si mira a la derecha
-        if (directionRight)
+        if (gameManager::getInstance().directionRight)
         {
             ShootSpriteDer();
         }
-        else if (directionLeft)
+        else if (gameManager::getInstance().directionLeft)
         {
             // Acciones que deseas realizar al hacer clic derecho
             ShootSpriteIzq();
@@ -205,11 +205,11 @@ void protagonista::InputMovePlayer()
         if (canJump || platformRider)
         {
             //si mira a la derecha
-            if (directionRight)
+            if (gameManager::getInstance().directionRight)
             {
                 IdleSpriteDer();
             }
-            else if (directionLeft)
+            else if (gameManager::getInstance().directionLeft)
             {
                 IdleSpriteIzq();
             }
@@ -314,7 +314,7 @@ void protagonista::SetInitialPosition(Position p)
 void protagonista::InstantiateBala()
 {
     //y le pasamos la posicion del player
-    ObjectPooler::getInstance().Disparar(gameManager::getInstance().posPlayer, directionRight);
+    ObjectPooler::getInstance().Disparar(gameManager::getInstance().posPlayer, gameManager::getInstance().directionRight);
 
 }
 

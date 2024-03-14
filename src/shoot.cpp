@@ -84,9 +84,21 @@ void shoot::MoveSprite()
     {
         movementX = dirXInit + speed;
     }
-    else
+    else if(dirXInit < 0)
     {
         movementX = dirXInit - speed;
+    }
+    //si es 0 se coge direccion de player actual
+    else if (dirXInit == 0)
+    {
+        if (gameManager::getInstance().directionRight)
+        {
+            movementX = dirXInit + speed;
+        }
+        else
+        {
+            movementX = dirXInit - speed;
+        }
     }
     
     
@@ -169,7 +181,16 @@ void shoot::FlipSpriteX()
 void shoot::RestartPosShootEnPlayer()
 {
     p= gameManager::getInstance().getPlayerPosition();
+    
 }
+
+void shoot::RestartDirShootEnPlayer()
+{
+    dirXInit = 0;
+
+}
+
+
 
 
 void shoot::LoadTextureInit()

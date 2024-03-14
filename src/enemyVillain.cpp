@@ -1,4 +1,6 @@
 #include "enemyVillain.h"
+#include <ObjectPooler.h>
+#include <iostream>
 
 
 enemyVillain::enemyVillain() : maxLife{ 3 }, actualLife{ 3 }, dirXInit{ 1 }, dirYInit{ 0 },animacionVector(0.0f, 0.0f),
@@ -25,13 +27,25 @@ frameWidth{157}, frameHeight{192}
 //check if the enemy goes out of the limits to change the direction
 void enemyVillain::update()
 {
+    //comprobamos si hay colisiones con alguna bala
+    bool estado = ObjectPooler::getInstance().checkPositionCollisionEnemyVillain(p);
+    if (estado)
+    {
+        DeathEnemy();
+    }
     MoveSprite();
+
 }
 
 void enemyVillain::render(sf::RenderWindow& window)
 {
     UpdateSprite(window);
     
+}
+
+void enemyVillain::DeathEnemy()
+{
+    std::cout << "Enemigo muerto";
 }
 
 void enemyVillain::ChangeAnimationTime()
