@@ -32,7 +32,6 @@ private:
     protagonista* m_protagonista;
     //plataformas del juego, TO DO--> cambiar por mapa y que este dentro tenga un array de plataformas que se rendericen
     map* m_map;
-    ObjectPooler* objectPooler;
 
     //array de plataformas
     static const int numPlatforms = 10;
@@ -48,6 +47,15 @@ private:
     //limitOffset
     unsigned  int limitOffsetX;
     unsigned  int limitOffsetY;
+
+
+    //singleton
+    
+     // Constructor privado para evitar la creación de instancias
+    gameManager();
+    // Variable estática que almacena la única instancia de ObjectPooler
+    static gameManager instance;
+    static gameManager& getInstance();
 
 
      

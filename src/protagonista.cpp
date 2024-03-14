@@ -2,12 +2,13 @@
 #include <iostream>
 
 
-protagonista::protagonista() : maxLife{ 3 }, actualLife{ 3 }, animacionVector(0.0f, 0.0f),
-frameWidth{ 100 }, frameHeight{ 80 }, speed{ 2 }, canJump{ true }, platformRider{ false }
+
+
+protagonista::protagonista()
 {
 }
 
-protagonista::protagonista(Position param, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms, ObjectPooler* pooler) : maxLife{ 3 }, actualLife{ 4 },  animacionVector(0.0f, 0.0f),
+protagonista::protagonista(Position param, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms) : maxLife{ 3 }, actualLife{ 4 },  animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}, platformRider{ false }
 {
     //sabemos las plataformas y su box collider
@@ -26,8 +27,7 @@ frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}, platformRider{ fa
     //num platforms
     numPlatform = numPlatforms;
 
-    //copiamos objectpooler
-    objectPooler = pooler;
+
 
 }
 
@@ -54,6 +54,8 @@ sf::FloatRect protagonista::getBoxColliderPlayer() const
 {
     return spritePlayer.getGlobalBounds();
 }
+
+
 
 void protagonista::LookToRight()
 {
@@ -264,6 +266,9 @@ void protagonista::Gravity()
     
 }
 
+
+
+
 void protagonista::MoveSprite()
 {
     //to move 
@@ -308,7 +313,7 @@ void protagonista::SetInitialPosition(Position p)
 void protagonista::InstantiateBala()
 {
     //y le pasamos la posicion del player
-    objectPooler->Disparar(p);
+    ObjectPooler::getInstance().Disparar(p);
 
 }
 

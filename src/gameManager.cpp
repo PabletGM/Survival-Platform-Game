@@ -23,9 +23,8 @@ gameManager::gameManager(sf::RenderWindow& window, screenSize screenParam, unsig
     Position p;
     p.posX = 1000;
     p.posY = 1000;
-    objectPooler = new ObjectPooler(10, limits);
     m_map = new map();
-    m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray, numPlatforms, objectPooler);
+    m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray, numPlatforms);
 }
 
 void gameManager::LoadBoxCollidersArrayInit()
@@ -98,12 +97,27 @@ void gameManager::PlatformSpawn()
 
 }
 
+// Inicialización de la variable estática instance
+gameManager gameManager::instance;
+
+// Implementación del constructor por defecto
+gameManager::gameManager()
+{
+    // Aquí puedes realizar cualquier inicialización necesaria para tu ObjectPooler
+}
+
+// Implementación del método getInstance para devolver la instancia singleton
+gameManager& gameManager::getInstance()
+{
+    return instance;
+}
+
 
 void gameManager::update(float deltaMS, sf::RenderWindow& window)
 {
     //input of player and position
     m_protagonista->update();
-    objectPooler->UpdateBulletUsed();
+    ObjectPooler::getInstance().UpdateBulletUsed();
 
    
 }
@@ -123,7 +137,7 @@ void gameManager::render(float deltaMS, sf::RenderWindow& window)
         currentPlatform->render(window);
     }
     m_protagonista->render(window);
-    objectPooler->RenderBulletUsed(window);
+    ObjectPooler::getInstance().RenderBulletUsed(window);
 
 
 }

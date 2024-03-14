@@ -160,6 +160,7 @@ void shoot::Death()
     if (tiempo >= timeDeath)
     {
         cronometroDeath.restart();
+
         //destruir bala
         ObjectPooler::getInstance().DevolverBala(this);
     }

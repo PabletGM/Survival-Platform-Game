@@ -10,7 +10,7 @@ class protagonista
 public:
     //constructor por defecto
     protagonista();
-    protagonista(Position p, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms, ObjectPooler *pool);
+    protagonista(Position p, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms);
 
 
     void update();
@@ -22,6 +22,8 @@ public:
 
     //box collider de player
     sf::FloatRect getBoxColliderPlayer() const;
+
+
 
 
 private:
@@ -141,14 +143,16 @@ private:
     sf::Texture texturePlayerShootIzq;
     sf::Texture texturePlayerShootDer;
 
+public:
     //posicionInicial
     Position p;
 
+private:
     limits limitsPlayer;
 
     //array de box colliders de plataformas
     std::vector<sf::FloatRect> boxCollidersPlatformArray;
 
-    ObjectPooler* objectPooler;
+
 
 };
