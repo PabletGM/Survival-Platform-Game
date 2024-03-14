@@ -79,7 +79,7 @@ void enemySuperVillain::MoveSprite()
     p.posY += dirYInit;
     CheckLimits();
     // offset relative to the current position
-    spriteEnemy.move(sf::Vector2f(dirXInit, dirYInit));
+    spriteEnemy.setPosition(sf::Vector2f(p.posX,p.posY));
 }
 
 void enemySuperVillain::RotateSprite()
