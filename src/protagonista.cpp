@@ -100,7 +100,7 @@ bool protagonista::CanShoot()
 {
     sf::Time tiempo = recargaDisparo.getElapsedTime();
 
-    if (tiempo >= timeJump)
+    if (tiempo >= timeCharge)
     {
         recargaDisparo.restart();
         canShoot = true; 

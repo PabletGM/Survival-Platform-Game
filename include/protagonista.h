@@ -57,7 +57,7 @@ private:
 
     //recarga Disparo
     sf::Clock recargaDisparo;
-    sf::Time timeCharge = sf::seconds(0.1);
+    sf::Time timeCharge = sf::seconds(0.5);
 
     //cronometro duracion salto
     sf::Clock cronometroJump;
