@@ -314,7 +314,7 @@ void protagonista::SetInitialPosition(Position p)
 void protagonista::InstantiateBala()
 {
     //y le pasamos la posicion del player
-    ObjectPooler::getInstance().Disparar(gameManager::getInstance().posPlayer);
+    ObjectPooler::getInstance().Disparar(gameManager::getInstance().posPlayer, directionRight);
 
 }
 

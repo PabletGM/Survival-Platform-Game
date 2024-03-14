@@ -9,9 +9,9 @@ public:
     ObjectPooler(int poolSize,limits limits);
 
     // Obtener una bala disponible
-    shoot* ObtenerBala(Position p);
+    shoot* ObtenerBala(Position p, bool directionRight);
 
-    void Disparar(Position p);
+    void Disparar(Position p, bool directionRight);
 
     // Constructor privado para evitar la creación de instancias
     ObjectPooler();

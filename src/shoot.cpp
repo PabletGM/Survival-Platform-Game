@@ -8,9 +8,18 @@ frameWidth{ 100 }, frameHeight{ 80 }
 
 }
 
-shoot::shoot(limits limits, Position position) :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
+shoot::shoot(limits limits, Position position, bool directionRight) :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{ 80 }
 {
+    //eliges direccion
+    if (directionRight)
+    {
+        dirXInit = 1;
+    }
+    else
+    {
+        dirXInit = -1;
+    }
     
     //cargas textura inicialmente
     LoadTextureInit();

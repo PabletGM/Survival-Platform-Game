@@ -8,19 +8,19 @@ ObjectPooler::ObjectPooler(int poolSize, limits limitsPlayer)
 
 }
 
-shoot* ObjectPooler::ObtenerBala(Position p)
+shoot* ObjectPooler::ObtenerBala(Position p, bool directionRight)
 {
     if (balasDisponibles.empty()) {
         // Si no hay balas disponibles, crea una nueva
         // Obtener una bala, crear instancia
-        shoot* bala1 = new shoot(limitsP,p);
+        shoot* bala1 = new shoot(limitsP,p, directionRight);
         bala1->RestartPosShootEnPlayer();
         balasEnUso.push_back(bala1);
         return bala1;
     }
     else {
         // Si hay balas disponibles, toma una del pool
-        shoot* bala1 = new shoot(limitsP, p);
+        shoot* bala1 = new shoot(limitsP, p, directionRight);
         bala1 = balasDisponibles.back();
         balasDisponibles.pop_back();
         balasEnUso.push_back(bala1);
@@ -28,9 +28,10 @@ shoot* ObjectPooler::ObtenerBala(Position p)
     }
 }
 
-void ObjectPooler::Disparar(Position p)
+//if it is true, se dispara a derecha, if it is false, se dispara a izquierda
+void ObjectPooler::Disparar(Position p, bool directionRight)
 {
-    ObtenerBala(p);
+    ObtenerBala(p, directionRight);
 }
 
 // Inicialización de la variable estática instance
