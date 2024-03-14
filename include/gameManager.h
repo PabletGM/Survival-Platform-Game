@@ -55,12 +55,13 @@ private:
      // Constructor privado para evitar la creación de instancias
     gameManager();
     // Variable estática que almacena la única instancia de ObjectPooler
+    
+
+ public:
+     Position playerPos;
+     Position& GetPosPlayer();
     static gameManager instance;
     static gameManager& getInstance();
-
-
-    static Position playerPos;
-    static Position& GetPosPlayer();
 
 
 };

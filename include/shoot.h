@@ -78,6 +78,5 @@ private:
 
     //posicionInicial
     Position p;
-    Position initialPos;
 
 };

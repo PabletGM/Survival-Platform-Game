@@ -74,7 +74,7 @@ void shoot::MoveSprite()
     p.posY += dirYInit;
     CheckLimits();
     // offset relative to the current position
-    spriteBala.move(sf::Vector2f(dirXInit, dirYInit));
+    spriteBala.setPosition(sf::Vector2f(p.posX, p.posY));
 
 }
 
@@ -163,6 +163,8 @@ void shoot::Death()
     {
         cronometroDeath.restart();
 
+        //ponemos pos bala en player pos
+        p= gameManager::getInstance().GetPosPlayer();
         //destruir bala
         ObjectPooler::getInstance().DevolverBala(this);
     }
