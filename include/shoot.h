@@ -25,6 +25,16 @@ private:
     sf::Clock cronometro;
     sf::Time tiempoDeseado = sf::seconds(0.1f);
 
+
+    //cronometro duracion muerte bala
+    sf::Clock cronometroDeath;
+    sf::Time timeDeath = sf::seconds(3);
+
+    
+
+    //puede morir o no la bala a los 3 segundos
+    void Death();
+
     //cronometro cambio de animacion
     void ChangeAnimationTime();
     void UpdateAnimation();
@@ -64,6 +74,7 @@ private:
     sf::Sprite spriteBala;
     //texture enemigo
     sf::Texture textureBala;
+    sf::Texture textureNone;
 
     //posicionInicial
     Position p;

@@ -19,6 +19,8 @@ frameWidth{ 100 }, frameHeight{ 80 }
     
     //se inicia posicion de bala en player
     SetInitialPosition(p);
+    //iniciar contador destruir bala
+    Death();
 }
 
 //check if the enemy goes out of the limits to change the direction
@@ -148,4 +150,16 @@ void shoot::LoadTextureInit()
     //le ponemos textura
     spriteBala.setTexture(textureBala);
     spriteBala.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
+}
+
+void shoot::Death()
+{
+    sf::Time tiempo = cronometroDeath.getElapsedTime();
+
+    if (tiempo >= timeDeath)
+    {
+        //destruir bala
+        spriteBala.setTexture(textureNone);
+    }
+   
 }
