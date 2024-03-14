@@ -35,7 +35,7 @@ private:
     map* m_map;
 
     //array de plataformas
-    static const int numPlatforms = 10;
+    static const int numPlatforms = 100;
 
 
     std::vector<plataforma> platformArray;

@@ -435,7 +435,7 @@ void protagonista::TakeFromMapArrayBoxColliders()
         //si colisionan y altura player < altura platform(ya que el eje dereferencia es al reves en consola
         if (getBoxColliderPlayer().intersects(boxCollidersPlatformArray[i]) && gameManager::getInstance().posPlayer.posY <= alturaPlataforma)
         {
-            std::cout << "Intersect" << std::endl;
+            /*std::cout << "Intersect" << std::endl;*/
 
             //posicion o altura de la plataforma
             gameManager::getInstance().posPlayer.posY = boxCollidersPlatformArray[i].getPosition().y - getBoxColliderPlayer().height/2.1;

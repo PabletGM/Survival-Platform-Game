@@ -46,40 +46,28 @@ void gameManager::LoadBoxCollidersArrayInit()
 
 void gameManager::PlatformSpawn()
 {
-    //create array platforms
-    Position positions[] =
-    {
-        {0,0},
-        {0,0},
-        {0,0},
-        {0,0},
-        {0,0},
-        {0,0},
-        {0,0},
-        {0,0},
-        {0,0},
-        {0,0},
-       
-    };
+    // Crear array de posiciones para 20 plataformas
+    Position positions[100];
+
     bool collision = false;
-    for (int i = 0; i < numPlatforms; ++i)
+    for (int i = 0; i < 20; ++i) // Cambiar el límite a 20
     {
         do
         {
             // Genera valores aleatorios entre 100 y 1800 en X
-            positions[i].posX = rand() % 1701 + 100;
+            positions[i].posX = rand() % 1800 + 100;
 
             // Genera valores aleatorios entre 100 y 1000 en Y
-            positions[i].posY = rand() % 900 + 100;
+            positions[i].posY = rand() % 1080 + 100;
 
             // Comprueba si la nueva plataforma choca con alguna plataforma existente
             collision = false;
-            //recorre plataformas generadas
+            // Recorre plataformas generadas
             for (int j = 0; j < i; ++j)
             {
-                //mira distancia entre plataformas de 300
-                if (std::abs(positions[i].posX - positions[j].posX) < 300 &&
-                    std::abs(positions[i].posY - positions[j].posY) < 200)
+                // Mira la distancia entre plataformas de 300
+                if (std::abs(positions[i].posX - positions[j].posX) < 100 &&
+                    std::abs(positions[i].posY - positions[j].posY) < 100)
                 {
                     collision = true;
                     break;
@@ -88,14 +76,15 @@ void gameManager::PlatformSpawn()
         } while (collision);
     }
 
-    //create platforms
-    for (int i = 0; i < numPlatforms; ++i)
+    // Crear plataformas
+    for (int i = 0; i < numPlatforms; ++i) // Cambiar el límite a 20
     {
         plataforma* pl = new plataforma(positions[i]);
         platformArray.push_back(*pl);
     }
 
 }
+
 
 // Inicialización de la variable estática instance
 gameManager gameManager::instance;
