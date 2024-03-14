@@ -1,4 +1,5 @@
 #include "shoot.h"
+#include <gameManager.h>
 
 
 shoot::shoot() :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
@@ -16,7 +17,7 @@ frameWidth{ 100 }, frameHeight{ 80 }
     ScaleSprite();
     ChangeOriginSprite();
     
-    //se inicia posicion de enemy
+    //se inicia posicion de bala en player
     SetInitialPosition(p);
 }
 
@@ -99,10 +100,8 @@ void shoot::UpdateSprite(sf::RenderWindow& window)
     window.draw(spriteBala);
 }
 
-void shoot::SetInitialPosition(Position position)
+void shoot::SetInitialPosition(Position p)
 {
-    p.posX = position.posX;
-    p.posY = position.posY;
     spriteBala.setPosition(sf::Vector2f(p.posX, p.posY));
 }
 

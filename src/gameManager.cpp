@@ -23,7 +23,7 @@ gameManager::gameManager(sf::RenderWindow& window, screenSize screenParam, unsig
     Position p;
     p.posX = 1000;
     p.posY = 1000;
-    objectPooler = new ObjectPooler(10, limits,p );
+    objectPooler = new ObjectPooler(10, limits);
     m_map = new map();
     m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray, numPlatforms, objectPooler);
 }
@@ -126,4 +126,9 @@ void gameManager::render(float deltaMS, sf::RenderWindow& window)
     objectPooler->RenderBulletUsed(window);
 
 
+}
+
+Position gameManager::getPlayerPosition() const
+{
+    return m_protagonista->getPosition();
 }

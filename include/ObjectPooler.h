@@ -1,14 +1,17 @@
 #include <vector>
 #include <shoot.h>
 
+
 class ObjectPooler 
 {
 public:
     // Constructor
-    ObjectPooler(int poolSize,limits limits, Position p);
+    ObjectPooler(int poolSize,limits limits);
 
     // Obtener una bala disponible
-    shoot* ObtenerBala();
+    shoot* ObtenerBala(Position p);
+
+    void Disparar(Position p);
 
     // Devolver una bala al pool
     void DevolverBala(shoot* bala);
@@ -30,5 +33,6 @@ private:
 
     //player info
     limits limitsP;
-    Position p;
+
+
 };

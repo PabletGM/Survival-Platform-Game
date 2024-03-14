@@ -15,6 +15,8 @@ public:
 
     void update();
 
+    // Método para obtener la posición del jugador
+    Position getPosition();
 
     void render(sf::RenderWindow& window);
 

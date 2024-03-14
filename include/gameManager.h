@@ -20,7 +20,8 @@ class gameManager
     void render(float deltaMS, sf::RenderWindow& window);
 
 
-    
+    // Método para obtener la posición del jugador
+    Position getPlayerPosition() const;
 
 private:
 

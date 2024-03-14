@@ -40,6 +40,11 @@ void protagonista::update()
     spritePlayer.setPosition(sf::Vector2f(p.posX, p.posY));
 }
 
+Position protagonista::getPosition()
+{
+    return p;
+}
+
 void protagonista::render(sf::RenderWindow& window)
 {
     UpdateSprite(window);
@@ -282,7 +287,8 @@ void protagonista::SetInitialPosition(Position p)
 
 void protagonista::InstantiateBala()
 {
-   shoot* bala1 = objectPooler->ObtenerBala(); 
+    //y le pasamos la posicion del player
+    objectPooler->Disparar(p);
 
 }
 
