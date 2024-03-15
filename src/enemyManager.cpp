@@ -153,3 +153,20 @@ void enemyManager::CreateSpawnsVillain()
 
 	}
 }
+
+
+//constructor por defecto
+enemyManager::enemyManager()
+{
+}
+
+// Inicialización de la variable estática instance
+enemyManager enemyManager::instance;
+
+
+
+// Implementación del método getInstance para devolver la instancia singleton
+enemyManager& enemyManager::getInstance()
+{
+	return instance;
+}

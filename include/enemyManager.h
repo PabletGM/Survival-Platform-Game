@@ -35,6 +35,16 @@ class enemyManager
         //spawns de enemyVillain
         static const int enemySpawns = 3;
         Position spawnsEnemyVillain[enemySpawns];
+
+
+
+        //singleton
+public:
+    // Constructor privado para evitar la creación de instancias
+    enemyManager();
+    // Variable estática que almacena la única instancia de ObjectPooler
+    static enemyManager instance;
+    static enemyManager& getInstance(); // Método para obtener la instancia singleton
         
 
 };
