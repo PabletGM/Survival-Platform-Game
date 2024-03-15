@@ -60,6 +60,11 @@ class enemyVillain: public enemy
         void FlipSpriteX() override;
 
 
+public:
+        //box collider de enemy
+        sf::FloatRect getBoxColliderEnemy() const;
+
+private:
 
         //vida
         int maxLife;

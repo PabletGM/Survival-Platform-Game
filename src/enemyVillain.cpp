@@ -28,13 +28,18 @@ frameWidth{157}, frameHeight{192}
 void enemyVillain::update()
 {
     //comprobamos si hay colisiones con alguna bala
-    bool estado = ObjectPooler::getInstance().checkPositionCollisionEnemyVillain(p);
+    bool estado = ObjectPooler::getInstance().checkPositionCollisionEnemyVillain(getBoxColliderEnemy());
     if (estado)
     {
         DeathEnemy();
     }
     MoveSprite();
 
+}
+
+sf::FloatRect enemyVillain::getBoxColliderEnemy() const
+{
+    return spriteEnemy.getGlobalBounds();
 }
 
 void enemyVillain::render(sf::RenderWindow& window)
@@ -81,7 +86,7 @@ void enemyVillain::MoveSprite()
 
     //move position con dirInit
     
-    p.posX+=dirXInit;
+    p.posX +=dirXInit;
     p.posY += dirYInit;
     CheckLimits();
     // offset relative to the current position
@@ -118,7 +123,7 @@ void enemyVillain::UpdateSprite(sf::RenderWindow& window)
 
 void enemyVillain::SetInitialPosition(Position p)
 {
-    spriteEnemy.move(sf::Vector2f(p.posX,p.posY));
+    spriteEnemy.setPosition(sf::Vector2f(p.posX,p.posY));
 }
 
 void enemyVillain::ChangeXDirection()

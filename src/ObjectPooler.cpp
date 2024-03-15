@@ -73,7 +73,7 @@ void ObjectPooler::UpdateBulletUsed()
     for (auto* balaD : balasDisponibles)
     {
         balaD->RestartPosShootEnPlayer();
-        //balaD->RestartDirShootEnPlayer();
+        balaD->RestartDirShootEnPlayer();
     }
 
 
@@ -88,12 +88,13 @@ std::vector<shoot*>& ObjectPooler::getBalasEnUso()
     return balasEnUso;
 }
 
-bool ObjectPooler::checkPositionCollisionEnemyVillain(Position posEnemy)
+bool ObjectPooler::checkPositionCollisionEnemyVillain(sf::FloatRect boxColliderEnemy)
 {
     for (auto* bala : balasEnUso)
     {
-        //por cada bala en uso comprobamos si coincide con posEnemy
-        if (bala->p.posX == posEnemy.posX && bala->p.posY == posEnemy.posY)
+       
+        //por cada box collier de bala a ver si coincide con el de enemy
+        if (boxColliderEnemy.intersects(bala->getBoxColliderBala()))
         {
             //si coincide es que ha chocado una bala con enemy
             std::cout << "bala choca con enemy";

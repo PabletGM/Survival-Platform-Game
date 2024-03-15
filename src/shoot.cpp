@@ -184,6 +184,11 @@ void shoot::RestartPosShootEnPlayer()
     
 }
 
+sf::FloatRect shoot::getBoxColliderBala() const
+{
+    return spriteBala.getGlobalBounds();
+}
+
 void shoot::RestartDirShootEnPlayer()
 {
     dirXInit = 0;

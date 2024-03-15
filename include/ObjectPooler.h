@@ -32,7 +32,7 @@ public:
     std::vector<shoot*>& getBalasEnUso();
 
     //check position collision with enemy
-    bool checkPositionCollisionEnemyVillain(Position posEnemy);
+    bool checkPositionCollisionEnemyVillain(sf::FloatRect boxColliderEnemy);
 
 
 

@@ -69,6 +69,8 @@ private:
 public:
     void RestartPosShootEnPlayer();
     void RestartDirShootEnPlayer();
+    //box collider de bala
+    sf::FloatRect getBoxColliderBala() const;
 
 private:
 
