@@ -42,7 +42,7 @@ public:
     //renderizar enemies
     void render(sf::RenderWindow& window);
 
-    bool playerIsDead(Position p);
+    bool playerIsDead(sf::FloatRect boxColliderEnemy);
 
 private:
     // Lista de balas disponibles

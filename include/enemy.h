@@ -39,7 +39,6 @@ class enemy
 
        Position getPosition();
 
-
     public: 
 
         limits limitsEnemy;
@@ -47,6 +46,11 @@ class enemy
         Position posEnemy;
 
         bool muerto = false;
+
+        //sprite enemigo
+        sf::Sprite spriteEnemy;
+
+        sf::FloatRect getBoxColliderEnemy() const;
         
 
 };

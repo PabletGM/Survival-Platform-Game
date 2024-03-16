@@ -58,7 +58,7 @@ sf::FloatRect protagonista::getBoxColliderPlayer() const
 
 bool protagonista::playerIsDead()
 {
-    return ObjectPooler::getInstance().playerIsDead(getPosition());
+    return ObjectPooler::getInstance().playerIsDead(getBoxColliderPlayer());
 }
 
 

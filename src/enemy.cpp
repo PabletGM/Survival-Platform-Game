@@ -53,6 +53,11 @@ Position enemy::getPosition()
     return posEnemy;
 }
 
+sf::FloatRect enemy::getBoxColliderEnemy() const
+{
+    return spriteEnemy.getGlobalBounds();
+}
+
 void enemy::LoadTextureInit()
 {
 

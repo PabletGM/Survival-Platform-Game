@@ -76,8 +76,7 @@ class enemySuperVillain: public enemy
         int maxLife;
         int actualLife;
 
-        //sprite enemigo
-        sf::Sprite spriteEnemy;
+       
         //texture enemigo
         sf::Texture textureEnemy;
 
