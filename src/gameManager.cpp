@@ -47,18 +47,18 @@ void gameManager::LoadBoxCollidersArrayInit()
 void gameManager::PlatformSpawn()
 {
     // Crear array de posiciones para 20 plataformas
-    Position positions[100];
+    Position positions[50];
 
     bool collision = false;
-    for (int i = 0; i < 20; ++i) // Cambiar el límite a 20
+    for (int i = 0; i < 50; ++i) // Cambiar el límite a 20
     {
         do
         {
             // Genera valores aleatorios entre 100 y 1800 en X
-            positions[i].posX = rand() % 1800 + 100;
+            positions[i].posX = rand() % 1700 + 100;
 
             // Genera valores aleatorios entre 100 y 1000 en Y
-            positions[i].posY = rand() % 1080 + 100;
+            positions[i].posY = rand() % 900 + 100;
 
             // Comprueba si la nueva plataforma choca con alguna plataforma existente
             collision = false;
