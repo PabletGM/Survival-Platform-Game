@@ -108,7 +108,6 @@ void gameManager::update(float deltaMS, sf::RenderWindow& window)
     //input of player and position
     m_protagonista->update();
     ObjectPooler::getInstance().UpdateBulletUsed();
-
    
 }
 
@@ -143,4 +142,8 @@ bool gameManager::playerIsDead()
     //llamamos a metodo de protagonista que devuelve si esta muerto
    return  m_protagonista->playerIsDead();
 }
+
+
+
+
 

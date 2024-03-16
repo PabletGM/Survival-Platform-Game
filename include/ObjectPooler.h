@@ -4,6 +4,7 @@
 #include "enemyVillain.h"
 #include "enemySuperVillain.h"
 
+
 class ObjectPooler 
 {
 public:
@@ -56,6 +57,22 @@ private:
     limits limitsP;
 
     Position playerPos;
+
+    int maxLife = 3;
+    int actualLife = 3;
+    bool isDead = false;
+
+    //cronometro cambio animacion player
+    sf::Clock cronometro;
+    sf::Time tiempoDeseado = sf::seconds(3.0f);
+
+    bool LoseLife();
+
+    void Invulnerability();
+
+
+    //invulerabilidad de 1 sec
+    bool invulnerability = false;
 
 
 

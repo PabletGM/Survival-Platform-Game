@@ -5,6 +5,7 @@
 #include <screenSize.h>
 #include <ObjectPooler.h>
 
+
 class protagonista
 {
 public:
@@ -111,6 +112,7 @@ private:
 
     void IdleSpriteIzq();
     void IdleSpriteDer();
+
     void FallSprite();
     void ShootSpriteIzq();
     void ShootSpriteDer();
@@ -121,17 +123,6 @@ private:
 
     void TakeFromMapArrayBoxColliders();
 
-
-
-    //vida
-    int maxLife;
-    int actualLife;
-
-
-
-    //sprite enemigo
-    sf::Sprite spritePlayer;
-    sf::Texture texturePlayer;
     //texture enemigo
     sf::Texture texturePlayerIdleIzq;
     sf::Texture texturePlayerIdleDer;
@@ -140,6 +131,11 @@ private:
     sf::Texture texturePlayerFall;
     sf::Texture texturePlayerShootIzq;
     sf::Texture texturePlayerShootDer;
+    //sprite enemigo
+    sf::Texture texturePlayer;
+    sf::Texture textureDamage;
+
+    void DamageSprite();
 
 public:
     //posicionInicial

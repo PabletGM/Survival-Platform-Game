@@ -6,6 +6,11 @@
 
 
 
+
+
+
+
+
 ObjectPooler::ObjectPooler(int poolSize, limits limitsPlayer)
 {
     limitsP = limitsPlayer;
@@ -279,7 +284,17 @@ bool ObjectPooler::playerIsDead(sf::FloatRect boxColliderPlayer)
         enemy* currentEnemy = *i;
         if (boxColliderPlayer.intersects(currentEnemy->getBoxColliderEnemy()))
         {
-            return true;
+            //si no tiene invulerabilidad
+            if (!invulnerability)
+            {
+                
+                //pierde vida y pone invulnerabilidad por 1 segundo
+                bool dead = LoseLife();
+                if (dead) return true;
+
+            }
+           
+            
         }
     }
     return false;
@@ -306,6 +321,43 @@ void ObjectPooler::update()
 
     //actualizamos muertos y destruimos enemigos que lo estan
     EliminarEnemigosMuertos();
+
+    // Comprobar si la invulnerabilidad está activa
+    if (invulnerability)
+    {
+        
+        // Verificar si ha pasado el tiempo deseado (3 segundos)
+        if (cronometro.getElapsedTime().asSeconds() >= 3.0f) {
+            // Desactivar la invulnerabilidad
+            invulnerability = false;
+        }
+    }
+}
+
+void ObjectPooler::Invulnerability()
+{
+    invulnerability = true;
+    cronometro.restart();
+
+   
+}
+
+
+
+bool ObjectPooler::LoseLife()
+{
+    // Verificar si el jugador ya está muerto
+    if (actualLife <= 0) return true;
+
+    // Aplicar la pérdida de vida al jugador
+   --actualLife;
+
+    // Activar la invulnerabilidad
+    Invulnerability();
+
+    // Devolver si el jugador está muerto o no
+    return false;
+    
 }
 
 

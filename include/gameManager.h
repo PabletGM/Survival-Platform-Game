@@ -2,8 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include <protagonista.h>
 #include <map.h>
-#include <protagonista.h>
 #include <screenSize.h>
+#include <gameManager.h>
+
 
 
 //para tema de enemigos clase villano y supervillano hacer stateMachine con IA, buscar tutorial para los diferentes estados, perseguir, idle, buscar, etc
@@ -24,6 +25,11 @@ class gameManager
     Position getPlayerPosition();
 
     bool playerIsDead();
+
+
+
+
+   
 
 
 private:
@@ -69,5 +75,8 @@ private:
      bool directionRight;
      //por defecto
      bool directionLeft;
+
+     sf::Sprite spritePlayer;
+
 
 };
