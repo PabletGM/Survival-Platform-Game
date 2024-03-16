@@ -28,6 +28,7 @@ set(PROJECT_HEADERS
     include/ObjectPooler.h
     include/effects.h
     include/initScene.h
+    include/UIManager.h
 
 
 )
@@ -47,6 +48,7 @@ set(PROJECT_SOURCES
     src/ObjectPooler.cpp
     src/effects.cpp
     src/InitScene.cpp
+    src/UIManager.cpp
 )
 
 set(PROJECT_FILES 
