@@ -1,4 +1,5 @@
 #include "enemySuperVillain.h"
+#include <ObjectPooler.h>
 
 
 enemySuperVillain::enemySuperVillain() : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 0 }, dirYInit{ 1 }, animacionVector(0.0f, 0.0f)
@@ -27,7 +28,20 @@ enemySuperVillain::enemySuperVillain( Position param, limits limits) : maxLife{ 
 
 void enemySuperVillain::update()
 {
-    MoveSprite();
+    if (this != nullptr)
+    {
+        //comprobamos si hay colisiones con alguna bala
+        bool estado = ObjectPooler::getInstance().checkPositionCollisionEnemyVillain(getBoxColliderEnemy());
+        if (estado)
+        {
+            DeathEnemy();
+
+        }
+        else
+        {
+            MoveSprite();
+        }
+    }
 
 }
 
@@ -36,6 +50,13 @@ void enemySuperVillain::render(sf::RenderWindow& window)
     UpdateSprite(window);
     
 }
+
+void enemySuperVillain::DeathEnemy()
+{
+    muerto = true;
+
+}
+
 
 void enemySuperVillain::ChangeAnimationTime()
 {
@@ -150,6 +171,11 @@ void enemySuperVillain::CheckLimits()
 void enemySuperVillain::FlipSpriteX()
 {
     spriteEnemy.scale(-1, 1);
+}
+
+sf::FloatRect enemySuperVillain::getBoxColliderEnemy() const
+{
+    return spriteEnemy.getGlobalBounds();
 }
 
 

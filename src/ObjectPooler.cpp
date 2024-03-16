@@ -2,7 +2,7 @@
 #include <iostream>
 #include <enemyManager.h>
 
-#include "enemySuperVillain.h"
+
 
 
 
@@ -191,6 +191,10 @@ void ObjectPooler::DeleteEnemyVillain(enemyVillain* enemy)
         m_enemies.erase(it);
         //delete enemy; // Liberar la memoria del enemigo eliminado
     }
+}
+
+void ObjectPooler::DeleteEnemySuperVillain(enemySuperVillain* enemy)
+{
 }
 
 void ObjectPooler::EliminarEnemigosMuertos()

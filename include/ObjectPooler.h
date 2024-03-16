@@ -2,6 +2,7 @@
 #include <shoot.h>
 #include "enemy.h"
 #include "enemyVillain.h"
+#include "enemySuperVillain.h"
 
 class ObjectPooler 
 {
@@ -74,6 +75,8 @@ public:
     void CreateSpawnsVillain();
 
     void DeleteEnemyVillain(enemyVillain* enemy);
+
+    void DeleteEnemySuperVillain(enemySuperVillain* enemy);
 
     //array con enemigos de pool
     std::vector<enemy*> m_enemies{};

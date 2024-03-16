@@ -21,6 +21,8 @@ class enemySuperVillain: public enemy
 
         void render(sf::RenderWindow& window) override;
 
+        void DeathEnemy();
+
     private:
 
         //animation Vector parametro, en constructor
@@ -77,5 +79,9 @@ class enemySuperVillain: public enemy
 
         //posicionInicial
         Position p;
+
+public:
+    //box collider de enemy
+    sf::FloatRect getBoxColliderEnemy() const;
 
 };
