@@ -287,11 +287,9 @@ bool ObjectPooler::playerIsDead(sf::FloatRect boxColliderPlayer)
             //si no tiene invulerabilidad
             if (!invulnerability)
             {
-                
                 //pierde vida y pone invulnerabilidad por 1 segundo
                 bool dead = LoseLife();
                 if (dead) return true;
-
             }
            
             
