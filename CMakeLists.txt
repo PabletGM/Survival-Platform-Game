@@ -27,6 +27,8 @@ set(PROJECT_HEADERS
     include/shoot.h
     include/ObjectPooler.h
     include/effects.h
+    include/initScene.h
+
 
 )
 
@@ -44,6 +46,7 @@ set(PROJECT_SOURCES
     src/shoot.cpp
     src/ObjectPooler.cpp
     src/effects.cpp
+    src/InitScene.cpp
 )
 
 set(PROJECT_FILES 

@@ -25,6 +25,7 @@ gameManager::gameManager(sf::RenderWindow& window, screenSize screenParam, unsig
     p.posY = 1000;
     m_map = new map();
     m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray, numPlatforms);
+   
 }
 
 gameManager::~gameManager()
@@ -109,30 +110,28 @@ gameManager& gameManager::getInstance()
 
 void gameManager::update(float deltaMS, sf::RenderWindow& window)
 {
-    //input of player and position
-    m_protagonista->update();
-    ObjectPooler::getInstance().UpdateBulletUsed();
    
+        //input of player and position
+        m_protagonista->update();
+        ObjectPooler::getInstance().UpdateBulletUsed();
 }
 
 void gameManager::render(float deltaMS, sf::RenderWindow& window)
 {
 
+        m_map->render(window);
+        //renderizamos las plataformas
+        for (int i = 0; i < numPlatforms; ++i)
+        {
+            // Asegúrate de que platformArray contiene punteros a plataforma
+            plataforma* currentPlatform = &platformArray[i];
 
-    m_map->render(window);
-    //renderizamos las plataformas
-    for (int i = 0; i < numPlatforms; ++i)
-    {
-        // Asegúrate de que platformArray contiene punteros a plataforma
-        plataforma* currentPlatform = &platformArray[i];
-
-        // Llama al método render de la plataforma actual
-        currentPlatform->render(window);
-    }
-    m_protagonista->render(window);
-    ObjectPooler::getInstance().RenderBulletUsed(window);
-
-
+            // Llama al método render de la plataforma actual
+            currentPlatform->render(window);
+        }
+        m_protagonista->render(window);
+        ObjectPooler::getInstance().RenderBulletUsed(window);
+    
 }
 
 Position gameManager::getPlayerPosition()

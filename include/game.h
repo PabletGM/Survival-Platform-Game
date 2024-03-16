@@ -32,6 +32,7 @@ class Game
         enemyManager* m_enemyManager;
         //player del juego
         gameManager* m_gameManager;
+        InitScene* m_initScene;
         unsigned int spaceXPlayable;
         unsigned int spaceYPlayable;
         //limitOffset

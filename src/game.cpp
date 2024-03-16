@@ -14,6 +14,7 @@ Game::Game(sf::RenderWindow& window, screenSize screenParam)
     //inicializar enemyManager
     m_enemyManager = new enemyManager(window, limits);
     m_gameManager = new gameManager(window, screenParam, limitOffsetX, limitOffsetY, spaceXPlayable, spaceYPlayable);
+    m_initScene = new InitScene();
 }
 
 Game::~Game()
@@ -23,14 +24,23 @@ Game::~Game()
 
 void Game::update(float deltaMS, sf::RenderWindow& window)
 {
-    m_gameManager->update(deltaMS, window);
-    m_enemyManager->update();
-    ObjectPooler::getInstance().update();
-
-    // Verificar si el jugador ha muerto o si se ha pulsado la tecla de escape
-    if (m_gameManager->playerIsDead() || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) 
+    //miramos si esta activa InitScene
+    if (m_initScene->isActiveInitScene)
     {
-        finishGame = true;
+        //renderizamos solo initScene
+        m_initScene->update(window);
+    }
+    else
+    {
+        m_gameManager->update(deltaMS, window);
+        m_enemyManager->update();
+        ObjectPooler::getInstance().update();
+
+        // Verificar si el jugador ha muerto o si se ha pulsado la tecla de escape
+        if (m_gameManager->playerIsDead() || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        {
+            finishGame = true;
+        }
     }
     
 }
@@ -40,9 +50,18 @@ void Game::render(float deltaMS, sf::RenderWindow& window)
     
         window.clear();
 
-        m_gameManager->render(deltaMS,window);
-        ObjectPooler::getInstance().render(window);
-        
+        //miramos si esta activa InitScene
+        if (m_initScene->isActiveInitScene)
+        {
+            //renderizamos solo initScene
+            m_initScene->render(window);
+        }
+        else
+        {
+
+            m_gameManager->render(deltaMS, window);
+            ObjectPooler::getInstance().render(window);
+        }
 
         window.display();
     
