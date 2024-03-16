@@ -20,6 +20,19 @@ class enemyManager
         int numEnemiesTotalVillain;
         int numEnemiesTotalSuperVillain;
 
+        void CreateNewEnemy();
+
+        void update();
+
+        bool canSpawnEnemy();
+
+
+    private:
+
+        //cronometro spawn enemy
+        sf::Clock cronometroSpawnEnemy;
+        sf::Time tiempoDeseado = sf::seconds(2.0f);
+        bool canSpawn = false;
 
         
 

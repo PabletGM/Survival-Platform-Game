@@ -74,14 +74,14 @@ public:
     void CreateSpawnsSuperVillain();
     void CreateSpawnsVillain();
 
-    void DeleteEnemyVillain(enemyVillain* enemy);
-
-    void DeleteEnemySuperVillain(enemySuperVillain* enemy);
+    void CreateNewEnemy();
 
     //array con enemigos de pool
     std::vector<enemy*> m_enemies{};
 
     void EliminarEnemigosMuertos();
+
+    limits limites;
 
 
 

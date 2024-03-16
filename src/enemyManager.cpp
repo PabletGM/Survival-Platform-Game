@@ -16,6 +16,43 @@ enemyManager::enemyManager(sf::RenderWindow& window,limits limits): numEnemiesTo
 }
 
 
+void enemyManager::CreateNewEnemy()
+{
+
+	//generamos posiciones iniciales aleatorias, entre 1 y 1000
+	std::srand(std::time(nullptr));
+
+	//llamamos a objectPoolermetodo donde se crearan enemigos
+	ObjectPooler::getInstance().CreateNewEnemy();
+
+}
+
+void enemyManager::update()
+{
+	bool CanSpawnEnemy = canSpawnEnemy();
+	if (CanSpawnEnemy)
+	{
+		CreateNewEnemy();
+	}
+}
+
+bool enemyManager::canSpawnEnemy()
+{
+	sf::Time tiempo = cronometroSpawnEnemy.getElapsedTime();
+
+	if (tiempo >= tiempoDeseado)
+	{
+		cronometroSpawnEnemy.restart();
+		canSpawn = true;
+	}
+	else
+	{
+		canSpawn = false;
+	}
+	return canSpawn;
+}
+
+
 
 
 

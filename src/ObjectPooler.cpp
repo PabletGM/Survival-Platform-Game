@@ -9,7 +9,6 @@
 ObjectPooler::ObjectPooler(int poolSize, limits limitsPlayer)
 {
     limitsP = limitsPlayer;
-
 }
 
 shoot* ObjectPooler::ObtenerBala(Position p, bool directionRight)
@@ -130,21 +129,21 @@ void ObjectPooler::CreateSpawnsSuperVillain()
         //switch to choose the enemy
         switch (i)
         {
-        case 0:
-            spawnsEnemySuperVillain[i].posX = p1.posX;
-            spawnsEnemySuperVillain[i].posY = p1.posY;
-            break;
+            case 0:
+                spawnsEnemySuperVillain[i].posX = p1.posX;
+                spawnsEnemySuperVillain[i].posY = p1.posY;
+                break;
 
-        case 1:
-            spawnsEnemySuperVillain[i].posX = p2.posX;
-            spawnsEnemySuperVillain[i].posY = p2.posY;
-            break;
+            case 1:
+                spawnsEnemySuperVillain[i].posX = p2.posX;
+                spawnsEnemySuperVillain[i].posY = p2.posY;
+                break;
 
-        case 2:
-            spawnsEnemySuperVillain[i].posX = p3.posX;
-            spawnsEnemySuperVillain[i].posY = p3.posY;
-            break;
-        }
+            case 2:
+                spawnsEnemySuperVillain[i].posX = p3.posX;
+                spawnsEnemySuperVillain[i].posY = p3.posY;
+                break;
+            }
 
     }
 }
@@ -183,17 +182,42 @@ void ObjectPooler::CreateSpawnsVillain()
     }
 }
 
+void ObjectPooler::CreateNewEnemy()
+{
+    // Generar un número aleatorio entre 0 y 1 para elegir entre enemyVillain y enemySuperVillain
+    int randomEnemyType = rand() % 2; // 0 o 1
+
+    // Crear una posición aleatoria
+    Position randomPosition;
+    randomPosition.posX = rand() % limites.limitDerecho;
+    randomPosition.posY = rand() % limites.limitAbajo;
+
+    // Elegir el tipo de enemigo y crearlo
+    enemy* newEnemy;
+    if (randomEnemyType == 0) {
+        newEnemy = new enemyVillain(randomPosition, limites);
+    }
+    else {
+        newEnemy = new enemySuperVillain(randomPosition, limites);
+    }
+
+    // Agregar el nuevo enemigo al vector de enemigos
+    m_enemies.push_back(newEnemy);
+}
+
 
 
 void ObjectPooler::EliminarEnemigosMuertos()
 {
     // Recorrer el vector y eliminar los enemigos muertos
-    for (auto it = m_enemies.begin(); it != m_enemies.end(); ) {
+    for (auto it = m_enemies.begin(); it != m_enemies.end(); ) 
+    {
         if ((*it)->muerto) {
             delete* it;  // Liberar la memoria del enemigo eliminado
             it = m_enemies.erase(it);
         }
-        else {
+        else 
+        {
             ++it;
         }
     }
@@ -204,6 +228,7 @@ void ObjectPooler::EliminarEnemigosMuertos()
 
 void ObjectPooler::CreateEnemies(int numEnemiesVillain, int numEnemiesSuperVillain, limits limits)
 {
+    limites = limits;
     //inicializamos enemySuperVillain
     for (int i = 0;i < numEnemiesSuperVillain;i++)
     {
