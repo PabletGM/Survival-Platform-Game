@@ -24,16 +24,29 @@ frameWidth{157}, frameHeight{192}
     SetInitialPosition(p);
 }
 
+enemyVillain::~enemyVillain()
+{
+}
+
 //check if the enemy goes out of the limits to change the direction
 void enemyVillain::update()
 {
-    //comprobamos si hay colisiones con alguna bala
-    bool estado = ObjectPooler::getInstance().checkPositionCollisionEnemyVillain(getBoxColliderEnemy());
-    if (estado)
+    if (this != nullptr)
     {
-        DeathEnemy();
+        //comprobamos si hay colisiones con alguna bala
+        bool estado = ObjectPooler::getInstance().checkPositionCollisionEnemyVillain(getBoxColliderEnemy());
+        if (estado)
+        {
+            DeathEnemy();
+            
+        }
+        else
+        {
+            MoveSprite();
+        }
     }
-    MoveSprite();
+    
+    
 
 }
 
@@ -44,13 +57,18 @@ sf::FloatRect enemyVillain::getBoxColliderEnemy() const
 
 void enemyVillain::render(sf::RenderWindow& window)
 {
-    UpdateSprite(window);
+    if (this != nullptr)
+    {
+        UpdateSprite(window);
+    }
     
 }
 
 void enemyVillain::DeathEnemy()
 {
     std::cout << "Enemigo muerto";
+    muerto = true;
+   /* ObjectPooler::getInstance().DeleteEnemyVillain(this);*/
 }
 
 void enemyVillain::ChangeAnimationTime()

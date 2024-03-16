@@ -1,6 +1,7 @@
 #include <vector>
 #include <shoot.h>
-
+#include "enemy.h"
+#include "enemyVillain.h"
 
 class ObjectPooler 
 {
@@ -34,7 +35,11 @@ public:
     //check position collision with enemy
     bool checkPositionCollisionEnemyVillain(sf::FloatRect boxColliderEnemy);
 
+  
+    void update();
 
+    //renderizar enemies
+    void render(sf::RenderWindow& window);
 
 private:
     // Lista de balas disponibles
@@ -48,6 +53,33 @@ private:
     limits limitsP;
 
     Position playerPos;
+
+
+
+
+public:
+
+    //spawns de enemySuperVillain
+    static const int enemySuperSpawns = 3;
+    Position spawnsEnemySuperVillain[enemySuperSpawns];
+
+    //spawns de enemyVillain
+    static const int enemySpawns = 3;
+    Position spawnsEnemyVillain[enemySpawns];
+
+    void CreateEnemies(int numEnemiesVillain, int numEnemiesSuperVillain, limits limits);
+
+    void CreateSpawns();
+    void CreateSpawnsSuperVillain();
+    void CreateSpawnsVillain();
+
+    void DeleteEnemyVillain(enemyVillain* enemy);
+
+    //array con enemigos de pool
+    std::vector<enemy*> m_enemies{};
+
+    void EliminarEnemigosMuertos();
+
 
 
 };

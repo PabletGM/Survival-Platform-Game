@@ -38,9 +38,11 @@ class enemy
        virtual void FlipSpriteX() = 0;
 
 
-    protected: 
+    public: 
 
         limits limitsEnemy;
+
+        bool muerto = false;
         
 
 };

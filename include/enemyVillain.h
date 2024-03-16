@@ -9,7 +9,7 @@ class enemyVillain: public enemy
         //constructor por defecto
         enemyVillain();
         enemyVillain( Position p,  limits limits);
-
+        ~enemyVillain();
 
         void update() override;
 
@@ -64,6 +64,7 @@ public:
         //box collider de enemy
         sf::FloatRect getBoxColliderEnemy() const;
 
+
 private:
 
         //vida
@@ -77,5 +78,7 @@ private:
 
         //posicionInicial
         Position p;
+
+        
 
 };

@@ -20,7 +20,7 @@ Game::Game(sf::RenderWindow& window, screenSize screenParam)
 void Game::update(float deltaMS, sf::RenderWindow& window)
 {
     m_gameManager->update(deltaMS, window);
-    m_enemyManager->update();
+    ObjectPooler::getInstance().update();
     
 }
 
@@ -30,7 +30,7 @@ void Game::render(float deltaMS, sf::RenderWindow& window)
         window.clear();
 
         m_gameManager->render(deltaMS,window);
-        m_enemyManager->render(window);
+        ObjectPooler::getInstance().render(window);
         
 
         window.display();

@@ -1,5 +1,8 @@
 #include "ObjectPooler.h"
 #include <iostream>
+#include <enemyManager.h>
+
+#include "enemySuperVillain.h"
 
 
 
@@ -102,6 +105,174 @@ bool ObjectPooler::checkPositionCollisionEnemyVillain(sf::FloatRect boxColliderE
         }
     }
     return false;
+}
+
+
+void ObjectPooler::CreateSpawns()
+{
+    CreateSpawnsSuperVillain();
+    CreateSpawnsVillain();
+
+}
+
+void ObjectPooler::CreateSpawnsSuperVillain()
+{
+    //spawns pre-created in places
+    Position p1 = { 100,100 };
+    Position p2 = { 300,300 };
+    Position p3 = { 500,700 };
+    //Position p4 = { 700,900 };
+    //Position p5 = { 900,000 };
+
+    for (int i = 0; i < enemySuperSpawns; ++i)
+    {
+
+        //switch to choose the enemy
+        switch (i)
+        {
+        case 0:
+            spawnsEnemySuperVillain[i].posX = p1.posX;
+            spawnsEnemySuperVillain[i].posY = p1.posY;
+            break;
+
+        case 1:
+            spawnsEnemySuperVillain[i].posX = p2.posX;
+            spawnsEnemySuperVillain[i].posY = p2.posY;
+            break;
+
+        case 2:
+            spawnsEnemySuperVillain[i].posX = p3.posX;
+            spawnsEnemySuperVillain[i].posY = p3.posY;
+            break;
+        }
+
+    }
+}
+
+void ObjectPooler::CreateSpawnsVillain()
+{
+    //spawns pre-created in places
+    Position p1 = { 300,300 };
+    Position p2 = { 1200,200 };
+    Position p3 = { 1400,700 };
+    //Position p4 = { 700,900 };
+    //Position p5 = { 900,000 };
+
+    for (int i = 0; i < enemySpawns; ++i)
+    {
+
+        //switch to choose the enemy
+        switch (i)
+        {
+        case 0:
+            spawnsEnemyVillain[i].posX = p1.posX;
+            spawnsEnemyVillain[i].posY = p1.posY;
+            break;
+
+        case 1:
+            spawnsEnemyVillain[i].posX = p2.posX;
+            spawnsEnemyVillain[i].posY = p2.posY;
+            break;
+
+        case 2:
+            spawnsEnemyVillain[i].posX = p3.posX;
+            spawnsEnemyVillain[i].posY = p3.posY;
+            break;
+        }
+
+    }
+}
+
+void ObjectPooler::DeleteEnemyVillain(enemyVillain* enemy)
+{
+    auto it = std::find(m_enemies.begin(), m_enemies.end(), enemy);
+    if (it != m_enemies.end()) {
+        // El enemigo fue encontrado, eliminarlo del vector
+        m_enemies.erase(it);
+        //delete enemy; // Liberar la memoria del enemigo eliminado
+    }
+}
+
+void ObjectPooler::EliminarEnemigosMuertos()
+{
+    // Recorrer el vector y eliminar los enemigos muertos
+    for (auto it = m_enemies.begin(); it != m_enemies.end(); ) {
+        if ((*it)->muerto) {
+            delete* it;  // Liberar la memoria del enemigo eliminado
+            it = m_enemies.erase(it);
+        }
+        else {
+            ++it;
+        }
+    }
+}
+
+
+
+
+void ObjectPooler::CreateEnemies(int numEnemiesVillain, int numEnemiesSuperVillain, limits limits)
+{
+    //inicializamos enemySuperVillain
+    for (int i = 0;i < numEnemiesSuperVillain;i++)
+    {
+
+        enemy* e = new enemySuperVillain(spawnsEnemySuperVillain[i], limits);
+        m_enemies.push_back(e);
+
+    }
+
+    //inicializamos enemyVillain
+    for (int i = 0;i < numEnemiesVillain;i++)
+    {
+
+        enemy* e = new enemyVillain(spawnsEnemyVillain[i], limits);
+        m_enemies.push_back(e);
+
+    }
+}
+
+
+void ObjectPooler::render(sf::RenderWindow& window)
+{
+
+
+    //iterador que recorre toda la lista de enemigos in game
+    for (auto i = m_enemies.begin(); i < m_enemies.end(); i++)
+    {
+        //accedemos al objeto apuntado por iterador i, accedemos al contenido que apunta i
+        enemy* currentEnemy = *i;
+        //si el objeto existe
+        if (currentEnemy)
+        {
+            if (currentEnemy != nullptr)
+            {
+                // Llamar al método render del objeto actual
+                currentEnemy->render(window);
+            }
+        }
+    }
+}
+
+void ObjectPooler::update()
+{
+    //iterador que recorre toda la lista de enemigos in game
+    for (auto i = m_enemies.begin(); i < m_enemies.end(); i++)
+    {
+        //accedemos al objeto apuntado por iterador i, accedemos al contenido que apunta i
+        enemy* currentEnemy = *i;
+        //si el objeto existe
+        if (currentEnemy)
+        {
+            if (currentEnemy != nullptr)
+            {
+                // Llamar al método render del objeto actual
+                currentEnemy->update();
+            }
+        }
+    }
+
+    //actualizamos muertos y destruimos enemigos que lo estan
+    EliminarEnemigosMuertos();
 }
 
 
