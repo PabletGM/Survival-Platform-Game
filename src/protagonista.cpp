@@ -56,6 +56,11 @@ sf::FloatRect protagonista::getBoxColliderPlayer() const
     return spritePlayer.getGlobalBounds();
 }
 
+bool protagonista::playerIsDead()
+{
+    return ObjectPooler::getInstance().playerIsDead(getPosition());
+}
+
 
 
 void protagonista::LookToRight()

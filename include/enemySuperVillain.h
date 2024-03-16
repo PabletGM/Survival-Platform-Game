@@ -23,6 +23,10 @@ class enemySuperVillain: public enemy
 
         void DeathEnemy();
 
+
+        Position getPosition();
+
+
     private:
 
         //animation Vector parametro, en constructor
@@ -77,8 +81,6 @@ class enemySuperVillain: public enemy
         //texture enemigo
         sf::Texture textureEnemy;
 
-        //posicionInicial
-        Position p;
 
 public:
     //box collider de enemy

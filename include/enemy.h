@@ -37,10 +37,14 @@ class enemy
        //flip sprite in limit
        virtual void FlipSpriteX() = 0;
 
+       Position getPosition();
+
 
     public: 
 
         limits limitsEnemy;
+
+        Position posEnemy;
 
         bool muerto = false;
         

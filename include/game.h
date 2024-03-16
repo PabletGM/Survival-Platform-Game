@@ -21,10 +21,10 @@ class Game
         
 
         //metodo con condiciones para salir del juego
-        bool wantsExit()
-        {
-            return false;
-        }
+        bool wantsExit();
+
+        
+        
 
     private:
         //enemyManager con todos los enemigos del juego
@@ -36,6 +36,8 @@ class Game
         //limitOffset
         unsigned  int limitOffsetX;
         unsigned  int limitOffsetY;
+
+        bool finishGame = false;
 
     public:
        

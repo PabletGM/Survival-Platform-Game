@@ -23,6 +23,8 @@ class gameManager
     // Método para obtener la posición del jugador
     Position getPlayerPosition();
 
+    bool playerIsDead();
+
 
 private:
 

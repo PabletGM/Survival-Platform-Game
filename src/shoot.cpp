@@ -120,7 +120,7 @@ void shoot::RotateSprite()
 void shoot::ScaleSprite()
 {
     // scale
-    spriteBala.setScale(sf::Vector2f(0.5f, 0.5f)); // absolute scale factor
+    spriteBala.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
     //sprite.scale(sf::Vector2f(1.5f, 3.f)); // factor relative to the current scale
 }
 

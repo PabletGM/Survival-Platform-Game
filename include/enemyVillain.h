@@ -18,6 +18,8 @@ class enemyVillain: public enemy
 
         void DeathEnemy();
 
+        Position getPosition();
+
 
     private:
 
@@ -77,7 +79,7 @@ private:
         sf::Texture textureEnemy;
 
         //posicionInicial
-        Position p;
+      
 
         
 

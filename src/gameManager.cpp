@@ -138,3 +138,9 @@ Position gameManager::getPlayerPosition()
     return posPlayer;
 }
 
+bool gameManager::playerIsDead()
+{
+    //llamamos a metodo de protagonista que devuelve si esta muerto
+   return  m_protagonista->playerIsDead();
+}
+

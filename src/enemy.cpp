@@ -48,6 +48,11 @@ void enemy::SetInitialPosition(Position p)
     
 }
 
+Position enemy::getPosition()
+{
+    return posEnemy;
+}
+
 void enemy::LoadTextureInit()
 {
 

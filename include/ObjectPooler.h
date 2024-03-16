@@ -42,6 +42,8 @@ public:
     //renderizar enemies
     void render(sf::RenderWindow& window);
 
+    bool playerIsDead(Position p);
+
 private:
     // Lista de balas disponibles
     std::vector<shoot*> balasDisponibles;

@@ -18,10 +18,10 @@ frameWidth{157}, frameHeight{192}
     ScaleSprite();
     ChangeOriginSprite();
     //inicializamos variables de posicion
-    p.posX= param.posX;
-    p.posY = param.posY;
+    posEnemy.posX= param.posX;
+    posEnemy.posY = param.posY;
     //se inicia posicion de enemy
-    SetInitialPosition(p);
+    SetInitialPosition(posEnemy);
 }
 
 enemyVillain::~enemyVillain()
@@ -71,6 +71,11 @@ void enemyVillain::DeathEnemy()
    /* ObjectPooler::getInstance().DeleteEnemyVillain(this);*/
 }
 
+Position enemyVillain::getPosition()
+{
+   return posEnemy;
+}
+
 void enemyVillain::ChangeAnimationTime()
 {
     sf::Time tiempoTranscurrido = cronometro.getElapsedTime();
@@ -104,11 +109,11 @@ void enemyVillain::MoveSprite()
 
     //move position con dirInit
     
-    p.posX +=dirXInit;
-    p.posY += dirYInit;
+    posEnemy.posX +=dirXInit;
+    posEnemy.posY += dirYInit;
     CheckLimits();
     // offset relative to the current position
-    spriteEnemy.setPosition(sf::Vector2f(p.posX, p.posY)); 
+    spriteEnemy.setPosition(sf::Vector2f(posEnemy.posX, posEnemy.posY));
     
 }
 
@@ -161,13 +166,13 @@ void enemyVillain::ChangeYDirection()
 void enemyVillain::CheckLimits()
 {
     //CHECK LIMITS X size
-    if (p.posX > limitsEnemy.limitDerecho || (p.posX < limitsEnemy.limitIzquierdo))
+    if (posEnemy.posX > limitsEnemy.limitDerecho || (posEnemy.posX < limitsEnemy.limitIzquierdo))
     {
         //out of limits
         ChangeXDirection();
     }
     //check limits YSize
-    if (p.posY > limitsEnemy.limitAbajo || p.posY < limitsEnemy.limitArriba)
+    if (posEnemy.posY > limitsEnemy.limitAbajo || posEnemy.posY < limitsEnemy.limitArriba)
     {
         //out of limits
         ChangeYDirection();

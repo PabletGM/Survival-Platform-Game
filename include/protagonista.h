@@ -23,6 +23,7 @@ public:
     //box collider de player
     sf::FloatRect getBoxColliderPlayer() const;
 
+    bool playerIsDead();
 
 
 

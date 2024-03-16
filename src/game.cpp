@@ -22,6 +22,12 @@ void Game::update(float deltaMS, sf::RenderWindow& window)
     m_gameManager->update(deltaMS, window);
     m_enemyManager->update();
     ObjectPooler::getInstance().update();
+
+    // Verificar si el jugador ha muerto o si se ha pulsado la tecla de escape
+    if (m_gameManager->playerIsDead() || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) 
+    {
+        finishGame = true;
+    }
     
 }
 
@@ -36,4 +42,9 @@ void Game::render(float deltaMS, sf::RenderWindow& window)
 
         window.display();
     
+}
+
+bool Game::wantsExit()
+{
+    return finishGame;
 }

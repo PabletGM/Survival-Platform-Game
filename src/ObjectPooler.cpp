@@ -270,6 +270,22 @@ void ObjectPooler::render(sf::RenderWindow& window)
     }
 }
 
+bool ObjectPooler::playerIsDead(Position p)
+{
+    //comparamos posicion de player con todos los enemies
+    for (auto i = m_enemies.begin(); i < m_enemies.end(); i++)
+    {
+        //accedemos al objeto apuntado por iterador i, accedemos al contenido que apunta i
+        enemy* currentEnemy = *i;
+        if (currentEnemy->getPosition().posX == p.posX && currentEnemy->getPosition().posY == p.posY)
+        {
+            return true;
+        }
+    }
+    return false;
+
+}
+
 void ObjectPooler::update()
 {
     //iterador que recorre toda la lista de enemigos in game
