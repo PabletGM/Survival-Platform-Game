@@ -183,19 +183,7 @@ void ObjectPooler::CreateSpawnsVillain()
     }
 }
 
-void ObjectPooler::DeleteEnemyVillain(enemyVillain* enemy)
-{
-    auto it = std::find(m_enemies.begin(), m_enemies.end(), enemy);
-    if (it != m_enemies.end()) {
-        // El enemigo fue encontrado, eliminarlo del vector
-        m_enemies.erase(it);
-        //delete enemy; // Liberar la memoria del enemigo eliminado
-    }
-}
 
-void ObjectPooler::DeleteEnemySuperVillain(enemySuperVillain* enemy)
-{
-}
 
 void ObjectPooler::EliminarEnemigosMuertos()
 {
