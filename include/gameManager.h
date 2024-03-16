@@ -13,7 +13,7 @@ class gameManager
     public:
     //constructor por defecto
     gameManager(sf::RenderWindow& window, screenSize screenParam,unsigned int limitOffsetX, unsigned int limitOffsetY, unsigned int spaceXPlayable, unsigned int spaceYPlayable);
-
+    ~gameManager();
 
     void update(float deltaMS, sf::RenderWindow& window);
 

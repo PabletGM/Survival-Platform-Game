@@ -4,6 +4,10 @@ effects::effects()
 {
 }
 
+effects::~effects()
+{
+}
+
 // Inicialización de la variable estática instance
 effects effects::instance;
 

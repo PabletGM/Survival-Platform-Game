@@ -10,6 +10,7 @@ class effects
 public:
     // Constructor
     effects();
+    ~effects();
 
 
     

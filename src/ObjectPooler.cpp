@@ -16,6 +16,10 @@ ObjectPooler::ObjectPooler(int poolSize, limits limitsPlayer)
     limitsP = limitsPlayer;
 }
 
+ObjectPooler::~ObjectPooler()
+{
+}
+
 shoot* ObjectPooler::ObtenerBala(Position p, bool directionRight)
 {
     if (balasDisponibles.empty()) {

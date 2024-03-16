@@ -14,6 +14,10 @@ plataforma::plataforma(Position p)
     
 }
 
+plataforma::~plataforma()
+{
+}
+
 void plataforma::update()
 {
 }

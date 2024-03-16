@@ -7,6 +7,7 @@ class shoot
 public:
     //constructor por defecto
     shoot();
+    ~shoot();
     shoot(limits limits, Position p, bool directionRight);
 
 

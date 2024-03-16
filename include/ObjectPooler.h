@@ -10,6 +10,7 @@ class ObjectPooler
 public:
     // Constructor
     ObjectPooler(int poolSize,limits limits);
+    ~ObjectPooler();
 
     // Obtener una bala disponible
     shoot* ObtenerBala(Position p, bool directionRight);

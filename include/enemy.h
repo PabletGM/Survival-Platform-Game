@@ -8,6 +8,7 @@ class enemy
     public:
         //constructor por defecto
         enemy();
+        ~enemy();
 
         virtual void update() = 0;
 

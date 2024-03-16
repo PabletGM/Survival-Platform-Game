@@ -27,6 +27,10 @@ gameManager::gameManager(sf::RenderWindow& window, screenSize screenParam, unsig
     m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray, numPlatforms);
 }
 
+gameManager::~gameManager()
+{
+}
+
 void gameManager::LoadBoxCollidersArrayInit()
 {
     for (int i = 0; i < numPlatforms; ++i)

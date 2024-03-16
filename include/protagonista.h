@@ -11,6 +11,7 @@ class protagonista
 public:
     //constructor por defecto
     protagonista();
+    ~protagonista();
     protagonista(Position p, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms);
 
 

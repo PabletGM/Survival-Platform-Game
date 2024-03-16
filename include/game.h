@@ -12,6 +12,7 @@ class Game
     public:
         //constructor por defecto
         Game(sf::RenderWindow& window, screenSize screen);
+        ~Game();
 
 
         void update(float deltaMS, sf::RenderWindow& window);

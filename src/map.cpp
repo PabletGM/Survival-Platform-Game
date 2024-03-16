@@ -8,6 +8,10 @@ map::map()
 	
 }
 
+map::~map()
+{
+}
+
 
 
 void map::update()

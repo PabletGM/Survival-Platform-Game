@@ -16,6 +16,10 @@ Game::Game(sf::RenderWindow& window, screenSize screenParam)
     m_gameManager = new gameManager(window, screenParam, limitOffsetX, limitOffsetY, spaceXPlayable, spaceYPlayable);
 }
 
+Game::~Game()
+{
+}
+
 
 void Game::update(float deltaMS, sf::RenderWindow& window)
 {

@@ -15,6 +15,10 @@ enemyManager::enemyManager(sf::RenderWindow& window,limits limits): numEnemiesTo
 
 }
 
+enemyManager::~enemyManager()
+{
+}
+
 
 void enemyManager::CreateNewEnemy()
 {

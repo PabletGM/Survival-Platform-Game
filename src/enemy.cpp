@@ -6,6 +6,10 @@ enemy::enemy()
     
 }
 
+enemy::~enemy()
+{
+}
+
 
 
 void enemy::update()

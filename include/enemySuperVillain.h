@@ -13,6 +13,7 @@ class enemySuperVillain: public enemy
 
         //constructor por defecto
         enemySuperVillain();
+        ~enemySuperVillain();
         enemySuperVillain(Position p, limits limits);
         
 

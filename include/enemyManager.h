@@ -9,7 +9,7 @@ class enemyManager
     public:
         //constructor por defecto
         enemyManager(sf::RenderWindow& window,limits  limits);
-
+        ~enemyManager();
        
 
         void CreateEnemies(sf::RenderWindow& window, limits limits);

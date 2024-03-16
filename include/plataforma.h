@@ -8,6 +8,7 @@ class plataforma
     public:
         //constructor por defecto
         plataforma(Position p);
+        ~plataforma();
 
         void update();
 

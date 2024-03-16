@@ -8,6 +8,10 @@ frameWidth{ 100 }, frameHeight{ 80 }, speed{5}
 
 }
 
+shoot::~shoot()
+{
+}
+
 shoot::shoot(limits limits, Position position, bool directionRight) :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{ 80 }, speed{5}
 {

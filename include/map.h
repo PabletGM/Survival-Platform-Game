@@ -6,7 +6,7 @@ class map
     public:
         //constructor por defecto
         map();
-
+        ~map();
         
 
         void update();

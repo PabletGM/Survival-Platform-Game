@@ -9,6 +9,10 @@ protagonista::protagonista()
 {
 }
 
+protagonista::~protagonista()
+{
+}
+
 protagonista::protagonista(Position param, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms) :   animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}, platformRider{ false }
 {
