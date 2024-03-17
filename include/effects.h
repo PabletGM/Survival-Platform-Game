@@ -5,6 +5,7 @@
 #include "enemySuperVillain.h"
 
 
+//no use, tried damage enemies sprite or shader
 class effects
 {
 public:

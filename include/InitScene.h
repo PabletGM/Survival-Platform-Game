@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+//initial scene before playing
 class InitScene
 {
 public:

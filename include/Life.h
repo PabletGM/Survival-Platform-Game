@@ -11,22 +11,23 @@ public:
     Life(Position p);
     ~Life();
 
-
-
     void render(sf::RenderWindow& window);
 
 
 private:
 
-    //sprite enemigo
+    //sprite life canvas
     sf::Sprite spriteLife;
-    //texture enemigo
+    //texture life canvas
     sf::Texture textureLife;
+
+    //sprite methods
     void MoveSpriteInit();
     void LoadTextureInit();
     void SetOrigin();
     void SetScale();
 
+    //position
     Position position;
 
 

@@ -9,49 +9,53 @@
 class protagonista
 {
 public:
-    //constructor por defecto
+    //constructor by defect
     protagonista();
     ~protagonista();
+    //constructor with arguments
     protagonista(Position p, limits limits, std::vector<sf::FloatRect> boxColliders, int numPlatforms);
 
 
     void update();
 
-    // Método para obtener la posición del jugador
+    //get player pos
     Position getPosition();
 
     void render(sf::RenderWindow& window);
 
-    //box collider de player
+    //box collider of player
     sf::FloatRect getBoxColliderPlayer() const;
 
+    //check if it is dead
     bool playerIsDead();
 
 
 
 private:
 
+    //constats
     const float gravity = 1;
     const float groundHeight = 1000;
     const float jumpForce = 150;
 
+    //numPlatforms map
     int numPlatform;
 
 
     
-
+    //look to right or left with texture
     void LookToRight();
     void LookToLeft();
 
 
-    //animation Vector parametro, en constructor
+    //animation Vector parameter, in constructor
     sf::Vector2f animacionVector;
 
-    //cronometro cambio animacion player
+    //cronometro change animation player
     sf::Clock cronometro;
     sf::Time tiempoDeseado = sf::seconds(0.1f);
 
-    //cronometro speed
+    //cronometer speed
     sf::Clock cronometroMovement;
     sf::Time movementSpeed = sf::seconds(0.001);
 

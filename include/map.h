@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <plataforma.h>
+
+//class to put the background
 class map
 {
     public:
@@ -15,17 +17,12 @@ class map
         void render(sf::RenderWindow& window);
 
         void LoadTextureInit();
-        
-
-       
-        
-
 
     private:
 
-        //sprite enemigo
+        //sprite map
         sf::Sprite spriteMap;
-        //texture enemigo
+        //texture map
         sf::Texture textureMap;
 
         void UpdateSprite(sf::RenderWindow& window);

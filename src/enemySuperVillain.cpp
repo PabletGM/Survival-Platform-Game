@@ -8,6 +8,10 @@ enemySuperVillain::enemySuperVillain() : maxLife{ 3 }, actualLife{ 4 }, dirXInit
 
 }
 
+enemySuperVillain::~enemySuperVillain()
+{
+}
+
 enemySuperVillain::enemySuperVillain( Position param, limits limits) : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 0 }, dirYInit{ 1 }, animacionVector(0.0f, 0.0f)
 , frameWidth{ 132 }, frameHeight{ 139 }
 {

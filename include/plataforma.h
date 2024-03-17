@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <position.h>
 
-
+//each platform of the map
 class plataforma
 {
     public:
@@ -20,13 +20,17 @@ class plataforma
 
     private:
 
-        //sprite enemigo
+        //sprite platform
         sf::Sprite spritePlatform;
-        //texture enemigo
+        //texture platform
         sf::Texture texturePlatform;
+        //move sprite initial
         void MoveSpriteInit();
+        //load init texture
         void LoadTextureInit();
+        //set origin
         void SetOrigin();
+        //set scale sprite
         void SetScale();
 
         Position position;

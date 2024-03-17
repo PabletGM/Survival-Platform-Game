@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <position.h>
 #include <screenSize.h>
+
 class shoot
 {
 public:
@@ -19,35 +20,36 @@ public:
 
 private:
 
-    //animation Vector parametro, en constructor
+    //animation Vector parameter, in constructor
     sf::Vector2f animacionVector;
 
-    //cronometro cambio animacion bala
+    //cronometro change animation bullet
     sf::Clock cronometro;
     sf::Time tiempoDeseado = sf::seconds(0.1f);
 
 
-    //cronometro duracion muerte bala
+    //cronometro duration deatch bullet
     sf::Clock cronometroDeath;
     sf::Time timeDeath = sf::seconds(3);
 
     
 
-    //puede morir o no la bala a los 3 segundos
+    //can die or not each 3 seconds
     void Death();
 
-    //cronometro cambio de animacion
+    //cronometer change animation
     void ChangeAnimationTime();
+    //update animation
     void UpdateAnimation();
-    //dimensiones de cada cuadro de animacion
+    //dimensions of each sprite
     int frameWidth;
     int frameHeight;
 
-
+    //direction X and Y
     int dirXInit;
     int dirYInit;
 
-    //metodos privados
+    //private methods
     void MoveSprite();
     void RotateSprite();
     void ScaleSprite();
@@ -55,7 +57,7 @@ private:
     void LoadTextureInit();
     void UpdateSprite(sf::RenderWindow& window);
 
-    //pones todo inicialmente
+    //initial pos
     void SetInitialPosition(Position p);
 
     //change X direction
@@ -68,6 +70,7 @@ private:
     void FlipSpriteX();
 
 public:
+    //restart pos bullet on player when destroyed
     void RestartPosShootEnPlayer();
     void RestartDirShootEnPlayer();
     //box collider de bala
@@ -75,9 +78,9 @@ public:
 
 private:
 
-    //sprite enemigo
+    //sprite bullet
     sf::Sprite spriteBala;
-    //texture enemigo
+    //texture enemy
     sf::Texture textureBala;
     sf::Texture textureNone;
 

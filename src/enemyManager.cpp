@@ -31,6 +31,7 @@ void enemyManager::CreateNewEnemy()
 
 }
 
+//to create new enemy with access
 void enemyManager::update()
 {
 	bool CanSpawnEnemy = canSpawnEnemy();
@@ -40,6 +41,7 @@ void enemyManager::update()
 	}
 }
 
+//timer to spawn enemies
 bool enemyManager::canSpawnEnemy()
 {
 	sf::Time tiempo = cronometroSpawnEnemy.getElapsedTime();
@@ -59,7 +61,7 @@ bool enemyManager::canSpawnEnemy()
 
 
 
-
+//create enemies
 
 void enemyManager::CreateEnemies(sf::RenderWindow& window, limits limits)
 {

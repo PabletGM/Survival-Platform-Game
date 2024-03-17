@@ -10,7 +10,7 @@
 
 
 
-//para tema de enemigos clase villano y supervillano hacer stateMachine con IA, buscar tutorial para los diferentes estados, perseguir, idle, buscar, etc
+//has the functionality to rendere and update, player,map platforms and canvas
 class gameManager
 {
     public:

@@ -6,7 +6,7 @@
 
 
 
-
+//enemy super villain functionality
 class enemySuperVillain: public enemy
 {
     public:

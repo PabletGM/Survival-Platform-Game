@@ -3,9 +3,12 @@
 #include "enemy.h"
 #include <position.h>
 #include <screenSize.h>
+
+//enemy class normal with sprite ghost
 class enemyVillain: public enemy
 {
     public:
+
         //constructor por defecto
         enemyVillain();
         enemyVillain( Position p,  limits limits);
@@ -16,6 +19,7 @@ class enemyVillain: public enemy
 
         void render(sf::RenderWindow& window) override;
 
+        //acgtivate death
         void DeathEnemy();
 
         Position getPosition();
@@ -37,7 +41,7 @@ class enemyVillain: public enemy
         int frameWidth;
         int frameHeight;
 
-
+        //direction
         int dirXInit;
         int dirYInit;
 

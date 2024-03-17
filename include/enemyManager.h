@@ -11,7 +11,7 @@ class enemyManager
         enemyManager(sf::RenderWindow& window,limits  limits);
         ~enemyManager();
        
-
+        //functionality of creating enemies
         void CreateEnemies(sf::RenderWindow& window, limits limits);
         
 
@@ -20,11 +20,14 @@ class enemyManager
         int numEnemiesTotalVillain;
         int numEnemiesTotalSuperVillain;
 
+        //method to create new enemy and spawn
         void CreateNewEnemy();
+        bool canSpawnEnemy();
+
 
         void update();
 
-        bool canSpawnEnemy();
+        
 
 
     private:

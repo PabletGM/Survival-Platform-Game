@@ -3,6 +3,7 @@
 #include <position.h>
 #include <screenSize.h>
 
+//class padre de donde hereda enemySuperVillain y enemyVillain
 class enemy
 {
     public:

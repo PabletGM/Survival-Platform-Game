@@ -6,13 +6,13 @@
 
 
 
-
-//para tema de enemigos clase villano y supervillano hacer stateMachine con IA, buscar tutorial para los diferentes estados, perseguir, idle, buscar, etc
+//with canvas functionality
 class UIManager                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 {
 public:
-    //constructor por defecto
+    //constructor
     UIManager();
+    //destructor
     ~UIManager();
 
     void update();
@@ -24,15 +24,13 @@ public:
 
 private:
 
+    //array with number of hearts
     std::vector<Life> LifesArray;
 
     //vidas player
      int numVidas = 3;
 
+     //lifes to spawn
     void LifesSpawn();
-
-
-
-
 
 };
