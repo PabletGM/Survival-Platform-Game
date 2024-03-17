@@ -29,6 +29,7 @@ set(PROJECT_HEADERS
     include/effects.h
     include/initScene.h
     include/UIManager.h
+    include/life.h
 
 
 )
@@ -49,6 +50,7 @@ set(PROJECT_SOURCES
     src/effects.cpp
     src/InitScene.cpp
     src/UIManager.cpp
+    src/life.cpp
 )
 
 set(PROJECT_FILES 
