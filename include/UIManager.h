@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <protagonista.h>
-
+#include <Life.h>
+#include "UIManager.h"
 
 
 
@@ -15,19 +15,22 @@ public:
     UIManager();
     ~UIManager();
 
-    void update(float deltaMS, sf::RenderWindow& window);
+    void update();
 
 
-    void render(float deltaMS, sf::RenderWindow& window);
+    void render( sf::RenderWindow& window);
 
 
 
 private:
 
+    std::vector<Life> LifesArray;
 
-public:
-    static UIManager instance;
-    static UIManager& getInstance();
+    //array de plataformas
+    static const int numVidas = 3;
+
+    void LifesSpawn();
+
 
 
 

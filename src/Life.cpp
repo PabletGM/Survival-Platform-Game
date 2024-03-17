@@ -45,7 +45,6 @@ void Life::SetOrigin()
 
 void Life::SetScale()
 {
-    float size = rand() % 100 + 70;
 
-    spriteLife.setScale(size / 200, size / 200);
+    spriteLife.setScale(0.08f,0.08f);
 }

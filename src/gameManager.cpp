@@ -25,7 +25,7 @@ gameManager::gameManager(sf::RenderWindow& window, screenSize screenParam, unsig
     p.posY = 1000;
     m_map = new map();
     m_protagonista = new protagonista(Position{ 800,1000 }, limits, boxCollidersPlatformArray, numPlatforms);
-   
+    m_UIManager = new UIManager();
 }
 
 gameManager::~gameManager()
@@ -114,6 +114,7 @@ void gameManager::update(float deltaMS, sf::RenderWindow& window)
         //input of player and position
         m_protagonista->update();
         ObjectPooler::getInstance().UpdateBulletUsed();
+        m_UIManager->update();
 }
 
 void gameManager::render(float deltaMS, sf::RenderWindow& window)
@@ -131,6 +132,8 @@ void gameManager::render(float deltaMS, sf::RenderWindow& window)
         }
         m_protagonista->render(window);
         ObjectPooler::getInstance().RenderBulletUsed(window);
+        //uiManager
+        m_UIManager->render(window);
     
 }
 

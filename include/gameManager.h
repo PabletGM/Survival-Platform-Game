@@ -5,6 +5,8 @@
 #include <screenSize.h>
 #include <gameManager.h>
 #include <InitScene.h>
+#include <UIManager.h>
+//#include <UIManager.h>
 
 
 
@@ -42,6 +44,8 @@ private:
     protagonista* m_protagonista;
     //plataformas del juego, TO DO--> cambiar por mapa y que este dentro tenga un array de plataformas que se rendericen
     map* m_map;
+    //uiManager
+    UIManager* m_UIManager;
 
     //array de plataformas
     static const int numPlatforms = 100;
