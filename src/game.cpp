@@ -1,4 +1,5 @@
 #include "game.h"
+#include <music.h>
 
 
 Game::Game(sf::RenderWindow& window, screenSize screenParam)
@@ -15,6 +16,8 @@ Game::Game(sf::RenderWindow& window, screenSize screenParam)
     m_enemyManager = new enemyManager(window, limits);
     m_gameManager = new gameManager(window, screenParam, limitOffsetX, limitOffsetY, spaceXPlayable, spaceYPlayable);
     m_initScene = new InitScene();
+    //music
+    music::getInstance().Play();
 }
 
 Game::~Game()
