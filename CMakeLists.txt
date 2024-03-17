@@ -30,7 +30,7 @@ set(PROJECT_HEADERS
     include/initScene.h
     include/UIManager.h
     include/life.h
-    include/music.h
+    include/musicClass.h
 
 
 )
@@ -52,7 +52,7 @@ set(PROJECT_SOURCES
     src/InitScene.cpp
     src/UIManager.cpp
     src/life.cpp
-    src/music.cpp
+    src/musicClass.cpp
 )
 
 set(PROJECT_FILES 
