@@ -46,6 +46,8 @@ public:
 
     bool playerIsDead(sf::FloatRect boxColliderEnemy);
 
+    int GetActualLifes();
+
 private:
     // Lista de balas disponibles
     std::vector<shoot*> balasDisponibles;
@@ -68,6 +70,8 @@ private:
     sf::Time tiempoDeseado = sf::seconds(3.0f);
 
     bool LoseLife();
+
+    
 
     void Invulnerability();
 

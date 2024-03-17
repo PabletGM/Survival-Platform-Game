@@ -303,6 +303,11 @@ bool ObjectPooler::playerIsDead(sf::FloatRect boxColliderPlayer)
 
 }
 
+int ObjectPooler::GetActualLifes()
+{
+    return actualLife;
+}
+
 void ObjectPooler::update()
 {
     //iterador que recorre toda la lista de enemigos in game

@@ -1,4 +1,5 @@
 #include "UIManager.h"
+#include <ObjectPooler.h>
 
 
 
@@ -12,9 +13,10 @@ UIManager::~UIManager()
 {
 }
 
-//comprobamos todo el rato las vidas del player preguntandoselo al GameManager
+//comprobamos todo el rato las vidas del player preguntandoselo al ObjectPooler
 void UIManager::update()
 {
+   numVidas = ObjectPooler::getInstance().GetActualLifes();
 }
 
 void UIManager::render(sf::RenderWindow& window)

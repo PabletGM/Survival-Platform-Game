@@ -26,8 +26,8 @@ private:
 
     std::vector<Life> LifesArray;
 
-    //array de plataformas
-    static const int numVidas = 3;
+    //vidas player
+     int numVidas = 3;
 
     void LifesSpawn();
 
