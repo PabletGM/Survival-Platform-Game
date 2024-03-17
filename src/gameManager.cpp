@@ -4,7 +4,7 @@
 
 
 
-
+//constructor to create spawn platforms, protagonista and UIManager
 gameManager::gameManager(sf::RenderWindow& window, screenSize screenParam, unsigned int limittOffsetX, unsigned int limittOffsetY, unsigned int spaceeXPlayable, unsigned int spaceeYPlayable)
 {
 
@@ -32,6 +32,7 @@ gameManager::~gameManager()
 {
 }
 
+//load box colliders array 
 void gameManager::LoadBoxCollidersArrayInit()
 {
     for (int i = 0; i < numPlatforms; ++i)
@@ -49,6 +50,7 @@ void gameManager::LoadBoxCollidersArrayInit()
     }
 }
 
+//platform spawn
 void gameManager::PlatformSpawn()
 {
     // Crear array de posiciones para 20 plataformas
@@ -97,7 +99,7 @@ gameManager gameManager::instance;
 // Implementación del constructor por defecto
 gameManager::gameManager()
 {
-    // Aquí puedes realizar cualquier inicialización necesaria para tu ObjectPooler
+   
 }
 
 // Implementación del método getInstance para devolver la instancia singleton
@@ -107,7 +109,7 @@ gameManager& gameManager::getInstance()
 }
 
 
-
+//update pos protagonista, bullets and UIManager
 void gameManager::update(float deltaMS, sf::RenderWindow& window)
 {
    
@@ -117,6 +119,7 @@ void gameManager::update(float deltaMS, sf::RenderWindow& window)
         m_UIManager->update();
 }
 
+//mapa, protagonista and bullets render
 void gameManager::render(float deltaMS, sf::RenderWindow& window)
 {
 
@@ -137,12 +140,14 @@ void gameManager::render(float deltaMS, sf::RenderWindow& window)
     
 }
 
+//position get player
 Position gameManager::getPlayerPosition()
 {
 
     return posPlayer;
 }
 
+//protagonista devuelve si esta muerto
 bool gameManager::playerIsDead()
 {
     //llamamos a metodo de protagonista que devuelve si esta muerto

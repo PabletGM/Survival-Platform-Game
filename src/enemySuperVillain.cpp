@@ -12,6 +12,7 @@ enemySuperVillain::~enemySuperVillain()
 {
 }
 
+//constructor to initialise super enemy
 enemySuperVillain::enemySuperVillain( Position param, limits limits) : maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 0 }, dirYInit{ 1 }, animacionVector(0.0f, 0.0f)
 , frameWidth{ 132 }, frameHeight{ 139 }
 {
@@ -24,12 +25,11 @@ enemySuperVillain::enemySuperVillain( Position param, limits limits) : maxLife{ 
     posEnemy.posX = param.posX;
     posEnemy.posY = param.posY;
     //se inicia posicion de enemy
-    SetInitialPosition(posEnemy);
-
-    
-    
+    SetInitialPosition(posEnemy); 
 }
 
+
+//update enemy super villain
 void enemySuperVillain::update()
 {
     if (this != nullptr)
@@ -39,34 +39,36 @@ void enemySuperVillain::update()
         if (estado)
         {
             DeathEnemy();
-
         }
         else
         {
             MoveSprite();
         }
     }
-
 }
 
+//render super enemy
 void enemySuperVillain::render(sf::RenderWindow& window)
 {
     UpdateSprite(window);
     
 }
 
+//death
 void enemySuperVillain::DeathEnemy()
 {
     muerto = true;
 
 }
 
+//get position of enemy
 Position enemySuperVillain::getPosition()
 {
     return posEnemy;
 }
 
 
+//change animation each time
 void enemySuperVillain::ChangeAnimationTime()
 {
         sf::Time tiempoTranscurrido = cronometro.getElapsedTime();
@@ -76,11 +78,9 @@ void enemySuperVillain::ChangeAnimationTime()
             UpdateAnimation();
             cronometro.restart();
         }
-
-        // Resto de la lógica de tu aplicación
-    
 }
 
+//animacion spriteEnemy
 void enemySuperVillain::UpdateAnimation()
 {
     //hacemos comprobacion de si ha llegado al ultimo sprite de animacion, o si se ha pasado del tamaño de la textura
@@ -97,12 +97,9 @@ void enemySuperVillain::UpdateAnimation()
 }
 
 
-
+//move enemySUPER
 void enemySuperVillain::MoveSprite()
 {
-    // position
-     //sprite.setPosition(sf::Vector2f(10.f, 50.f)); // absolute position
-
      //move position con dirInit
 
     posEnemy.posX += dirXInit;
@@ -114,9 +111,7 @@ void enemySuperVillain::MoveSprite()
 
 void enemySuperVillain::RotateSprite()
 {
-    //// rotation
-    //sprite.setRotation(90.f); // absolute angle
-    //sprite.rotate(15.f); // offset relative to the current angle
+    
 }
 
 void enemySuperVillain::ScaleSprite()
@@ -133,7 +128,7 @@ void enemySuperVillain::ChangeOriginSprite()
     spriteEnemy.setOrigin(sf::Vector2f(65,65));
 }
 
-
+//render spriteEnemy texture
 void enemySuperVillain::UpdateSprite(sf::RenderWindow& window)
 {
     //comprobamos si ha pasado tiempo para cambiar sprite animacion
@@ -142,6 +137,7 @@ void enemySuperVillain::UpdateSprite(sf::RenderWindow& window)
     
 }
 
+//set initial position
 void enemySuperVillain::SetInitialPosition(Position p)
 {
     spriteEnemy.move(sf::Vector2f(p.posX, p.posY));
@@ -191,15 +187,9 @@ sf::FloatRect enemySuperVillain::getBoxColliderEnemy() const
 
 void enemySuperVillain::LoadTextureInit()
 {
-
-
-
     //carga de imagen del proyecto
     textureEnemy.loadFromFile("../sprites/enemy/andandoSuperVillano.png");
     //le ponemos textura
     spriteEnemy.setTexture(textureEnemy);
     spriteEnemy.setTextureRect(sf::IntRect(static_cast<int>(animacionVector.x) * frameWidth, 0, frameWidth, frameHeight));
-
-
-
 }

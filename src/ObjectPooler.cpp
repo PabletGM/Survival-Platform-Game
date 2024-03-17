@@ -9,17 +9,19 @@
 
 
 
-
+//constructor
 
 ObjectPooler::ObjectPooler(int poolSize, limits limitsPlayer)
 {
     limitsP = limitsPlayer;
 }
 
+//destructor
 ObjectPooler::~ObjectPooler()
 {
 }
 
+//obtain bullet balasEnUso
 shoot* ObjectPooler::ObtenerBala(Position p, bool directionRight)
 {
     if (balasDisponibles.empty()) {
@@ -40,7 +42,7 @@ shoot* ObjectPooler::ObtenerBala(Position p, bool directionRight)
     }
 }
 
-//if it is true, se dispara a derecha, if it is false, se dispara a izquierda
+//shoot and its direction
 void ObjectPooler::Disparar(Position p, bool directionRight)
 {
     ObtenerBala(p, directionRight);
@@ -52,7 +54,7 @@ ObjectPooler ObjectPooler::instance;
 // Implementación del constructor por defecto
 ObjectPooler::ObjectPooler() 
 {
-    // Aquí puedes realizar cualquier inicialización necesaria para tu ObjectPooler
+    
 }
 
 // Implementación del método getInstance para devolver la instancia singleton
@@ -61,6 +63,7 @@ ObjectPooler& ObjectPooler::getInstance()
     return instance;
 }
 
+//destroy a bullet
 void ObjectPooler::DevolverBala(shoot* bala)
 {
     bala->RestartPosShootEnPlayer();
@@ -70,6 +73,7 @@ void ObjectPooler::DevolverBala(shoot* bala)
     balasDisponibles.push_back(bala);
 }
 
+//render bullet 
 void ObjectPooler::RenderBulletUsed(sf::RenderWindow& window)
 {
     for (auto* bala : balasEnUso) 
@@ -78,27 +82,30 @@ void ObjectPooler::RenderBulletUsed(sf::RenderWindow& window)
     }
 }
 
+//update bullets position
 void ObjectPooler::UpdateBulletUsed()
 {
-    //actualizamos balas disponibles
+    //actualizamos balas disponibles a posicion del player
     for (auto* balaD : balasDisponibles)
     {
         balaD->RestartPosShootEnPlayer();
         balaD->RestartDirShootEnPlayer();
     }
 
-
+    //actualizamos posicion de balas en uso
     for (auto* bala : balasEnUso)
     {
         bala->update();
     }
 }
 
+
 std::vector<shoot*>& ObjectPooler::getBalasEnUso()
 {
     return balasEnUso;
 }
 
+//check if there is a collision between player and enemies
 bool ObjectPooler::checkPositionCollisionEnemyVillain(sf::FloatRect boxColliderEnemy)
 {
     for (auto* bala : balasEnUso)
@@ -115,7 +122,7 @@ bool ObjectPooler::checkPositionCollisionEnemyVillain(sf::FloatRect boxColliderE
     return false;
 }
 
-
+//create spawns enemies
 void ObjectPooler::CreateSpawns()
 {
     CreateSpawnsSuperVillain();
@@ -191,6 +198,7 @@ void ObjectPooler::CreateSpawnsVillain()
     }
 }
 
+//create new enemies each 2 o 3 seconds
 void ObjectPooler::CreateNewEnemy()
 {
     // Generar un número aleatorio entre 0 y 1 para elegir entre enemyVillain y enemySuperVillain
@@ -215,7 +223,7 @@ void ObjectPooler::CreateNewEnemy()
 }
 
 
-
+//eliminate death enemies
 void ObjectPooler::EliminarEnemigosMuertos()
 {
     // Recorrer el vector y eliminar los enemigos muertos
@@ -234,7 +242,7 @@ void ObjectPooler::EliminarEnemigosMuertos()
 
 
 
-
+//create new enemies
 void ObjectPooler::CreateEnemies(int numEnemiesVillain, int numEnemiesSuperVillain, limits limits)
 {
     limites = limits;
@@ -258,10 +266,9 @@ void ObjectPooler::CreateEnemies(int numEnemiesVillain, int numEnemiesSuperVilla
 }
 
 
+//render the alive enemies
 void ObjectPooler::render(sf::RenderWindow& window)
 {
-
-
     //iterador que recorre toda la lista de enemigos in game
     for (auto i = m_enemies.begin(); i < m_enemies.end(); i++)
     {
@@ -279,6 +286,7 @@ void ObjectPooler::render(sf::RenderWindow& window)
     }
 }
 
+//compare positions of player and enemies
 bool ObjectPooler::playerIsDead(sf::FloatRect boxColliderPlayer)
 {
     //comparamos posicion de player con todos los enemies
@@ -294,20 +302,20 @@ bool ObjectPooler::playerIsDead(sf::FloatRect boxColliderPlayer)
                 //pierde vida y pone invulnerabilidad por 1 segundo
                 bool dead = LoseLife();
                 if (dead) return true;
-            }
-           
-            
+            }  
         }
     }
     return false;
 
 }
 
+//reference to actual lifes
 int ObjectPooler::GetActualLifes()
 {
     return actualLife;
 }
 
+//update enemies position
 void ObjectPooler::update()
 {
     //iterador que recorre toda la lista de enemigos in game
@@ -341,16 +349,15 @@ void ObjectPooler::update()
     }
 }
 
+//put the invulnerability a true
 void ObjectPooler::Invulnerability()
 {
     invulnerability = true;
-    cronometro.restart();
-
-   
+    cronometro.restart(); 
 }
 
 
-
+//lose a life and check if player is dead
 bool ObjectPooler::LoseLife()
 {
     // Verificar si el jugador ya está muerto

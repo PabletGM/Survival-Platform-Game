@@ -4,6 +4,7 @@ Life::Life()
 {
 }
 
+//constructor to initialize heart
 Life::Life(Position p)
 {
     position.posX = p.posX;
@@ -18,18 +19,21 @@ Life::~Life()
 {
 }
 
+//render lifes
 void Life::render(sf::RenderWindow& window)
 {
     window.draw(spriteLife);
 
 }
 
+//move init life
 void Life::MoveSpriteInit()
 {
     // offset relative to the current position
     spriteLife.move(sf::Vector2f(position.posX, position.posY));
 }
 
+//load texture lifes
 void Life::LoadTextureInit()
 {
     //carga de imagen del proyecto
@@ -45,6 +49,5 @@ void Life::SetOrigin()
 
 void Life::SetScale()
 {
-
     spriteLife.setScale(0.08f,0.08f);
 }

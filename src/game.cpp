@@ -1,7 +1,7 @@
 #include "game.h"
 
 
-
+//constructor to initialise enemyManager, gameManager and initScene
 Game::Game(sf::RenderWindow& window, screenSize screenParam)
 {
    
@@ -20,11 +20,13 @@ Game::Game(sf::RenderWindow& window, screenSize screenParam)
    
 }
 
+
 Game::~Game()
 {
 }
 
 
+//update the position of the scene Game or the scene init or mainMenu
 void Game::update(float deltaMS, sf::RenderWindow& window)
 {
     //miramos si esta activa InitScene
@@ -48,6 +50,7 @@ void Game::update(float deltaMS, sf::RenderWindow& window)
     
 }
 
+//render the initScene or the gameScene
 void Game::render(float deltaMS, sf::RenderWindow& window)
 {
     
@@ -67,9 +70,9 @@ void Game::render(float deltaMS, sf::RenderWindow& window)
         }
 
         window.display();
-    
 }
 
+//wants to exit
 bool Game::wantsExit()
 {
     return finishGame;

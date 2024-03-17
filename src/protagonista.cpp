@@ -22,9 +22,11 @@ frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}, platformRider{ fa
     //cargas textura inicialmente
     InitTextures();
     LoadTextureInit();
+    //scale sprite
     ScaleSprite();
+
     ChangeOriginSprite();
-    //inicializamos variables de posicion
+    //inicializamos variables de posicion and notify gameManager
     gameManager::getInstance().posPlayer.posX = param.posX;
     gameManager::getInstance().posPlayer.posY = param.posY;
     //se inicia posicion de enemy
@@ -36,12 +38,14 @@ frameWidth{ 100 }, frameHeight{80 }, speed {2}, canJump{true}, platformRider{ fa
 
 }
 
+//check the collision with the platforms and move the player
 void protagonista::update()
 {
     //collisions with platforms
     TakeFromMapArrayBoxColliders();
     //move sprite
     MoveSprite();
+    //spritePlatform
     gameManager::getInstance().spritePlayer.setPosition(sf::Vector2f(gameManager::getInstance().posPlayer.posX, gameManager::getInstance().posPlayer.posY));
 }
 
@@ -50,16 +54,18 @@ Position protagonista::getPosition()
     return  gameManager::getInstance().posPlayer;
 }
 
+//render player
 void protagonista::render(sf::RenderWindow& window)
 {
     UpdateSprite(window);
 }
-
+//collider player
 sf::FloatRect protagonista::getBoxColliderPlayer() const
 {
     return gameManager::getInstance().spritePlayer.getGlobalBounds();
 }
 
+//check if the player is dead
 bool protagonista::playerIsDead()
 {
 

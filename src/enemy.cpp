@@ -1,6 +1,7 @@
 #include "enemy.h"
 
 
+//father class
 enemy::enemy()
 {
     
@@ -11,15 +12,14 @@ enemy::~enemy()
 }
 
 
-
+//virtual methods to the childrens 
 void enemy::update()
 {
 }
 
 void enemy::render(sf::RenderWindow& window)
 {
-    UpdateSprite(window);
-    MoveSprite();
+   
 }
 
 void enemy::MoveSprite()

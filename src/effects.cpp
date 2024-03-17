@@ -1,5 +1,6 @@
 #include "effects.h"
 
+//no use class
 effects::effects()
 {
 }

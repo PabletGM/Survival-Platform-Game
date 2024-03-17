@@ -9,6 +9,7 @@ frameWidth{ 157 }, frameHeight{ 192 }
 
 }
 
+//constructor initialise enemy normal
 enemyVillain::enemyVillain(Position param, limits limits): maxLife{ 3 }, actualLife{ 4 }, dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
 frameWidth{157}, frameHeight{192}
 {
@@ -27,8 +28,7 @@ frameWidth{157}, frameHeight{192}
 enemyVillain::~enemyVillain()
 {
 }
-
-//check if the enemy goes out of the limits to change the direction
+//update pos enemy and bullets 
 void enemyVillain::update()
 {
     if (this != nullptr)
@@ -45,25 +45,24 @@ void enemyVillain::update()
             MoveSprite();
         }
     }
-    
-    
-
 }
 
+//collider enemy
 sf::FloatRect enemyVillain::getBoxColliderEnemy() const
 {
     return spriteEnemy.getGlobalBounds();
 }
 
+//render enemy normal
 void enemyVillain::render(sf::RenderWindow& window)
 {
     if (this != nullptr)
     {
         UpdateSprite(window);
     }
-    
 }
 
+//death enemy
 void enemyVillain::DeathEnemy()
 {
     std::cout << "Enemigo muerto";
@@ -76,6 +75,7 @@ Position enemyVillain::getPosition()
    return posEnemy;
 }
 
+//animation enemy change each tiempoDeseado time
 void enemyVillain::ChangeAnimationTime()
 {
     sf::Time tiempoTranscurrido = cronometro.getElapsedTime();
@@ -87,6 +87,7 @@ void enemyVillain::ChangeAnimationTime()
     }
 }
 
+//animacion vector enemyVillain
 void enemyVillain::UpdateAnimation()
 {
     //hacemos comprobacion de si ha llegado al ultimo sprite de animacion, o si se ha pasado del tamaño de la textura
@@ -102,26 +103,21 @@ void enemyVillain::UpdateAnimation()
     animacionVector.x++;
 }
 
+//move sprite enemyVillain
 void enemyVillain::MoveSprite()
 {
-    // position
-    //sprite.setPosition(sf::Vector2f(10.f, 50.f)); // absolute position
-
-    //move position con dirInit
-    
+    //move position con dirInit 
     posEnemy.posX +=dirXInit;
     posEnemy.posY += dirYInit;
     CheckLimits();
     // offset relative to the current position
-    spriteEnemy.setPosition(sf::Vector2f(posEnemy.posX, posEnemy.posY));
-    
+    spriteEnemy.setPosition(sf::Vector2f(posEnemy.posX, posEnemy.posY)); 
 }
+
 
 void enemyVillain::RotateSprite()
 {
-    //// rotation
-    //sprite.setRotation(90.f); // absolute angle
-    //sprite.rotate(15.f); // offset relative to the current angle;
+
 }
 
 void enemyVillain::ScaleSprite()
@@ -163,6 +159,7 @@ void enemyVillain::ChangeYDirection()
     FlipSpriteX();
 }
 
+//check limits to turn around to the other side
 void enemyVillain::CheckLimits()
 {
     //CHECK LIMITS X size
@@ -185,6 +182,7 @@ void enemyVillain::FlipSpriteX()
 }
 
 
+//load texture
 void enemyVillain::LoadTextureInit()
 {
     //carga de imagen del proyecto

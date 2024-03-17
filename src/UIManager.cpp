@@ -3,7 +3,7 @@
 
 
 
-
+//spawn lifes
 UIManager::UIManager()
 {
     LifesSpawn();
@@ -19,6 +19,7 @@ void UIManager::update()
    numVidas = ObjectPooler::getInstance().GetActualLifes();
 }
 
+//render the lifes of the vector
 void UIManager::render(sf::RenderWindow& window)
 {
     //renderizamos las vidas
@@ -32,6 +33,7 @@ void UIManager::render(sf::RenderWindow& window)
     }
 }
 
+//spanw lifes with static position on the map
 void UIManager::LifesSpawn()
 {
     // Crear array de posiciones para 3 lifes

@@ -2,6 +2,7 @@
 #include <gameManager.h>
 
 
+//constructor
 shoot::shoot() :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{ 80 }, speed{5}
 {
@@ -12,6 +13,7 @@ shoot::~shoot()
 {
 }
 
+//constructor with load textures, scale and more functionality and initial direction
 shoot::shoot(limits limits, Position position, bool directionRight) :  dirXInit{ 1 }, dirYInit{ 0 }, animacionVector(0.0f, 0.0f),
 frameWidth{ 100 }, frameHeight{ 80 }, speed{5}
 {
@@ -36,20 +38,20 @@ frameWidth{ 100 }, frameHeight{ 80 }, speed{5}
    
 }
 
-//check if the enemy goes out of the limits to change the direction
+//move the enemy and death
 void shoot::update()
 {
     MoveSprite();
     //iniciar contador destruir bala
     Death();
-
-
 }
 
+//render sprite
 void shoot::render(sf::RenderWindow& window)
 {
     UpdateSprite(window);
 }
+
 
 void shoot::ChangeAnimationTime()
 {
@@ -62,6 +64,7 @@ void shoot::ChangeAnimationTime()
     }
 }
 
+//animation bullet changing texture
 void shoot::UpdateAnimation()
 {
     //hacemos comprobacion de si ha llegado al ultimo sprite de animacion, o si se ha pasado del tamaño de la textura
@@ -77,6 +80,8 @@ void shoot::UpdateAnimation()
     animacionVector.x++;
 }
 
+
+//direction bullet and movement
 void shoot::MoveSprite()
 {
     // position
@@ -116,16 +121,13 @@ void shoot::MoveSprite()
 
 void shoot::RotateSprite()
 {
-    //// rotation
-    //sprite.setRotation(90.f); // absolute angle
-    //sprite.rotate(15.f); // offset relative to the current angle;
+    
 }
 
 void shoot::ScaleSprite()
 {
     // scale
     spriteBala.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
-    //sprite.scale(sf::Vector2f(1.5f, 3.f)); // factor relative to the current scale
 }
 
 void shoot::ChangeOriginSprite()
@@ -163,36 +165,28 @@ void shoot::ChangeYDirection()
 
 void shoot::CheckLimits()
 {
-    ////CHECK LIMITS X size
-    //if (p.posX > limitsEnemy.limitDerecho || (p.posX < limitsEnemy.limitIzquierdo))
-    //{
-    //    //out of limits
-    //    ChangeXDirection();
-    //}
-    ////check limits YSize
-    //if (p.posY > limitsEnemy.limitAbajo || p.posY < limitsEnemy.limitArriba)
-    //{
-    //    //out of limits
-    //    ChangeYDirection();
-    //}
+    
 }
 
+//change direction bullet
 void shoot::FlipSpriteX()
 {
     spriteBala.scale(-1, 1);
 }
 
+//position on player
 void shoot::RestartPosShootEnPlayer()
 {
     p= gameManager::getInstance().getPlayerPosition();
-    
 }
 
+//collider bala
 sf::FloatRect shoot::getBoxColliderBala() const
 {
     return spriteBala.getGlobalBounds();
 }
 
+//restart direction
 void shoot::RestartDirShootEnPlayer()
 {
     dirXInit = 0;
