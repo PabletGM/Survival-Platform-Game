@@ -30,5 +30,5 @@ void music::Stop()
 
 void music::LoadMusic()
 {
-	musicObject.openFromFile(".. / sprites / music / music.mp3");
+	musicObject.openFromFile(".. / music / music / music.mp3");
 }
